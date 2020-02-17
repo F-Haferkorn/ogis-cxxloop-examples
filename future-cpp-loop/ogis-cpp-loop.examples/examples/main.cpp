@@ -1,10 +1,3 @@
-#include <iostream>
-#include <iomanip>
-#include <ostream>
-#include <functional>
-
-#include <compound>
-
 #include <examples/asciishapes.hpp>
 
 

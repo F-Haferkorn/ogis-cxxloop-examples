@@ -1,5 +1,8 @@
 #include <examples/asciishapes.hpp>
 
+#include <cstdio>
+#include <compound>
+
 namespace asciishapes
 {
 
@@ -31,7 +34,7 @@ void triangular(short noRows)
     named_loop_(row,noRows)
     {
         loop(row+1)
-			star();
+            star();
         newline();
     }
 }
@@ -73,7 +76,7 @@ void sandclock(short noRows)
         loop_(noRows-row-1,space());
         loop(2)
             loop_(row+1)
-				star();
+                star();
     }
 
     named_loop_(row,noRows,newline())
@@ -81,7 +84,7 @@ void sandclock(short noRows)
         loop_(row,space());
         loop(2)
             loop_(noRows-row)
-				star();
+                star();
     }
 
 }

@@ -1,7 +1,5 @@
 #pragma once
 
-#include <cstdio>
-#include <compound>
 
 namespace asciishapes
 {
