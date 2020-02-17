@@ -39,20 +39,20 @@ Examples:
 	+-----------------------------------------------------------------------------
 	
         float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums)
-    	{
-        	loop(nbofRows)
-            		loop(nbofColums)
-                		*tgt++ = *src++;
+        {
+                loop(nbofRows)
+      	                loop(nbofColums)
+            	                *tgt++ = *src++;
 		return tgt;
-    	}
+        }
 
    
         float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums, int  stride)
-    	{
+        {
 		loop(nbofRows)
-	    		loop_(nbofColumms, tgt+=stride, src+=stride)
-				*tgt++ = *src++;
-		return tgt;
-    	}
+                        loop_(nbofColumms, tgt+=stride, src+=stride)
+                                *tgt++ = *src++;
+                return tgt;
+        }
 	
 							
