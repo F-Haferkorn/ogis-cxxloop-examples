@@ -5,22 +5,24 @@ This REPO is a testbed for future Modern C++ extension based on the 'cpp'
 Providing a header only solution of new simple LOOP-compound statements.
 
 uses syntax
-		N    				the number of repetitions (a unsigend integral value) ;
-		BLOCK;				the statement or statement-block  after the compound statement
-		, ...) 				a comma separated list of expressions  
-		TYPE				the <type> of the iteration variable
-		NAME				the <name> of the iteration variable
-		UNIQUE_ID			a auto-generated unqiue id for this loop statement 			
+		N    		the number of repetitions (a unsigend integral value) ;
+		BLOCK;		the statement or statement-block  after the compound statement
+		, ...) 		a comma separated list of expressions  
+		TYPE		the <type> of the iteration variable
+		NAME		the <name> of the iteration variable
+		UNIQUE_ID	a auto-generated unqiue id for this loop statement 			
 		
-	new-keywords: loop(), typed_loop(), named_loop()
+	new-keywords: 
+		loop(), typed_loop(), named_loop()
+		loop_(), typed_loop_(), named_loop_()       with additional post-loop opertions
 	
 Description:
 
 	new compounds				cpp-only implememenation
 	+---------------------------------------+----------------------------
-	loop(N) BLOCK;				for(auto UNIQUE_ID=N; N--;)					BLOCK;						
-	typed_loop(TYPE, N) BLOCK;		for(TYPE UNIQUE_ID=N; N--;)					BLOCK;						
-	named_loop(NAME, N) BLOCK;  		for(auto NAME=N; N--;)						BLOCK;						
+	loop(N) BLOCK;				for(auto UNIQUE_ID=N; N--;)			BLOCK;						
+	typed_loop(TYPE, N) BLOCK;		for(TYPE UNIQUE_ID=N; N--;)			BLOCK;						
+	named_loop(NAME, N) BLOCK;  		for(auto NAME=N; N--;)				BLOCK;						
 							
 							
 	new compounds with post-ops..	    	cpp-only implememenation							
