@@ -1,10 +1,15 @@
 # ogis-modern-cxx-future-cpp
 This REPO is a testbed for future Modern C++ extension based on the 'cpp'
 
-+++++++++++++++++++++++++++++++++++++++++++
+
 Providing a header only solution of new simple LOOP-compound statements.
 
-uses syntax
+	new-keywords: 
+		loop(), typed_loop(), named_loop()          plain loop ccompounds
+		loop_(), typed_loop_(), named_loop_()       loop compounds with additional post-loop opertions
+	
+
+	uses syntax
 		N    		the number of repetitions (a unsigend integral value) ;
 		BLOCK;		the statement or statement-block  after the compound statement
 		, ...) 		a comma separated list of expressions  
@@ -12,14 +17,11 @@ uses syntax
 		NAME		the <name> of the iteration variable
 		UNIQUE_ID	a auto-generated unqiue id for this loop statement 			
 		
-	new-keywords: 
-		loop(), typed_loop(), named_loop()
-		loop_(), typed_loop_(), named_loop_()       with additional post-loop opertions
 	
-Description:
-
+	Description:
 	new compounds				cpp-only implememenation
 	+---------------------------------------+----------------------------
+	
 	loop(N) BLOCK;				for(auto UNIQUE_ID=N; N--;)			BLOCK;						
 	typed_loop(TYPE, N) BLOCK;		for(TYPE UNIQUE_ID=N; N--;)			BLOCK;						
 	named_loop(NAME, N) BLOCK;  		for(auto NAME=N; N--;)				BLOCK;						
@@ -27,6 +29,7 @@ Description:
 							
 	new compounds with post-ops..	    	cpp-only implememenation							
 	+---------------------------------------+----------------------------
+	
 	loop_(N, ...) BLOCK;			for(auto UNIQUE_ID=N; N--; __VA_ARGS__)		BLOCK;						
 	typed_loop_(TYPE, N, ...) BLOCK;	for(TYPE UNIQUE_ID=N; N--; __VA_ARGS__)		BLOCK;						
 	named_loop_(NAME, N, ...)  BLOCK;	for(auto NAME=N; N--; __VA_ARGS__)  		BLOCK;
@@ -34,7 +37,8 @@ Description:
 
 Examples:
 	+-----------------------------------------------------------------------------
-	float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums)
+	
+        float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums)
     	{
         	loop(nbofRows)
             		loop(nbofColums)
@@ -43,7 +47,7 @@ Examples:
     	}
 
    
-	float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums, int  stride)
+        float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums, int  stride)
     	{
 		loop(nbofRows)
 	    		loop_(nbofColumms, tgt+=stride, src+=stride)
