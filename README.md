@@ -1,8 +1,8 @@
 # ogis-modern-cxx-future-cpp
 This REPO is a testbed for future Modern C++ extension based on the 'cpp'
 
-+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-Providing a header only solution of new, simple LOOP-compound statements
++++++++++++++++++++++++++++++++++++++++++++
+Providing a header only solution of new simple LOOP-compound statements.
 
 uses syntax
 		N    				the number of repetitions (a unsigend integral value) ;
