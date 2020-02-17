@@ -16,16 +16,16 @@ uses syntax
 	
 Description:
 
-	new compounds					    cpp-only implememenation
-	+-----------------------------------+----------------------------
-	loop(N) BLOCK;						for(auto UNIQUE_ID=N; N--;)					BLOCK;						
-	typed_loop(TYPE, N) BLOCK;			for(TYPE UNIQUE_ID=N; N--;)					BLOCK;						
+	new compounds				cpp-only implememenation
+	+---------------------------------------+----------------------------
+	loop(N) BLOCK;				for(auto UNIQUE_ID=N; N--;)					BLOCK;						
+	typed_loop(TYPE, N) BLOCK;		for(TYPE UNIQUE_ID=N; N--;)					BLOCK;						
 	named_loop(NAME, N) BLOCK;  		for(auto NAME=N; N--;)						BLOCK;						
 							
 							
-	new compounds with post-ops..	    cpp-only implememenation							
-	+-----------------------------------+----------------------------
-	loop_(N, ...) BLOCK;				for(auto UNIQUE_ID=N; N--; __VA_ARGS__)		BLOCK;						
+	new compounds with post-ops..	    	cpp-only implememenation							
+	+---------------------------------------+----------------------------
+	loop_(N, ...) BLOCK;			for(auto UNIQUE_ID=N; N--; __VA_ARGS__)		BLOCK;						
 	typed_loop_(TYPE, N, ...) BLOCK;	for(TYPE UNIQUE_ID=N; N--; __VA_ARGS__)		BLOCK;						
 	named_loop_(NAME, N, ...)  BLOCK;	for(auto NAME=N; N--; __VA_ARGS__)  		BLOCK;
 
@@ -33,20 +33,20 @@ Description:
 Examples:
 	+-----------------------------------------------------------------------------
 	float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums)
-    {
-        loop(nbofRows)
-            loop(nbofColums)
-                *tgt++ = *src++;
+    	{
+        	loop(nbofRows)
+            		loop(nbofColums)
+                		*tgt++ = *src++;
 		return tgt;
-    }
+    	}
 
    
 	float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums, int  stride)
-    {
-        loop(nbofRows)
-            loop_(nbofColumms, tgt+=stride, src+=stride)
-                *tgt++ = *src++;
+    	{
+		loop(nbofRows)
+	    		loop_(nbofColumms, tgt+=stride, src+=stride)
+				*tgt++ = *src++;
 		return tgt;
-    }
+    	}
 	
 							
