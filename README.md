@@ -5,12 +5,12 @@ This REPO is a testbed for future Modern C++ extension based on the 'cpp'
 Providing a header only solution of new simple LOOP-compound statements.
 
 	new-keywords: 
-		loop(), typed_loop(), named_loop()          plain loop ccompounds
+		loop(), typed_loop(), named_loop()          plain loop compounds
 		loop_(), typed_loop_(), named_loop_()       loop compounds with additional post-loop opertions
 	
 
 	uses syntax
-		N    		the number of repetitions (a unsigend integral value) ;
+		N    		the count of targeted repetitions (a unsigned integral value) ;
 		BLOCK;		the statement or statement-block  after the compound statement
 		, ...) 		a comma separated list of expressions  
 		TYPE		the <type> of the iteration variable
@@ -41,7 +41,7 @@ Examples:
         float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums)
         {
                 loop(nbofRows)
-      	                loop(nbofColums)
+                        loop(nbofColums)
             	                *tgt++ = *src++;
 		return tgt;
         }
@@ -49,9 +49,9 @@ Examples:
    
         float* matrix_copy( float* tgt, float* src, int nbofRows, int nbofColums, int  stride)
         {
-		loop(nbofRows)
+                loop(nbofRows)
                         loop_(nbofColumms, tgt+=stride, src+=stride)
-                                *tgt++ = *src++;
+                             	*tgt++ = *src++;
                 return tgt;
         }
 	
