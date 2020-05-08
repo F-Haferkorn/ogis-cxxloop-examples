@@ -57,7 +57,7 @@ These compounds iterate ("loop") the trailing block "{}" _rep times_ and do NOT 
 	TYPED_LOOP(type,rep, op1, ...)){}	// hidden loop with type constraint on the index variable
 	NAMED_LOOP(name, cnt, op1, op2, ...){}   // loop with type "auto" a named index variable.	
 
-# IMPLEMENTATION: #
+## IMPLEMENTATION: ##
     ...
 Properties of the solution 
 	- the current solution is based on the c--preprocessor (cpp) only.	
@@ -70,7 +70,7 @@ Outcomes for ANSI-C
 	- Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
 	- It is implementable using the standard 'cpp' c--preprocessor, only,
 	
-# UseCases #
+## UseCases ##
 ### matrix_copy with stride ###
 	template<typename TPtr, typename TRow, typename TCol, typename TStride >
 	TPtr matrix_copy( TPtr tgt, TPtr src, TRow nbofRows,TCol nbofColums, TStride stride)
@@ -81,7 +81,7 @@ Outcomes for ANSI-C
                 return tgt;
         }
 
-# DISCUSSION #
+## DISCUSSION ##
  One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
  
  OK, it is all about iterating and it is not a swiss-army knife for all iterations.
@@ -127,7 +127,7 @@ UNINTENDED-USAGE:
 	- in cases  the  described compounds can ba applied.
 	- compared to the now-a-days solution for(int i=0; i<rep; ++i){}
   
-# CONCLUSion:#
+## CONCLUSion:##
 	First comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++. 
 	But You can take the occasion and try it out yourself. 
 	It works. Even for plain Ansi-C See the *IMPLEMENTATION* section.
