@@ -36,7 +36,7 @@ But was that really all for C++?
 	, ...) 			an optional comma separated list of post-operations (these are expressions)
 		
 ## BASIC_SYNTAX: ##	
-all compounds  loop the trailing block{} _rep times_ and do NOT change _rep_
+These compounds iterate ("loop") the trailing block "{}" _rep times_ and do NOT change the argument _rep_:
 
  	// a hidden_loop that NOT canging <rep> (it is auto typed and the varname is hidden).	// see CPPMACRO_UNIQUE_ID()
 	HIDDEN_LOOP(rep){}			// for(auto hidden=rep; hidden-- >0; ++hidden){}   
@@ -91,7 +91,7 @@ Outcomes for ANSI-C
  - ALGORITHMics: It allows/lead  the developer to notate code that completely does _NOT depend on the iteration index_.
  - OPTIMIZATION: It opens the way to enhanced optimizations for new compiler implementations.
 
-REMMARK on TEACHing C/C++: As far as  know:
+REMARK on TEACHing C/C++: As far as  know:
   - !!! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !!!
   - 2nd grade (7years old) pupils are able to cope wit the concept of PRINTING, LOOPING and generating textual/graphical outputs.
   - But CONDITIONS with the need of using boolean Expressions like AND, OR, NOT are a very hard stuff at  that age. 
@@ -105,7 +105,7 @@ REMMARK on TEACHing C/C++: As far as  know:
    - in the 1st university lecture of Programming (C/C++) 
    - for the the now 4-year old kindergarden children
    - be 2034?
-   - Coared to this years bachelor students?
+   - Compared to this years bachelor students?
   And what would be their favored programming language ???
     
 REMARK on OPTIMIZAtion:
