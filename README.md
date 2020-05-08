@@ -1,4 +1,4 @@
-# ogis-modern-cxx-future-cpp #
+# ogis-modern-cxx-future-cpp: Overview to the Project: #
 This GITHUB-REPO is a testbed for a special kind of Modern C++ CORE LANGUAGE  extension.
 
 ## Motivation ##
@@ -84,6 +84,7 @@ Outcomes for ANSI-C
 ## DISCUSSION ##
  One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
  
+ ### Advantages: ###
  OK, it is all about iterating and it is not a swiss-army knife for all iterations.
  BUT:
  - READability:  It can reduce C/C++ source code size and improve its readability.
@@ -91,7 +92,8 @@ Outcomes for ANSI-C
  - ALGORITHMics: It allows/lead  the developer to notate code that completely does _NOT depend on the iteration index_.
  - OPTIMIZATION: It opens the way to enhanced optimizations for new compiler implementations.
 
-REMARK on TEACHing C/C++: As far as  know:
+### REMARK on TEACHing C/C++: ###
+As far as  know:
   - !!! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !!!
   - 2nd grade (7years old) pupils are able to cope wit the concept of PRINTING, LOOPING and generating textual/graphical outputs.
   - But CONDITIONS with the need of using boolean Expressions like AND, OR, NOT are a very hard stuff at  that age. 
@@ -108,7 +110,7 @@ REMARK on TEACHing C/C++: As far as  know:
    - Compared to this years bachelor students?
   And what would be their favored programming language ???
     
-REMARK on OPTIMIZAtion:
+### REMARK on OPTIMIZAtion: ###
 The new iterative coumpounds 
 	- have less degree of freedom
 	- and will give room for new way of enhancing the compiler optimization.
@@ -116,18 +118,18 @@ We will see if:
  	- it can lead to SHORTER,, COMPACTER machine-code as the itearation is SIMPLER.
 	- This can reduce the _rate of cache-misses_ dramatically.
 
-UNINTENDED-USAGE:
+### UNINTENDED-USAGE: ###
 	YES, in the presented cpp-implementation,
 	the underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer.
 
-## OPEN Issues ##
+## OPEN Issues: ##
 	- However it stil has to be proven, that there are _realworld USE-CASES_,
 	- where the praised "unbeatable" _compiler_ 
 	- can be driven to make better/shorer/faster
 	- in cases  the  described compounds can ba applied.
 	- compared to the now-a-days solution for(int i=0; i<rep; ++i){}
   
-## CONCLUSion:##
+## CONCLUSion: ##
 	First comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++. 
 	But You can take the occasion and try it out yourself. 
 	It works. Even for plain Ansi-C See the *IMPLEMENTATION* section.
