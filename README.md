@@ -1,8 +1,8 @@
-# ogis-modern-cxx-future-cpp: Overview to the Project: #
+# ogis-modern-cxx-future-cpp: #
 This GITHUB-REPO is a testbed for a special kind of Modern C++ CORE LANGUAGE  extension.
 
 ## Motivation ##
-Herein I present a testbed for  COMPOUND stamtenets  related to ITERATION.
+Herein I present a testbed for  COMPOUND statements related to ITERATION.
 
 in C/C++ there are the well known compound statements.
  - if(<cond>) {} else{}
@@ -15,67 +15,77 @@ with the related staments
  - break
  - continue.
  
- These compounds have not been changed since the ancient time oc ANSI-C.
+ These compounds have not been changed since the  time of creation K&R-C and ANSI-C.
  
  +----------------------------------------------------------------
  
 But was that really all for C++?
-
-	One might partly agreed that a 
+One might partly agreed that a 
 
  	try{
  	} catch(...)   {}
  
-	"block" is somehow a compound stament, too.
+ "block" is somehow a compound stament, too.
 
 ## USED Shortcuts: ##
-	{}			the <statement> || <statement-block>  after the compound statement
-	rep    			the <count> of targeted repetitions (a unsigned integral value) ;
-	type			the <type> of the (hiddden) iteration variable
-	name			the <name> of the iteration variable
-	, ...) 			an optional comma separated list of post-operations (these are expressions)
+	{}	the <statement> || <statement-block>  after the compound statement
+	rep    	the <count> of targeted repetitions (a unsigned integral value) ;
+	type	the <type> of the (hiddden) iteration variable
+	name	the <name> of the iteration variable
+	, ...) 	an optional comma separated list of post-operations (expressions)
 		
 ## BASIC_SYNTAX: ##	
-These compounds iterate ("loop") the trailing block "{}" _rep times_ and do NOT change the argument _rep_:
+These compounds iterate ("loop") the trailing block "{}" rep times
 
- 	// a hidden_loop that NOT canging <rep> (it is auto typed and the varname is hidden).	// see CPPMACRO_UNIQUE_ID()
-	HIDDEN_LOOP(rep){}			// for(auto hidden=rep; hidden-- >0; ++hidden){}   
+	// the  hidden_loop does NOT change <rep> with hidden index id.
+	loop(rep){}	// for(auto hidden=rep; hidden-- ; ++hidden){}   
 	
 	// a hidden_loop, with a type constained  index var.
-	TYPED_LOOP(type,rep){} 			// for(type hidden=rep; hidden-- >0; ++hidden){}   
+	typed_loop(type,rep){} 	// for(type hidden=rep; hidden-- ; ++hidden){}   
 	
-	// loop <block> rep times, with given index var namem counting downwards, until name==0 is reached.
-	NAMED_LOOP(name,rep){} 			 // for(auto name=rep; hidden-- >0; ++hidden){}     
+	// loop <block> rep times, 
+	// with given index var name counting downwards, until name==0 is reached.
+	named_loop(name,rep){} 	 // for(auto name=rep; name-- ; ++name){}     
+
+The argument _rep_ is not changed:
+The assumption, is that the type of rep  is an integal. 
+Any float or enum is not allowed for rep.
 	
 ## EXTENDED_SYNTAX ##
-	// the loop compound statements may have additional post-iteration opertions
+	// each of the above the loop compound statements 
+	// can be extened by post-iteration operations
 	
-	HIDDEN_LOOP(rep){}			// loop <block> rep times with no post operation.
-	HIDDEN_LOOP(rep, op1 ){}		// loop <block> rep times with 1 post-operation op1.
-	HIDDEN_LOOP(rep, op1, op2){}		// loop <block> rep times with 2 postoperations op1, op2  (more are optional).
+	// loop <block> rep times 
+	loop(rep){}		
+	
+	// loop <block> rep times with 1 post-operation op1.
+	loop(rep, op1 ){}
+	
+	// loop <block> rep times with 2 postoperations op1, op2  (more are optional).
+	loop(rep, op1, op2){}	
 
-	TYPED_LOOP(type,rep, op1, ...)){}	// hidden loop with type constraint on the index variable
-	NAMED_LOOP(name, cnt, op1, op2, ...){}   // loop with type "auto" a named index variable.	
+	typed_loop(type,rep, op1, ...)){}	// hidden loop with type constraint on the index variable
+	named_loop(name, cnt, op1, op2, ...){}   // loop with type "auto" a named index variable.	
 
 ## IMPLEMENTATION: ##
     ...
 Properties of the solution 
-	- the current solution is based on the c--preprocessor (cpp) only.	
-	- it is a header only solution
+ - the current solution is based on the c--preprocessor (cpp) only.	
+ - it is a header only solution
 	
 Creating the hidden index name  
 	CPPMACRO_UNIQUE_ID()   generated an unqiue for the hidden index
 	
 Outcomes for ANSI-C
-	- Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
-	- It is implementable using the standard 'cpp' c--preprocessor, only,
+ - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
+ - It is implementable using the standard 'cpp' c--preprocessor, only,
 	
 ## UseCases ##
 ### matrix_copy with stride ###
-	template<typename TPtr, typename TRow, typename TCol, typename TStride >
-	TPtr matrix_copy( TPtr tgt, TPtr src, TRow nbofRows,TCol nbofColums, TStride stride)
+	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
+	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
         {
-                loop(nbofRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tht and src
+                loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tht and src
                         loop(nbofColumms)
                              	*tgt++ = *src++;
                 return tgt;
@@ -89,50 +99,47 @@ Outcomes for ANSI-C
  BUT:
  - READability:  It can reduce C/C++ source code size and improve its readability.
  - TEACHability: it will improve the way to teach C/C++  especially for a younger audiencce.
- - ALGORITHMics: It allows/lead  the developer to notate code that completely does _NOT depend on the iteration index_.
- - OPTIMIZATION: It opens the way to enhanced optimizations for new compiler implementations.
+ - ALGORITHMics: It allows/leads the developer(s) to notate code that completely does _NOT depend on the iteration index_.
+ - OPTIMIZATION: It opens the way to enhanced optimizations for upciming compiler implementations.
 
 ### REMARK on TEACHing C/C++: ###
-As far as  know:
   - !!! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !!!
-  - 2nd grade (7years old) pupils are able to cope wit the concept of PRINTING, LOOPING and generating textual/graphical outputs.
-  - But CONDITIONS with the need of using boolean Expressions like AND, OR, NOT are a very hard stuff at  that age. 
-  - What about starting teaching C++ with:  putc(), loop().
-  - Forming them to statements to creating textuual outputs on the (screen || printer).
+  - 2nd grade (7years old) pupils are able to cope wit the concept of PRINTING, LOOPING and generating textual/graphical outputs. But CONDITIONS with the need of using boolean Expressions like AND, OR, NOT are a very hard stuff at  that age. 
+  Suggestion:
+  - What about starting to teach C++ for pupils with: putc(), loop() and going on with vars and  assignment.
+  - Forming them to statements to creating textual outputs on the (screen || printer).
   - Assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
-  - and teaching in then next, the 3rd grade: , functions, agrgumnet passing etc. Conditions (Boolean Algebra) 
+  - and teaching in then next, the 3rd grade: , functions / agrumnet passing & Conditions inklusive Boolean Algebra.
   
   What do you think  ?
-   - How far COULD the teaching-level 
-   - in the 1st university lecture of Programming (C/C++) 
-   - for the the now 4-year old kindergarden children
-   - be 2034?
-   - Compared to this years bachelor students?
+   - How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the the now 4-year old kindergarden children be?
+   - Compared to 2020  bachelor students?
   And what would be their favored programming language ???
     
 ### REMARK on OPTIMIZAtion: ###
 The new iterative coumpounds 
-	- have less degree of freedom
-	- and will give room for new way of enhancing the compiler optimization.
+ - have less degree of freedom
+ - and will give room for futher enhancements of the compiler optimization.
 We will see if:
- 	- it can lead to SHORTER,, COMPACTER machine-code as the itearation is SIMPLER.
-	- This can reduce the _rate of cache-misses_ dramatically.
+ - it can lead to SHORTER, COMPACTER machine-code as the itearation is SIMPLER.
+ - This will definitely apply for large loops with a tiny loop body.
+ - This can reduce the _rate of cache-misses_ dramatically.
 
-### UNINTENDED-USAGE: ###
+### Beware of UNINTENDED-USAGE: ###
 	YES, in the presented cpp-implementation,
 	the underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer.
 
-## OPEN Issues: ##
-	- However it stil has to be proven, that there are _realworld USE-CASES_,
-	- where the praised "unbeatable" _compiler_ 
-	- can be driven to make better/shorer/faster
-	- in cases  the  described compounds can ba applied.
-	- compared to the now-a-days solution for(int i=0; i<rep; ++i){}
+## WORK to to: ##
+ - However I  will have to prove, that there are _realworld USE-CASES_,
+ - for cases the  described compounds can be applied
+ - so that the praised _"unbeatable"_ _compiler_  
+ - can be driven to make better/shorer/faster machine code
+ - compared to the now-a-days solution for(int i=0; i<rep; ++i){}
   
 ## CONCLUSion: ##
-	First comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++. 
-	But You can take the occasion and try it out yourself. 
-	It works. Even for plain Ansi-C See the *IMPLEMENTATION* section.
+First experts comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++. 
+But You can take the occasion and try it out yourself. 
+It works. Even for plain Ansi-C See the *IMPLEMENTATION* section.
 
 ## ADVANCED Reading: ##
 	- Teaching programming in the Kindergarden and later:
