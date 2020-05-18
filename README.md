@@ -68,7 +68,32 @@ Any float or enum is not allowed for rep.
 	named_loop(name, cnt, op1, op2, ...){}   // loop with type "auto" a named index variable.	
 
 ## IMPLEMENTATION: ##
-    ...
+	
+	#pragma once
+
+	#define CPPMACRO_UNIQUE_ID() CPPMACRO_UNIQUE_##_##LINE##_##__LINE__##_##__COUNTER__
+
+	#if 1
+	// inverse loop: counting-up
+	#define CPPMACRO_NTIMES(type, varName, nbrOfRepetitions, ...) \
+    		for (type varName = 0; varName++<nbrOfRepetitions; __VA_ARGS__)
+
+	#else
+    	// regular loop: counting-down
+	#define CPPMACRO_NTIMES(type, varName, nbrOfRepetitions, ...) \
+    		for (type varName = nbrOfRepetitions; varName--; __VA_ARGS__)
+	#endif
+
+	#define loop(nbrOfRepetitions)  CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions)
+	#define loop_(nbrOfRepetitions,...) CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, __VA_ARGS__)
+
+	#define named_loop(varName, nbrOfRepetitions, ...) CPPMACRO_NTIMES(auto, varName, nbrOfRepetitions )
+	#define named_loop_(varName, nbrOfRepetitions, ...) CPPMACRO_NTIMES(auto, varName, nbrOfRepetitions, __VA_ARGS__)
+
+	#define typed_loop(type, nbrOfRepetitions,...) CPPMACRO_NTIMES(type, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions )
+	#define typed_loop_(type, nbrOfRepetitions,...) CPPMACRO_NTIMES(type, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, __VA_ARGS__)
+
+
 Properties of the solution 
  - the current solution is based on the c--preprocessor (cpp) only.	
  - it is a header only solution
