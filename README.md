@@ -66,7 +66,8 @@ These compounds iterate ("loop") the trailing block "{}" rep times
 	
 	// loop <block> rep times, 
 	// with given index var name counting downwards, until name==0 is reached.
-	named_loop(name,rep){} 	 // for(auto name=rep; name-- ; ++name){}     
+	named_loop_up(name,rep){} 	 // for(auto name=rep; name-- ; ++name){}     
+	named_loop_down(name,rep){} 	 // for(auto name=rep; name-- ; ++name){}     
 
 The argument _rep_ is _not_ changed:
 The assumption, is that the type of rep  is an integal. 
