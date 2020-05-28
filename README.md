@@ -21,6 +21,14 @@ These new COMPOUNDs can be easily imlemented via the cpp-preprocessor.
                              	*tgt = *src;
                 return tgt;
         }
+**Advantages**
+With recent compilers  this gives no really speed advantage, but is no way slower than a full for(;;){} iteration.
+
+And it increases readability.
+
+Future C/C++ compilers can take advantage the **reduced degree of freedom of the iteration**
+and make e.g. heavily  use of ALU-register operation of DSP-Architectures
+
 
 ### history ###
 in C/C++ there are the well known compound statements.
@@ -46,11 +54,13 @@ One might partly agreed that a
  	} catch(...)   {}
  
  "block" is somehow a compound stament, too.
+ 
+ Will there *never* be more||other compound-statments?
 
 ## Details of the C++ core language Extension ##
 ### Shortcuts: ###
-	{}	the <statement> || <statement-block>  after the compound statement
-	rep    	the <count> of targeted repetitions (a unsigned integral value) ;
+	{}	a single <statement> || <statement-block>  after the compound statement
+	rep    	the <count> of targeted repetitions (usually a value of integral-type) ;
 	type	the <type> of the (hiddden) iteration variable
 	name	the <name> of the iteration variable
 	, ...) 	an optional comma separated list of post-operations (expressions)
@@ -58,24 +68,32 @@ One might partly agreed that a
 ## SYNTAX: ##
 These compounds iterate ("loop") the trailing block "{}" rep times
 
-	// the  hidden_loop does NOT change <rep> with hidden index id.
-	loop(rep){}	// for(auto hidden=rep; hidden-- ; ++hidden){}   
+	/////// below <hidden> is an id with a secret, unique ID.
+	// loop the {} - block <rep> times 
 	
-	// a hidden_loop, with a type constained  index var.
-	typed_loop(type,rep){} 	// for(type hidden=rep; hidden-- ; ++hidden){}   
+	// the  hidden_loop does NOT change <rep> and uss a hidden index variable.
+	loop(rep){}	                 // for(auto hidden=rep; hidden-- ; ++hidden){}   
 	
-	// loop <block> rep times, 
-	// with given index var name counting downwards, until name==0 is reached.
-	named_loop_up(name,rep){} 	 // for(auto name=rep; name-- ; ++name){}     
-	named_loop_down(name,rep){} 	 // for(auto name=rep; name-- ; ++name){}     
+	// a typed-loop has  a type-constained,but hidden index variable.
+	typed_loop(type,rep){} 	        // for(type hidden=rep; hidden-- ; ++hidden){}   
 
-The argument _rep_ is _not_ changed:
-The assumption, is that the type of rep  is an integal. 
+	
+	// the named_loops_...() are useful, when access to the index  variable is needed.
+	// the named index variable "name" is counting upwards from 0 to rep-1.
+	named_loop_up(name,rep){} 	 // for(auto name=0; name<rep; ++name){}     
+	
+	// the named  index variable "name" is  counting downwards, from rep -1 to 0 
+	named_loop_down(name,rep){} 	 // for(auto name=rep-1; name--; ++name){}     
+
+The argument _rep_ is _not_ changed an in best case should have integral-type:
 Any float or enum is not allowed for rep.
+Compiler can take advantage when index vars <rep> are of integal-type and fit into ALU-registers.
+
+
 	
 ## EXTENDED_SYNTAX ##
 	// each of the above the loop compound statements 
-	// can be extened by post-iteration operations
+	// can be extened by any number of post-iteration operations.
 	
 	// loop <block> rep times 
 	loop(rep){}		
@@ -91,7 +109,7 @@ Any float or enum is not allowed for rep.
 	named_loop_down(name, cnt, op1, op2, ...){}   // loop deonwards with type "auto" a named index variable.
 
 ## IMPLEMENTATION: ##
-These "core level extensions can be implemented using only the cpp-preprocessor 
+This "core-language extension" can be implemented  solely using the cpp-preprocessor.
 	
 	#pragma once
 
@@ -138,21 +156,23 @@ Outcomes for ANSI-C
  - READability:  It can reduce C/C++ source code size and improve its readability.
  - TEACHability: it will improve the way to teach C/C++  especially for a younger audiencce.
  - ALGORITHMics: It allows/leads the developer(s) to notate code that completely does _NOT depend on the iteration index_.
- - OPTIMIZATION: It opens the way to enhanced optimizations for upciming compiler implementations.
+ - OPTIMIZATION: It opens the way to enhanced optimizations for upcoming compiler implementations.
 
 ### REMARK on TEACHing C/C++: ###
-  - !!! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !!!
-  - 2nd grade (7years old) pupils are able to cope wit the concept of PRINTING, LOOPING and generating textual/graphical outputs. But CONDITIONS with the need of using boolean Expressions like AND, OR, NOT are a very hard stuff at  that age. 
+  - ! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !
+  - 2nd grade (7years old) pupils CAN cope with the concept of PRINTING, LOOPING and generating textual/graphical outputs. But CONDITIONS with the need of using **boolean Expressions** like AND, OR, NOT are a very hard stuff at that age. 
   Suggestion:
   - What about starting to teach C++ for pupils with: putc(), loop() and going on with vars and  assignment.
   - Forming them to statements to creating textual outputs on the (screen || printer).
   - Assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
-  - and teaching in then next, the 3rd grade: , functions / agrumnet passing & Conditions inklusive Boolean Algebra.
+  - and teaching in then next, the 3rd grade:  
+  	- Conditions inklusive Boolean Algebra.
+	. and later functions _and then the power of the full for(;;){} iteration_
   
   What do you think  ?
-   - How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the the now 4-year old kindergarden children be?
+   - How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the now 4-year old kindergarden children be?
    - Compared to 2020  bachelor students?
-  And what would be their favored programming language ???
+  And what would be their favored programming language ?
     
 ### REMARK on OPTIMIZAtion: ###
 The new iterative coumpounds 
