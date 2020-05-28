@@ -95,7 +95,7 @@ These "core level extensions can be implemented using only the cpp-preprocessor
 	
 	#pragma once
 
-	#include "cppuniqueid.h"
+	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
 
 	// count-down: )inverse  loop: =
 	#define CPPMACRO_NTIMES_COUNT_UP(type, varName, nbrOfRepetitions, ...) \
