@@ -12,6 +12,8 @@ With optional opt-opration expressions. N should be of integral type.
 These new COMPOUNDs can be easily imlemented via the cpp-preprocessor.
 
 ### Example: matrix_copy with stride ###
+more examples: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
+
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
         {
@@ -110,6 +112,8 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 
 ## IMPLEMENTATION: ##
 This "core-language extension" can be implemented  solely using the cpp-preprocessor.
+see here for details: 
+https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/includes/ogis/cpp
 	
 	#pragma once
 
