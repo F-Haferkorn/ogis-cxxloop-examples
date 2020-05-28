@@ -86,7 +86,8 @@ Any float or enum is not allowed for rep.
 	loop(rep, op1, op2){}	
 
 	typed_loop(type,rep, op1, ...)){}	// hidden loop with type constraint on the index variable
-	named_loop(name, cnt, op1, op2, ...){}   // loop with type "auto" a named index variable.	
+	named_loop_up(name, cnt, op1, op2, ...){}   // loop upwards with type "auto" a named index variable .	
+	named_loop_down(name, cnt, op1, op2, ...){}   // loop deonwards with type "auto" a named index variable.
 
 ## IMPLEMENTATION: ##
 These "core level extensions can be implemented using only the cpp-preprocessor 
