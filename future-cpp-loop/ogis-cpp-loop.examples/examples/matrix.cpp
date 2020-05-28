@@ -3,21 +3,10 @@
 
 
 #include <examples/matrix.hpp>
+#include <examples/matrix_io.hpp>
 
 namespace ogis::future::loop{
 
-template<typename TValuePtr, typename TSizeRows, typename TSizeCols>
-inline void matrix_print(TValuePtr ptr,  TSizeRows nbofRows, TSizeCols nbofColums)
-{
-    loop(nbofRows)
-    {
-        loop_(nbofColums, ptr++)
-            std::cout<< *ptr<< "\t";
-        std::cout<<"\n";
-    }
-}
-
-}
 
 void example_matrix()
 {
@@ -55,4 +44,4 @@ void example_matrix()
 
 }
 
-
+}

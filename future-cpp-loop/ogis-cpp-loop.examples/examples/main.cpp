@@ -1,10 +1,13 @@
 #include <examples/asciishapes.hpp>
+#include <examples/matrix.hpp>
+
 
 
 using namespace asciishapes;
+using namespace ogis::future::loop;
 
 
-void example_matrix();
+
 
 int main()
 {
@@ -12,29 +15,25 @@ int main()
 
     // example with loop compound-statement
     {
-        square(noRows,2*noRows);
-        newline();
-        triangular(noRows);
-        newline();
+        old_style::square(noRows,2*noRows);         newline();
+        old_style::triangular(noRows);              newline();
+        old_style::triangular_upside(noRows);       newline();
     }
 
     // example with loop compound-statement using post expressions
     {
-        square_(noRows,2*noRows);
-        newline();
-        triangular_(noRows);
-        newline();
-        triangular_upside_(noRows);
-        newline();
-
+        square(noRows,2*noRows);         newline();
+        triangular(noRows);              newline();
+        triangular_upside(noRows);       newline();
     }
 
     // another example with loop compound statmemnt
+    if(true)
     {
         sandclock(noRows*3 );
         newline();
     }
 
-    example_matrix();
+    //example_matrix();
     return 0;
 }

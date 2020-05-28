@@ -3,27 +3,25 @@
 namespace ogis::future::loop{
 
     template<typename TTgtValuePtr, typename TSrcValuePtr, typename TSizeRows, typename TSizeCols,typename TSizeStride>
-    inline void matrix_copy_w_stride(TTgtValuePtr tgt, TSrcValuePtr src, TSizeRows nbofRows, TSizeCols nbofColumms, TSizeStride stride)
+    inline void matrix_copy_w_stride(TTgtValuePtr tgt, TSrcValuePtr src, TSizeRows nbofRows, TSizeCols nbofColumns, TSizeStride row_stride)
     {
-        loop(nbofRows)
-            loop_(nbofColumms, tgt+=stride, src+=stride)
-                *tgt++ = *src++;
+      // apply a stride eafter each row
+      loop(nbofRows,  tgt+=row_stride, src+=row_stride)
+          loop(nbofColumns, tgt++, src++)
+              *tgt = *src;
+
     }
 
     template<typename TTgtValuePtr, typename TSrcValuePtr,  typename TSizeRows, typename TSizeCols>
     inline void matrix_copy(TTgtValuePtr tgt, TSrcValuePtr src, TSizeRows nbofRows, TSizeCols nbofColums)
     {
-        loop(nbofRows)
-            loop(nbofColums)
-                *tgt++ = *src++;
+        loop(nbofRows) loop(nbofColums) *tgt++ = *src++;
     }
 
     template<typename TTgtValuePtr, typename TValue, typename TSizeRows, typename TSizeCols>
     inline void matrix_set(TTgtValuePtr* tgt, TValue value, TSizeRows nbofRows, TSizeCols nbofColums)
     {
-        loop(nbofRows)
-            loop(nbofColums)
-                *tgt++ = value;
+        loop(nbofRows) loop(nbofColums)  *tgt++ = value;
     }
 
     template<typename TTgtValuePtr, typename TSrcValuePtr, typename TSizeRows, typename TSizeCols>
@@ -34,4 +32,5 @@ namespace ogis::future::loop{
                 *tgt++ += *src++;
     }
 
+    void example_matrix();
 }

@@ -9,11 +9,12 @@ DESTDIR += bin
 INCLUDEPATH +=  ./includes ../ogis-cpp-loop/includes
 HEADERS += \
     examples/asciishapes.hpp \
-    examples/matrix.hpp
-
-
+    examples/matrix.hpp \
+    examples/matrix_io.hpp
+	
 SOURCES += \
     examples/asciishapes.cpp \
+    examples/asciishapes_old_style.cpp \
     examples/main.cpp \
     examples/matrix.cpp
 
