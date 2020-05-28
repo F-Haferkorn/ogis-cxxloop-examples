@@ -30,7 +30,7 @@ Future C/C++ compilers can take advantage the **reduced degree of freedom of the
 and make e.g. heavily  use of ALU-register operation of DSP-Architectures
 
 
-### history ###
+### existing compound-statements ###
 in C/C++ there are the well known compound statements.
  - if(<cond>) {} else{}
  - while(<cond>) {}
@@ -71,14 +71,14 @@ These compounds iterate ("loop") the trailing block "{}" rep times
 	/////// below <hidden> is an id with a secret, unique ID.
 	// loop the {} - block <rep> times 
 	
-	// the  hidden_loop does NOT change <rep> and uss a hidden index variable.
+	// the  hidden_loop does NOT change <rep> and uses a hidden, secret unique-index variable.
 	loop(rep){}	                 // for(auto hidden=rep; hidden-- ; ++hidden){}   
 	
-	// a typed-loop has  a type-constained,but hidden index variable.
+	// a typed-loop has  a type-constained, but hidden index variable.
 	typed_loop(type,rep){} 	        // for(type hidden=rep; hidden-- ; ++hidden){}   
 
 	
-	// the named_loops_...() are useful, when access to the index  variable is needed.
+	// the named_loops_...() are useful, when access to the index variable is needed.
 	// the named index variable "name" is counting upwards from 0 to rep-1.
 	named_loop_up(name,rep){} 	 // for(auto name=0; name<rep; ++name){}     
 	
@@ -144,8 +144,7 @@ Creating the hidden index name
 	
 Outcomes for ANSI-C
  - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
- - It is implementable using the standard 'cpp' c--preprocessor, only,
-	
+ - It is implementable using solely the standard c-preprocessor (cpp).
 
 ## DISCUSSION ##
  One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
@@ -184,10 +183,10 @@ We will see if:
  - This can reduce the _rate of cache-misses_ dramatically.
 
 ### Beware of UNINTENDED-USAGE: ###
-	YES, in the presented cpp-implementation,
-	the underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer.
+YES, in the presented cpp-implementation,
+the underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer.
 
-## WORK to to: ##
+## WORK still to be done: ##
  - However I  will have to prove, that there are _realworld USE-CASES_,
  - for cases the  described compounds can be applied
  - so that the praised _"unbeatable"_ _compiler_  
