@@ -2,14 +2,15 @@
 This GITHUB-REPO is a testbed for a special kind of Modern C++ CORE LANGUAGE  extension.
 
 ## Motivation ##
-Herein I present a testbed for the  COMPOUND statement et al  related to ITERATION.
+Herein I present the  loop() - COMPOUNDs  related to ITERATION
   - loop(N, ...){}
   - typed_loop(type, N, ...)
   - named_loop_up(id, N, ...){}
   - named_loop_down(id, N,  ..){}
 
-with optional opt-opration expressions.
-N should be of integral type. 
+
+With optional opt-opration expressions. N should be of integral type. 
+These new COMPOUNDs can be easily imlemented via the cpp-preprocessor.
 
 ### Example:  matrix_copy with stride ###
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
@@ -46,7 +47,7 @@ One might partly agreed that a
  
  "block" is somehow a compound stament, too.
 
-## etails of the C++ core language Extension ##
+## Details of the C++ core language Extension ##
 ### Shortcuts: ###
 	{}	the <statement> || <statement-block>  after the compound statement
 	rep    	the <count> of targeted repetitions (a unsigned integral value) ;
@@ -92,27 +93,26 @@ These "core level extensions can be implemented using only the cpp-preprocessor
 	
 	#pragma once
 
-	#define CPPMACRO_UNIQUE_ID() CPPMACRO_UNIQUE_##_##LINE##_##__LINE__##_##__COUNTER__
+	#include "cppuniqueid.h"
 
-	#if 1
-	// inverse loop: counting-up
-	#define CPPMACRO_NTIMES(type, varName, nbrOfRepetitions, ...) \
+	// count-down: )inverse  loop: =
+	#define CPPMACRO_NTIMES_COUNT_UP(type, varName, nbrOfRepetitions, ...) \
     		for (type varName = 0; varName++<nbrOfRepetitions; __VA_ARGS__)
 
-	#else
-    	// regular loop: counting-down
-	#define CPPMACRO_NTIMES(type, varName, nbrOfRepetitions, ...) \
+	// regular loop: counting-up
+	#define CPPMACRO_NTIMES_COUNT_DOWN(type, varName, nbrOfRepetitions, ...) \
     		for (type varName = nbrOfRepetitions; varName--; __VA_ARGS__)
-	#endif
 
-	#define loop(nbrOfRepetitions)  CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions)
-	#define loop_(nbrOfRepetitions,...) CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, __VA_ARGS__)
+	/// todo: choose the fatest depending on the machine
+	#define CPPMACRO_NTIMES_FAST(type, varName, nbrOfRepetitions, ...) \
+    		CPPMACRO_NTIMES_COUNT_UP(type, varName, nbrOfRepetitions, __VA_ARGS__)
 
-	#define named_loop(varName, nbrOfRepetitions, ...) CPPMACRO_NTIMES(auto, varName, nbrOfRepetitions )
-	#define named_loop_(varName, nbrOfRepetitions, ...) CPPMACRO_NTIMES(auto, varName, nbrOfRepetitions, __VA_ARGS__)
+	//#define loop(nbrOfRepetitions)  CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions)
+	#define loop(nbrOfRepetitions, ...)                 CPPMACRO_NTIMES_FAST(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
+	#define typed_loop(type, nbrOfRepetitions, ...)     CPPMACRO_NTIMES_FAST(type, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
+	#define named_loop_up(varName, nbrOfRepetitions, ...)  CPPMACRO_NTIMES_COUNT_UP(auto, varName, nbrOfRepetitions, ##__VA_ARGS__)
+	#define named_loop_down(varName, nbrOfRepetitions, ...)  CPPMACRO_NTIMES_COUNT_DOWN(auto, varName, nbrOfRepetitions, ##__VA_ARGS__)
 
-	#define typed_loop(type, nbrOfRepetitions,...) CPPMACRO_NTIMES(type, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions )
-	#define typed_loop_(type, nbrOfRepetitions,...) CPPMACRO_NTIMES(type, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, __VA_ARGS__)
 
 
 Properties of the solution 
