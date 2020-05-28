@@ -2,8 +2,26 @@
 This GITHUB-REPO is a testbed for a special kind of Modern C++ CORE LANGUAGE  extension.
 
 ## Motivation ##
-Herein I present a testbed for  COMPOUND statements related to ITERATION.
+Herein I present a testbed for the  COMPOUND statement et al  related to ITERATION.
+  - loop(N, ...){}
+  - typed_loop(type, N, ...)
+  - named_loop_up(id, N, ...){}
+  - named_loop_down(id, N,  ..){}
 
+with optional opt-opration expressions.
+N should be of integral type. 
+
+### Example:  matrix_copy with stride ###
+	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
+	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
+        {
+                loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tht and src
+                        loop(nbofColumms)
+                             	*tgt++ = *src++;
+                return tgt;
+        }
+
+### history ###
 in C/C++ there are the well known compound statements.
  - if(<cond>) {} else{}
  - while(<cond>) {}
@@ -18,6 +36,7 @@ with the related staments
  These compounds have not been changed since the  time of creation K&R-C and ANSI-C.
  
  +----------------------------------------------------------------
+
  
 But was that really all for C++?
 One might partly agreed that a 
@@ -27,14 +46,15 @@ One might partly agreed that a
  
  "block" is somehow a compound stament, too.
 
-## USED Shortcuts: ##
+## etails of the C++ core language Extension ##
+### Shortcuts: ###
 	{}	the <statement> || <statement-block>  after the compound statement
 	rep    	the <count> of targeted repetitions (a unsigned integral value) ;
 	type	the <type> of the (hiddden) iteration variable
 	name	the <name> of the iteration variable
 	, ...) 	an optional comma separated list of post-operations (expressions)
 		
-## BASIC_SYNTAX: ##	
+## SYNTAX: ##
 These compounds iterate ("loop") the trailing block "{}" rep times
 
 	// the  hidden_loop does NOT change <rep> with hidden index id.
@@ -47,7 +67,7 @@ These compounds iterate ("loop") the trailing block "{}" rep times
 	// with given index var name counting downwards, until name==0 is reached.
 	named_loop(name,rep){} 	 // for(auto name=rep; name-- ; ++name){}     
 
-The argument _rep_ is not changed:
+The argument _rep_ is _not_ changed:
 The assumption, is that the type of rep  is an integal. 
 Any float or enum is not allowed for rep.
 	
@@ -68,6 +88,7 @@ Any float or enum is not allowed for rep.
 	named_loop(name, cnt, op1, op2, ...){}   // loop with type "auto" a named index variable.	
 
 ## IMPLEMENTATION: ##
+These "core level extensions can be implemented using only the cpp-preprocessor 
 	
 	#pragma once
 
@@ -105,16 +126,6 @@ Outcomes for ANSI-C
  - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
  - It is implementable using the standard 'cpp' c--preprocessor, only,
 	
-## UseCases ##
-### matrix_copy with stride ###
-	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
-	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
-        {
-                loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tht and src
-                        loop(nbofColumms)
-                             	*tgt++ = *src++;
-                return tgt;
-        }
 
 ## DISCUSSION ##
  One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
