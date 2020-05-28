@@ -28,12 +28,11 @@ int main()
     }
 
     // another example with loop compound statmemnt
-    if(true)
     {
         sandclock(noRows*3 );
         newline();
     }
 
-    //example_matrix();
+    example_matrix();
     return 0;
 }

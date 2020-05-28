@@ -11,36 +11,59 @@ namespace ogis::future::loop{
 void example_matrix()
 {
     using namespace ::ogis::future::loop;
+    const int N=4;      // nbr-of rows
+    const int M=10;      // nbr-of columns
 
-    int  A[4][3]={{0,1,2},{10,11,12},{20,21,22},{30,31,32}};
-    float  B[4*3]={};
-    double C[4*3]={};
+    int  A[N][M]={};
+    int B[N*M]={};
+    int C[N*M]={};
 
     int *a=&A[0][0];
-
+    matrix_set  (a, 1,   N, M);
 
     std::cout<<std::endl<<"A"<<std::endl;
-    matrix_print(a, 4,3);
+    matrix_print(a, N, M);
 
     std::cout<<std::endl<<"B"<<std::endl;
-    matrix_print(B, 4,3);
+    matrix_print(B, N, M);
 
 
     std::cout<<std::endl<<"C"<<std::endl;
-    matrix_set  (C,1.1,     4,3);
-    matrix_print(C,         4,3);
+    matrix_set  (C,2,     N, M);
+    matrix_print(C,         N, M);
 
-    std::cout<<std::endl<<"C+=a"<<std::endl;
-    matrix_add  (C,a,       4,3);
-    matrix_print(C,         4,3);
+    loop(2)
+    {
+        std::cout<<std::endl<<"C+=A"<<std::endl;
+        matrix_add  (C,a,       N, M);
+        matrix_print(C,         N, M);
+    }
+
+
 
     std::cout<<std::endl<<"B=C"<<std::endl;
-    matrix_copy (B,C,       4,3);
-    matrix_print(B,         4,3);
+    matrix_copy (B,C,       N, M);
+    matrix_print(B,         N, M);
 
     std::cout<<std::endl<<"C+=B"<<std::endl;
-    matrix_add  (C,B,       4,3);
-    matrix_print(C,         4,3);
+    matrix_add  (C,B,       N, M);
+    matrix_print(C,         N, M);
+    {
+        int n=N/2;
+        int m=M/2;
+        std::cout<<std::endl<<"C[0:"<<n-1<<"][0:"<<m-1<<"]+=1"<<std::endl;
+        matrix_incr_w_stride(C, n, m,M-m);
+        matrix_print(C,         N, M);
+    }
+    {
+
+        int n=N/2+1;
+        int m=M/2;
+        std::cout<<std::endl<<"C[0:"<<n-1<<"][0:"<<m-1<<"]+=1"<<std::endl;
+        matrix_incr_w_stride(C, n, m, M-m);
+        matrix_print(C,         N, M);
+    }
+
 
 }
 
