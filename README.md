@@ -17,8 +17,8 @@ These new COMPOUNDs can be easily imlemented via the cpp-preprocessor.
 	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
         {
                 loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tht and src
-                        loop(nbofColumms)
-                             	*tgt++ = *src++;
+                        loop(nbofColumms, tgt++, src++)
+                             	*tgt = *src;
                 return tgt;
         }
 
