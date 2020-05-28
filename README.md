@@ -1,8 +1,7 @@
 # ogis-modern-cxx-future-cpp: #
-This GITHUB-REPO is a testbed for a special kind of Modern C++ CORE LANGUAGE  extension.
+This GITHUB-REPO is a testbed for a special kind of **Modern C++ CORE LANGUAGE-extension**.
 
-## Motivation ##
-Herein I present the  loop() - COMPOUNDs  related to ITERATION
+Herein I present the **loop()** - **COMPOUNDs**  related to ITERATION
   - loop(N, ...){}
   - typed_loop(type, N, ...)
   - named_loop_up(id, N, ...){}
@@ -12,12 +11,13 @@ Herein I present the  loop() - COMPOUNDs  related to ITERATION
 With optional opt-opration expressions. N should be of integral type. 
 These new COMPOUNDs can be easily imlemented via the cpp-preprocessor.
 
-### Example:  matrix_copy with stride ###
+### Example: matrix_copy with stride ###
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
         {
-                loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tht and src
-                        loop(nbofColumms, tgt++, src++)
+		// compiler can  mangled the loop-internal integral-types tgt and src in registers.
+                loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
+                        loop(nbofColumms, tgt++, src++) 
                              	*tgt = *src;
                 return tgt;
         }
