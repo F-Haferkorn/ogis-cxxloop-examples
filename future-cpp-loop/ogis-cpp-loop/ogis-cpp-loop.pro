@@ -8,13 +8,10 @@ TARGET=aux
 
 INCLUDEPATH +=  includes
 HEADERS += \  \
-    includes/compound \
-    includes/ogis/cpp/cppcompound.h \
-    includes/ogis/cpp/cpploop.h \
-    includes/ogis/cpp/cppuniqueid.h
-
-
-
+    include/compound \
+    include/ogis/cpp/cppcompound.h \
+    include/ogis/cpp/cpploop.h \
+    include/ogis/cpp/cppuniqueid.h
 
 SOURCES += \
 

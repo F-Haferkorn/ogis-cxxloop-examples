@@ -30,6 +30,7 @@ int main()
         newline();
     }
 
+    // some more realistic axamples of matrix operations using the new conmound-statements
     example_matrix();
     return 0;
 }

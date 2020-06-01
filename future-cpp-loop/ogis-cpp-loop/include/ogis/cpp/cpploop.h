@@ -14,8 +14,6 @@
 #define CPPMACRO_NTIMES(type, varName, nbrOfRepetitions, ...) \
     for (type varName = 0; varName++<nbrOfRepetitions; __VA_ARGS__)
 
-
-
 //#define loop(nbrOfRepetitions)  CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions)
 #define loop(nbrOfRepetitions, ...)                 CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 #define typed_loop(type, nbrOfRepetitions, ...)     CPPMACRO_NTIMES(type, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)

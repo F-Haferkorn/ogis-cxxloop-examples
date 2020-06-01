@@ -51,7 +51,7 @@ void matrix_add_using_While(
 }
 
 
-int godbolt_entry()
+void godbolt_entry()
 {
     const Byte N=10;
     const Byte M=16;
@@ -61,6 +61,7 @@ int godbolt_entry()
     double src[N][M];
 
      matrix_copy_w_stride(&tgt[0][0], &src[0][0], N, M-stride, stride);
+    
 
 }
 

@@ -1,6 +1,5 @@
 #pragma once
 
-
 namespace asciishapes
 {
     // basic primitives
@@ -11,7 +10,7 @@ namespace asciishapes
     // print a forms using suggested loop() compounds
     void square(short  noRows, short noColumns);        // write square with given column and row count.
     void triangular(short noRows);                      // write a left-bounded triangular.
-    void triangular_upside(short noRows);               // write a left-bounded upside-down triangula.
+    void triangular_upside(short nofRows);               // write a left-bounded upside-down triangula.
 
     void triangular_on_the_tip(int nofRows);            // write a triangular standing on the  tip.
     void triangular_on_the_bottom(int nofRows);         // write a triangular standing on the  bottom.

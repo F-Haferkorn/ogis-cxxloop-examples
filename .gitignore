@@ -1,3 +1,5 @@
 
 *.user
 *.autosave
+x64
+.vs

@@ -28,7 +28,6 @@ void example_matrix()
         std::cout<<std::endl<<"B"<<std::endl;
         matrix_print(B, N, M);
 
-
         std::cout<<std::endl<<"C"<<std::endl;
         matrix_set  (C,2,     N, M);
         matrix_print(C,         N, M);
