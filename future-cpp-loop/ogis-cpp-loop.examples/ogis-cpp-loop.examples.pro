@@ -15,7 +15,7 @@ HEADERS += \
 SOURCES += \
     examples/asciishapes.cpp \
     examples/asciishapes_old_style.cpp \
-    examples/main.cpp \
-    examples/matrix.cpp
+    examples/example_matrix.cpp \
+    examples/main.cpp
 
 DISTFILES +=

@@ -32,13 +32,12 @@ namespace ogis::future::loop{
                 *tgt++ += *src++;
     }
 
-    template<typename TTgtValuePtr, typename TSizeRows, typename TSizeCols, typename TSizeStride >
-    inline void matrix_incr_w_stride(TTgtValuePtr tgt,  TSizeRows nbofRows, TSizeCols nbofColumns, TSizeStride row_stride)
+    template<typename TTgtValuePtr, typename TTgtValue, typename TSizeRows, typename TSizeCols, typename TSizeStride >
+    inline void matrix_incr_w_stride(TTgtValuePtr tgt, TTgtValue increment,  TSizeRows nbofRows, TSizeCols nbofColumns, TSizeStride row_stride)
     {
         loop(nbofRows,  tgt+=row_stride)
             loop(nbofColumns, tgt++)
-                *tgt += 1;
+                *tgt += increment;
     }
 
-    void example_matrix();
 }

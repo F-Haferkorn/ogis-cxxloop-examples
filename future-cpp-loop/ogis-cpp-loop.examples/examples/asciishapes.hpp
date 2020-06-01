@@ -9,16 +9,14 @@ namespace asciishapes
     void newline();     ///< write a single newline )'\n')
 
     // print a forms using suggested loop() compounds
-    void square(short  noRows, short noColumns);
-    void triangular(short noRows);
-    void triangular_upside(short noRows);
+    void square(short  noRows, short noColumns);        // write square with given column and row count.
+    void triangular(short noRows);                      // write a left-bounded triangular.
+    void triangular_upside(short noRows);               // write a left-bounded upside-down triangula.
 
-    void triangular_on_the_tip(int nofRows);
-    void triangular_on_the_bottom(int nofRows);
+    void triangular_on_the_tip(int nofRows);            // write a triangular standing on the  tip.
+    void triangular_on_the_bottom(int nofRows);         // write a triangular standing on the  bottom.
 
-    void sandclock(short noRows);
-
-
+    void sandclock(short noRows);                       // write a sandclock.
 }
 
 namespace asciishapes::old_style{

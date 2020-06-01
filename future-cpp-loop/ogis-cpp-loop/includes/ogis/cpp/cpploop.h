@@ -4,15 +4,16 @@
 
 // count-down: inverse  loop
 #define CPPMACRO_NTIMES_COUNT_UP(type, varName, nbrOfRepetitions, ...) \
-    for (type varName = 0; varName<nbrOfRepetitions;varName++, __VA_ARGS__)
+    for (type varName = 0; varName<nbrOfRepetitions;varName++, ##__VA_ARGS__)
 
 // regular loop: counting-up
 #define CPPMACRO_NTIMES_COUNT_DOWN(type, varName, nbrOfRepetitions, ...) \
-    for (type varName = nbrOfRepetitions-1;varName>=0; varName--, __VA_ARGS__)
+    for (type varName = nbrOfRepetitions-1;varName>=0; varName--, ##__VA_ARGS__)
 
 /// choose the fatest on your machine
 #define CPPMACRO_NTIMES(type, varName, nbrOfRepetitions, ...) \
     for (type varName = 0; varName++<nbrOfRepetitions; __VA_ARGS__)
+
 
 
 //#define loop(nbrOfRepetitions)  CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions)

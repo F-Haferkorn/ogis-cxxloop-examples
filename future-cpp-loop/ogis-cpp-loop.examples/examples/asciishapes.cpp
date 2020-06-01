@@ -18,14 +18,14 @@ void square(short  noRows, short noColumns)
             ;
 }
 
-
 // draw triagular (same as above),
 // but use the loop() statement that allows additional postfix-operations
 void triangular(short noRows)
 {
-    named_loop_up(row,noRows,newline())
+    named_loop_up(row,noRows)
         loop(row+1)
             star();
+    newline();
 }
 
 
@@ -37,9 +37,8 @@ void triangular_upside(short nofRows)
     {
         loop(nofRows-row)
             star();
-        newline();
+         newline();
     }
-
 }
 
 
@@ -47,9 +46,9 @@ void triangular_on_the_bottom(int nofRows)
 {
     named_loop_up(row, nofRows, newline())
     {
-        loop(nofRows-row, space());
+        loop(nofRows-row, space());     // space on the left had side
         star();
-        loop(2)loop(row,star());
+        loop(2)loop(row,star());        // two time nofRows of row stars
     }
 }
 
@@ -57,9 +56,9 @@ void triangular_on_the_tip(int nofRows)
 {
     named_loop_down(row, nofRows, newline())
     {
-        loop(nofRows-row, space())  ;
+        loop(nofRows-row, space())  ;   // space on the left had side
         star();
-        loop(2) loop(row,star());
+        loop(2) loop(row,star());       // two time nofRows of row stars
     }
 }
 

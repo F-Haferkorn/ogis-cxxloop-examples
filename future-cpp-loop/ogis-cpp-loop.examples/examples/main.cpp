@@ -1,13 +1,10 @@
 #include <examples/asciishapes.hpp>
 #include <examples/matrix.hpp>
 
-
-
 using namespace asciishapes;
 using namespace ogis::future::loop;
 
-
-
+void example_matrix();
 
 int main()
 {
