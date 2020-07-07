@@ -10,7 +10,7 @@
 #define CPPMACRO_NTIMES_COUNT_DOWN(type, varName, nbrOfRepetitions, ...) \
     for (type varName = nbrOfRepetitions-1;varName>=0; varName--, ##__VA_ARGS__)
 
-/// choose the fatest on your machine
+/// choose the fastest on your machine
 #define CPPMACRO_NTIMES(type, varName, nbrOfRepetitions, ...) \
     for (type varName = 0; varName++<nbrOfRepetitions; __VA_ARGS__)
 
