@@ -1,51 +1,44 @@
 # ogis-modern-cxx-future-cpp: #
-This GITHUB-REPO is a testbed for a special kind of **Modern C++ CORE LANGUAGE-extension**.
+This github-site is a testbed and payground for the **Modern C++ CORE LANGUAGE-extension** based on the C-PreProcessor (cpp)
 
 Herein I present the **loop()** - **COMPOUNDs**  related to ITERATION
-  - loop(N, ...){}
-  - typed_loop(type, N, ...)
-  - named_loop_up(id, N, ...){}
-  - named_loop_down(id, N,  ..){}
+Here is the syntax:
 
+	- loop(N, ...){}
+	- typed_loop(type, N, ...)
+	- named_loop_up(id, N, ...){}
+	- named_loop_down(id, N,  ..){}
 
-With optional opt-opration expressions. N should be of integral type.
-These new COMPOUNDs can be easily imlemented via the cpp-preprocessor.
-
-**Advantages**
-With recent compilers  this gives no really speed advantage, but is no way slower than a full for(;;){} iteration.
-
-And it increases readability.
-
-Future C/C++ compilers can take advantage the **reduced degree of freedom of the iteration**
-and make e.g. heavily  use of ALU-register operation of DSP-Architectures
-
+With optional post-comparsion expressions. N should be of integral type.
+These new COMPOUNDs are imlemented via the cpp-preprocessor.
 
 ### existing compound-statements ###
-in C/C++ there are the well known compound statements.
- - if(<cond>) {} else{}
- - while(<cond>) {}
- - do {} while(<cond>);
- - for(<decl>; <cond>;<expr>) {}
- - switch(<expr>) { case: ... default: ... }
+in C/C++ there are the well known *compound statements*.
+	
+	- if(<cond>) {} else{}
+	- while(<cond>) {}
+ 	- do {} while(<cond>);
+ 	- for(<decl>; <cond>;<expr>) {}
+ 	- switch(<expr>) { case: ... default: ... }
 
 with the related staments
- - break
- - continue.
+
+	- break
+ 	- continue.
 
  These compounds have not been changed since the  time of creation K&R-C and ANSI-C.
 
  +----------------------------------------------------------------
 
-
-But was that really all for C++?
+**But was that really all for C++?**
 One might partly agreed that a
 
-  try{
-  } catch(...)   {}
+  	try{
+  	} catch(...)   {}
 
  "block" is somehow a compound stament, too.
 
- Will there *never* be more||other compound-statments?
+ Is it a LAW-OF-NATURE that there must *never* be ANY (more||other) compound-statments in the future?
 
 ## Details of the C++ core language Extension ##
 ### Shortcuts: ###
@@ -98,8 +91,18 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 	named_loop_up(name, cnt, op1, op2, ...){}   // loop upwards with type "auto" a named index variable .
 	named_loop_down(name, cnt, op1, op2, ...){}   // loop deonwards with type "auto" a named index variable.
 
-## IMPLEMENTATION: ##
-This "core-language extension" can be implemented  solely using the cpp-preprocessor.
+## IMPLEMENTATION-Details: ##
+
+### REQUIREMENTS to the cpp ###
+	The cpp must provide:
+	
+	__LINE__		line number  used by  CPPMACRO_UNIQUE_ID() 	
+	__COUNTER__		counter used by CPPMACRO_UNIQUE_ID() 
+	,  ##__VA_ARGS__)	optional variadic-arguments, for the post-comaprison operations
+		
+
+
+This "core-language extension" can be implemented solely using the cpp-preprocessor.
 see here for details:
 https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/includes/ogis/cpp
 
@@ -126,23 +129,32 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp
 	#define named_loop_down(varName, nbrOfRepetitions, ...)  CPPMACRO_NTIMES_COUNT_DOWN(auto, varName, nbrOfRepetitions, ##__VA_ARGS__)
 
 
-
 Properties of the solution
- - the current solution is based on the c--preprocessor (cpp) only.
+ - the solution **"is ready to rumble"**
+ - the solution **is based on the c-preprocessor (cpp) only.**
  - it is a header only solution
-
+ - no changes to any compiler are necesary.
+  
 Creating the hidden index name
-  CPPMACRO_UNIQUE_ID()   generated an unqiue for the hidden index
+  CPPMACRO_UNIQUE_ID()   generated an unqiue-id for the hidden index
 
 Outcomes for ANSI-C
  - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
  - It is implementable using solely the standard c-preprocessor (cpp).
 
+ 
+	
 ## DISCUSSION ##
  One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
 
- ### Advantages: ###
- OK, it is all about iterating and it is not a swiss-army knife for all iterations.
+### Advantages: ###
+ With recent compilers, this is *NOT* slower than thhe *regular* for(;;){} iteration.
+ 
+ The **reduced degree of freedom of the iteration** can be used by the comoiler
+ and a compiler can make heavy use of ALU-register operation of DSP-Architectures.
+ 
+ OK, 
+ it is all about iterating and it is not a *swiss-army knife for all iterations*.
  BUT:
  - READability:  It can reduce C/C++ source code size and improve its readability.
  - TEACHability: it will improve the way to teach C/C++  especially for a younger audiencce.
@@ -152,17 +164,19 @@ Outcomes for ANSI-C
 ### REMARK on TEACHing C/C++: ###
   - ! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !
   - 2nd grade (7years old) pupils CAN cope with the concept of PRINTING, LOOPING and generating textual/graphical outputs. But CONDITIONS with the need of using **boolean Expressions** like AND, OR, NOT are a very hard stuff at that age.
+	
   Suggestion:
-  - What about starting to teach C++ for pupils with: putc(), loop() and going on with vars and  assignment.
-  - Forming them to statements to creating textual outputs on the (screen || printer).
-  - Assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
-  - and teaching in then next, the 3rd grade:  
-  	- Conditions inklusive Boolean Algebra.
-	. and later functions _and then the power of the full for(;;){} iteration_
+	
+   	- What about starting to teach C++ for pupils inthe **2nd grade** with: putc(), loop() and going on with vars and assignment.
+  	- Forming them to statements to creating textual outputs on the (screen || printer).
+  	- Assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
+  	- and teaching in then next, the **3rd grade** conditions inklusive Boolean Algebra.
+		- and in the *following-years* the full power of C/C++  (functions, for(;;){}, ...) 
 
   What do you think  ?
-   - How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the now 4-year old kindergarden children be?
-   - Compared to 2020  bachelor students?
+  	- Seen from the Pont of View: Year 2020
+   	- How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the now 4-year old kindergarden children be?
+   	- Compared to nowadays 2020 bachelor students?
   And what would be their favored programming language ?
 
 ### REMARK on OPTIMIZAtion: ###
@@ -195,16 +209,16 @@ It works. Even for plain Ansi-C See the *IMPLEMENTATION* section.
   https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
   https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
   
-### Example: matrix_copy with stride ###
+### Example: matrix_copy_with_stride() ###
 more examples: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
 
-	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
-	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
-        {
-		// compiler can  mangled the loop-internal integral-types tgt and src in registers.
-                loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
-                        loop(nbofColumms, tgt++, src++)
-                             	*tgt = *src;
-                return tgt;
-        }
+		template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
+		TPtr matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
+  	{
+				// compiler can  mangled the loop-internal integral-types tgt and src in registers.
+				loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
+						loop(nbofColumms, tgt++, src++)
+							*tgt = *src;
+				return tgt;
+		}
 
