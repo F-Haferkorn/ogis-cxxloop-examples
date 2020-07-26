@@ -11,18 +11,6 @@ Herein I present the **loop()** - **COMPOUNDs**  related to ITERATION
 With optional opt-opration expressions. N should be of integral type.
 These new COMPOUNDs can be easily imlemented via the cpp-preprocessor.
 
-### Example: matrix_copy with stride ###
-more examples: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
-
-	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
-	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
-        {
-		// compiler can  mangled the loop-internal integral-types tgt and src in registers.
-                loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
-                        loop(nbofColumms, tgt++, src++)
-                             	*tgt = *src;
-                return tgt;
-        }
 **Advantages**
 With recent compilers  this gives no really speed advantage, but is no way slower than a full for(;;){} iteration.
 
@@ -206,3 +194,17 @@ It works. Even for plain Ansi-C See the *IMPLEMENTATION* section.
   - Teaching programming in the Kindergarden and later:
   https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
   https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
+  
+### Example: matrix_copy with stride ###
+more examples: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
+
+	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
+	TPtr matrix_copy( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
+        {
+		// compiler can  mangled the loop-internal integral-types tgt and src in registers.
+                loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
+                        loop(nbofColumms, tgt++, src++)
+                             	*tgt = *src;
+                return tgt;
+        }
+
