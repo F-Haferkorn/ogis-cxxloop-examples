@@ -212,13 +212,13 @@ It works. Even for plain Ansi-C See the *IMPLEMENTATION* section.
 ### Example: matrix_copy_with_stride() ###
 more examples: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
 
-		template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
-		TPtr matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
+	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
+	TPtr matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
   	{
-				// compiler can  mangled the loop-internal integral-types tgt and src in registers.
-				loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
-						loop(nbofColumms, tgt++, src++)
-							*tgt = *src;
-				return tgt;
-		}
+		// compiler can  mangled the loop-internal integral-types tgt and src in registers.
+		loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
+			loop(nbofColumms, tgt++, src++)
+				*tgt = *src;
+			return tgt;
+	}
 
