@@ -24,7 +24,7 @@ There is a the try-catch block compound stament, too.
 
 ### New Compound-Statements in C++17 ###
 
-	- if-init	if(<declaration>;  <condition>) {} else{} 
-	- switch-init	swicth(<declaration>;  <index>) { case.... default: }
+	- if(<declaration>;  <condition>) {} else{}               // if-init
+	- switch(<declaration>;  <index>) { case.... default: }   // switch-init
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statments in the future?**
