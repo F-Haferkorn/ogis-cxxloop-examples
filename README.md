@@ -64,37 +64,8 @@ Here is an example usage for of a matrix-copy with stride arguments:
 For the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}, see below.
 A full implementation is presented below.
 
-## About Compound-Statements   ##
-
-### ANSI-C Compound-Statements from the very beginning ###
-in C/C++ there are the well known *compound statements*.
-	
-	- if(<cond>) {} else{}
-	- while(<cond>) {}
- 	- do {} while(<cond>);
- 	- for(<decl>; <cond>;<expr>) {}
- 	- switch(<expr>) { case: ... default: ... }
-
-with the related staments
-
-	- break
- 	- continue
-
-These compounds have not been changed since the  time of creation K&R-C and ANSI-C.
-
-### Early C++ Compound-Statements ##
-
-One wll agreed that a try-catch block is somehow a compound stament, too.
-
-  	try{ 
-		// throw ....
-	} catch(...)   {}
-
-### New Compound-Statements in C++17 ###
-
-	- if-init	if(<declaration>;  <condition>) {} else{} 
-	- switch-init	swicth(<declaration>;  <index>) {}
-
+## About Existing Compound-Statements   ##
+have a look at: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_existing_compounds.md
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statments in the future?**
  
 ## Full Syntax of the Compound-Group "LOOP" ##
