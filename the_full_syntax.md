@@ -2,8 +2,8 @@
 
 This is the full syntax of the Compound-Group LOOP
 
-	- see also the Implementation Details: 
-	 - see also the Example Details:
+- see also the Implementation Details: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_implementation.md
+- see also the Example Directory: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
 
 ### Shortcuts: ###
 	{}	a single <statement> || <statement-block>  after the compound statement
