@@ -80,9 +80,10 @@ One might partly agreed that a
 ## Full Syntax of the Compound Group LOOP ##
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_syntax.md
 
-## Full Implementation Details of the Compound Group LOOP ## ##
-have a look to:
+## Full Implementation Details of the Compound Group LOOP ##
+have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_implementation.md
 
+## Full Implementation Details of the Compound Group LOOP ##
 ### necessary Requirements  ###
 The cpp-preprocessor must provide:
 	
