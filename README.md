@@ -52,6 +52,10 @@ Here is an example usage for of a matrix-copy uisng a stride-offset fro each row
 				*tgt = *src;
 		return;
 	}
+
+for more matrix-examples ave a look at:
+https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp
+	
 	
 ### Demo Implemenation ###
 
