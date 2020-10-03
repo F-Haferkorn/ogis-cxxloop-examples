@@ -94,7 +94,7 @@ Outcomes for ANSI-C
  
 OK, it is all about iterating and it is not a *swiss-army knife for all iterations*.
 
-With recent compilers, this is *NOT* slower than the *regular* iteration *for(;;){}*.
+With recent compilers, this is **as fast*** as the **regular** **for(;;){}** iteration.
 
 BUT it has these advantages:
  - **READability**:  It reduces C/C++ source code size and improve its readability.
@@ -105,12 +105,11 @@ BUT it has these advantages:
 	- by using fast ALU-register increment operations of *DSP-Architectures*.
      
 ### Disadvantages:  ###
+- The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. But this is somehow unlikely.
+- The current preprocessor implemantation will break when using an **argument containing a comma** . This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.	
 
-  - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. But this is somehow unlikely.
-  - The current preprocessor implemantation will break when using an **argument containing a comma** . This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.	
-
-The last comma related problem  can easily be fixed by surrounding the problematic argumment with regular braces *loop(* **(** argment **)** *)*.
-IN CASE  
+The last "comma related" problem can easily be fixed by surrounding the problematic argumment with regular braces *loop(* **(** argment **)** *)*.
+IN CASE:
  - the LOOP-compounds are added to the the core-language this problem would be solved, as no more usage of the cpp-preprocessor is necessary.
 
 ## Remarks ##
@@ -132,26 +131,27 @@ We will see if:
 	
   Suggestion:
 	
-   	- What about starting to teach C/C++ for pupils as early as posisble with: putc(), loop() and going on with vars and assignment.
-  	- going on to  statements in order to  create textual outputs on the (screen || printer).
-  	- and lateron assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
-  	- and teaching them lateron *conditions* inklusive the  *Boolean Algebra*.
-	- and in the *following-years* the full power of C/C++  (functions, for(;;){}, ...) 
+  - What about starting to teach C/C++ for pupils as early as posisble with: putc(), loop() and going on with vars and assignment.
+  - going on to  statements in order to  create textual outputs on the (screen || printer).
+  - and lateron assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
+  - and teaching them lateron *conditions* inklusive the  *Boolean Algebra*.
+  - and in the *following-years* the full power of C/C++  (functions, for(;;){}, ...) 
 
   What do you think  ?
-  	- Seen from the Pont of View: Year 2020
-   	- How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the now 4-year old kindergarden children be?
-   	- Compared to nowadays 2020 bachelor students?
+  - Seen from the Pont of View: Year 2020
+  - How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the now 4-year old kindergarden children be?
+  - Compared to nowadays 2020 bachelor students?
   And what would be their favored programming language ?
 
 ## Conclusions ##
-	- First experts comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++.
-	- But you can take the occasion and try it out yourself. It works. 
-	- Even for plain Ansi-C.
-	- the issues of READABILITY and TECHABILTY  
-	Attention: (see  disadvantages)
-	in the recent preprocessor implementation breaks on arguments containing a comma (like for some  complex template-expressions). 
-	There is a wouraround for that.
+ - First experts comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++.
+ - But you can take the occasion and try it out yourself. It works. 
+ - Even for plain Ansi-C.
+ - the issues of READABILITY and TECHABILTY  
+
+Attention: (see  disadvantages)
+in the recent preprocessor implementation breaks on arguments containing a comma (like for some  complex template-expressions). 
+There is a wouraround for that.
 
 ## Work still to be done ####
  - However I  will have to prove, that there are _realworld USE-CASES_, for cases the described compounds can be applied
@@ -161,7 +161,7 @@ We will see if:
 
 # References #
 
-  - Teaching programming in the Kindergarden and later:
-  https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
-  https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
+ - Teaching programming in the Kindergarden and later:
+ - https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
+ - https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
 
