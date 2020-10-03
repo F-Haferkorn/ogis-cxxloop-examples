@@ -1,34 +1,38 @@
 # Introducing the LOOP Compound-Group #
-github repo: ogis-modern-cxx-future-cpp
-A suggested  extension for the C/C++ Core Language 
+A suggested core-level extension for C/C++ language.
 
 ## Overview ##
-This github-site is a testbed and payground for a C++ core-language **extension** based on the Cpp-PreProcessor.
+This github-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
+Herein I present my work on the iteration related compound-group **loop()** - 
+The syntax is like this
 
-Herein I present the iteration related compound-group **loop()** - 
-Here is the syntax:
+	- loop(rep, ...){}		//    *optional* post-expressions may be used instead of , ...  
+	- typed_loop(type, rep, ...)
+	- named_loop_up(id, rep, ...){}
+	- named_loop_down(id, rep,  ..){}
 
-	- loop(N, ...){}		// ", ...".  are  optional post-expressions 
-	- typed_loop(type, N, ...)
-	- named_loop_up(id, N, ...){}
-	- named_loop_down(id, N,  ..){}
+with 
+ - <rep>   the (integral) number or repetitions
+ - <{}>    is any  block statement following th ecompound
+ - <type>  any valid type-name
+ - <id>    any valid name of a the iteration variable 
+These new compounds are implemented via the cpp-preprocessor.
+Except in typed_loop(){}, the iteration variable is iha sthe same type as <rep>
 
-"N" should be of integral type.  These new compounds are imlemented via the cpp-preprocessor.
-
-There are possible problems in the current cppp implemeantion when using argumntns containing a ",", but there are workarounds.
+There are possible problems in the current cpp implemantation when using arguments containing a ",". But there is a workaround.
 
 ### Usage Example ###
 **matrix_copy_with_stride()**
 for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
 
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
-	TPtr matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
+	void matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
   	{
-		// compiler can  mangled the loop-internal integral-types tgt and src in registers.
+		// compiler can mangle the loop-internal integral-types tgt and src in registers inclusive the incrementations
 		loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
-			loop(nbofColumms, tgt++, src++)
+			loop(nColumns, tgt++, src++)
 				*tgt = *src;
-			return tgt;
+		return;
 	}
 	
 ### Demo Implemenation ###
