@@ -1,7 +1,8 @@
 # Introducing the Compound-Group "LOOP" #
 
-A suggested **core-level extension** for both the **C** and the **C++** programming language.
-With an implementation usisng the cpp-preprocessor.
+Herein I want to suggest a  **core-level extension** for both the **C** and the **C++** programming language.
+This repo contains the  implementation for the compound-group "LOOP" using the cpp-preprocessor,
+and wants to open a disussion in the community.
 
 ## Overview ##
 
