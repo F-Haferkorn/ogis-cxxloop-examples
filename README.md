@@ -23,9 +23,19 @@ Except in typed_loop(){}, the iteration variable has the same type as the count 
 There are *possible problems* in the *current* cpp implemantation when using arguments containing a ",". 
 But there is a solution for that.
 
+### Activation via #include  ### 
+
+All "LOOP" coumpound-statments can be used after an:
+ 	
+	#inclucde <loop>
+
 ### Usage Example ###
 **matrix_copy_with_stride()**
 for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
+
+### Usage  ### 
+
+	#inclucde <loop>
 
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	void matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
@@ -38,6 +48,7 @@ for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/ma
 	}
 	
 ### Demo Implemenation ###
+
 **loop(){}**  can be implented like the folowing 
 	
 	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
@@ -77,47 +88,11 @@ One might partly agreed that a
 
  Is it a LAW-OF-NATURE that there must *never* be ANY (more||other) compound-statments in the future?
 
-## Full Syntax of the Compound Group LOOP ##
+## Full Syntax of the Compound-Group "LOOP" ##
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_syntax.md
 
-## Full Implementation Details of the Compound Group LOOP ##
+## Full Implementation of the Compound-Group "LOOP" ##
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_implementation.md
-
-## Full Implementation Details of the Compound Group LOOP ##
-### necessary Requirements  ###
-The cpp-preprocessor must provide:
-	
-	__LINE__		line number  used by  CPPMACRO_UNIQUE_ID() 	
-	__COUNTER__		counter used by CPPMACRO_UNIQUE_ID() 
-	,  ##__VA_ARGS__)	optional variadic-arguments, for the post-comaprison operations
-
-This "core-language extension" can be implemented solely using the cpp-preprocessor.
-see here for details:
-https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/includes/ogis/cpp
-
-### Implementation ###
-	#pragma once
-
-	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
-
-	// count-down: )inverse  loop: =
-	#define CPPMACRO_NTIMES_COUNT_UP(type, varName, nbrOfRepetitions, ...) \
-    		for (type varName = 0; varName++<nbrOfRepetitions; __VA_ARGS__)
-
-	// regular loop: counting-up
-	#define CPPMACRO_NTIMES_COUNT_DOWN(type, varName, nbrOfRepetitions, ...) \
-    		for (type varName = nbrOfRepetitions; varName--; __VA_ARGS__)
-
-	/// todo: choose the fatest depending on the machine
-	#define CPPMACRO_NTIMES_FAST(type, varName, nbrOfRepetitions, ...) \
-    		CPPMACRO_NTIMES_COUNT_UP(type, varName, nbrOfRepetitions, __VA_ARGS__)
-
-	//#define loop(nbrOfRepetitions)  CPPMACRO_NTIMES(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions)
-	#define loop(nbrOfRepetitions, ...)                 CPPMACRO_NTIMES_FAST(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
-	#define typed_loop(type, nbrOfRepetitions, ...)     CPPMACRO_NTIMES_FAST(type, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
-	#define named_loop_up(varName, nbrOfRepetitions, ...)  CPPMACRO_NTIMES_COUNT_UP(auto, varName, nbrOfRepetitions, ##__VA_ARGS__)
-	#define named_loop_down(varName, nbrOfRepetitions, ...)  CPPMACRO_NTIMES_COUNT_DOWN(auto, varName, nbrOfRepetitions, ##__VA_ARGS__)
-
 
 ## Discussion ##
  One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
