@@ -6,7 +6,7 @@ This is the full syntax of the Compound-Group LOOP
 - see also the Example Directory: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
 
 ### Shortcuts: ###
-	{}	a single <statement> || <statement-block>  after the compound statement
+	{}	a single <statement> or a  <statement-block>  after the compound statement
 	rep    	the <count> of targeted repetitions (usually a value of integral-type) ;
 	type	the <type> of the (hiddden) iteration variable
 	name	the <name> of the iteration variable
