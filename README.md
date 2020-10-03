@@ -1,12 +1,18 @@
-# Introducing the "loop(){}" Compound-Group #
-A suggested core-level extension for C/C++ language.
+# Introducing the Compound-Group "LOOP" #
+
+A suggested **core-level extension** for both the **C** and the **C++** programming language.
+With an implementation usisng the cpp-preprocessor.
 
 ## Overview ##
+
 This github-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
-Herein I present my work on the iteration related compound-group **loop()** - 
+
+Herein I present my work on the iteration related compound-group **loop(){}**.
+
 The syntax is like this
 
         // all compounds below allow *optional* post-expressions instead of , ... 
+        // and are followed by a block-statement.
         // iterate <rep> times  and uses a hidden, secret unique-index variable.
         - loop(<rep>, ...){}                                   // use an index variable of same type as <rep>
         - typed_loop(<type>, <rep>, ...)                       // use a typed index variable using type <type>
@@ -31,11 +37,7 @@ All "LOOP" coumpound-statments can be used after an:
 	#inclucde <loop>
 
 ### Usage Example ###
-**matrix_copy_with_stride()**
-for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
-
-### Usage ### 
-Here is an example usage for of a matrix-copy with stride arguments:
+Here is an example usage for of a matrix-copy uisng a stride-offset fro each row :
 
 	#inclucde <loop>
 
@@ -62,20 +64,24 @@ Here is an example usage for of a matrix-copy with stride arguments:
 		CPPMACRO_NTIMES_FAST(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 
 For the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}, see below.
-A full implementation is presented below.
+For A full implementation of all compounds see below.
 
 ## About Existing Compound-Statements   ##
 have a look at: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_existing_compounds.md
+
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statments in the future?**
  
-## Full Syntax of the Compound-Group "LOOP" ##
+## Full Syntax ##
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_syntax.md
 
-## Full Implementation of the Compound-Group "LOOP" ##
+## Full Implementation ##
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_implementation.md
 
 ## Discussion ##
- One might argue, *loop(){}* is is only a plain mapping to a *for(;;){}* statement.
+
+One might argue, **loop(){}** is is only a plain mapping to a **for(;;){}** statement.
+
+OK, it is all about iterating and it is not a *swiss-army knife for all iterations*.
  
 ### Properties of the current implementation  ###
 
@@ -91,8 +97,6 @@ Outcomes for ANSI-C
 
 
 ### Advantages: ###
- 
-OK, it is all about iterating and it is not a *swiss-army knife for all iterations*.
 
 With recent compilers, this is **as fast*** as the **regular** **for(;;){}** iteration.
 
