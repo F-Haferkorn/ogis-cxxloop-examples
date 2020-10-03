@@ -1,7 +1,7 @@
 ## About Existing Compound-Statements   ##
 
 ### ANSI-C Compound-Statements ###
-From the very beginning if C there are the well known **compound statements**.
+From the very beginning of C there are the well known **compound statements**.
 	
 	if(<cond>) {} else{}
 	while(<cond>) {}
