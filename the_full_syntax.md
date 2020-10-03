@@ -1,3 +1,27 @@
+## Full Syntax of the Compound-Group LOOP ##
+
+This is the full syntax of the Compound-Group LOOP
+
+	- see also the Implementation Details: 
+	 - see also the Example Details:
+
+### Shortcuts: ###
+	{}	a single <statement> || <statement-block>  after the compound statement
+	rep    	the <count> of targeted repetitions (usually a value of integral-type) ;
+	type	the <type> of the (hiddden) iteration variable
+	name	the <name> of the iteration variable
+	, ...) 	an optional comma separated list of post-operations (expressions)
+
+### Basic SYNTAX of the Loop Compound-Group: ###
+These compounds iterate ("loop") the trailing block "{}" "rep" times
+
+	/////// below <hidden> is an id with a secret, unique ID created using  a the cpp-macro CPPMACRO_UNIQUE_ID()
+	
+	// the  hidden_loop does NOT change <rep> and uses a hidden, secret unique-index variable.
+	loop(rep){}	                 // for(auto hidden=rep; hidden-- ; ++hidden){}   
+
+	// a typed-loop has a type-constain, but has a hidden index variable, too.
+	typed_loop(type,rep){} 	        // for(type hidden=rep; hidden-- ; ++hidden){}   
 
 
 	// the named_loops_...() are useful, when access to the index variable is needed.
