@@ -1,8 +1,9 @@
 # Introducing the Compound-Group "LOOP" #
 
 Herein I want to suggest a  **core-level extension** for both the **C** and the **C++** programming language.
-This repo contains the  implementation for the compound-group "LOOP" using the cpp-preprocessor,
-and wants to open a disussion in the community.
+
+This repo contains the implementation for the compound-group "LOOP" using the cpp-preprocessor,
+and wants to open the door to a disussion inside the community.
 
 ## Overview ##
 
@@ -167,6 +168,6 @@ There is a wouraround for that.
 # References #
 
  - Teaching programming in the Kindergarden and later:
- - https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
- - https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
+   	- https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
+ 	- https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
 
