@@ -9,7 +9,7 @@ and wants to open the door to a disussion inside the community.
 
 This github-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
 
-Herein I present my work on the iteration related compound-group **loop(){}**.
+Herein I present my work on the iteration related compound-group **LOOP**.
 
 The syntax is like this
 
