@@ -1,9 +1,9 @@
-## Full Implementation Details of the Compound Group LOOP ##
+## Full Implementation Details of the Compound-Group "LOOP" ##
 have a look at:
     - simple code-examples:   
     - advanced code-examples:
 
-### necessary Requirements  ###
+### Necessary Requirements  ###
 The cpp-preprocessor must provide:
 	
 	__LINE__		line number  used by  CPPMACRO_UNIQUE_ID() 	
@@ -14,7 +14,7 @@ This "core-language extension" can be implemented solely using the cpp-preproces
 see here for details:
 https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/includes/ogis/cpp
 
-### Implementation ###
+### Implementation Details ###
 	#pragma once
 
 	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
