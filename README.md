@@ -7,19 +7,21 @@ Herein I present my work on the iteration related compound-group **loop()** -
 The syntax is like this
 
 	- loop(rep, ...){}		//    *optional* post-expressions may be used instead of , ...  
-	- typed_loop(type, rep, ...)
 	- named_loop_up(id, rep, ...){}
 	- named_loop_down(id, rep,  ..){}
+	- typed_loop(type, rep, ...)
 
 with 
- - <rep>   the (integral) number or repetitions
- - <{}>    is any  block statement following th ecompound
- - <type>  any valid type-name
- - <id>    any valid name of a the iteration variable 
-These new compounds are implemented via the cpp-preprocessor.
-Except in typed_loop(){}, the iteration variable is iha sthe same type as <rep>
+ - *rep*   the (integral) count or repetitions
+ - *{}*    is any  block statement following th ecompound
+ - *id*    any valid identificator to access the iteration variable
+ - *type*  any valid type-name
+ 
+These new compounds are currently implemented via the cpp-preprocessor.
+Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*
 
-There are possible problems in the current cpp implemantation when using arguments containing a ",". But there is a workaround.
+There are *possible problems* in the *current* cpp implemantation when using arguments containing a ",". 
+But there is a solution for that.
 
 ### Usage Example ###
 **matrix_copy_with_stride()**
@@ -36,7 +38,7 @@ for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/ma
 	}
 	
 ### Demo Implemenation ###
-*loop(){}*  can be implenedd like the folowing 
+**loop(){}**  can be implented like the folowing 
 	
 	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
 	
@@ -75,7 +77,7 @@ One might partly agreed that a
 
  Is it a LAW-OF-NATURE that there must *never* be ANY (more||other) compound-statments in the future?
 
-## Syntax of the Compound Group LOOP ##
+## Full Syntax of the Compound Group LOOP ##
 ### Shortcuts: ###
 	{}	a single <statement> || <statement-block>  after the compound statement
 	rep    	the <count> of targeted repetitions (usually a value of integral-type) ;
