@@ -18,7 +18,7 @@ These compounds have not been changed since the  time of creation K&R-C and ANSI
 
 ### Early C++ Compound-Statements ##
 
-One wll agreed that a try-catch block is somehow a compound stament, too.
+There is a the try-catch block compound stament, too.
 
   	try{ /* throw ....*/ } catch(...)   {}
 
