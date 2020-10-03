@@ -6,16 +6,20 @@ This github-site is a testbed and discussion-ground for a *C++ core-language ext
 Herein I present my work on the iteration related compound-group **loop()** - 
 The syntax is like this
 
-	- loop(rep, ...){}		//    *optional* post-expressions may be used instead of , ...  
-	- named_loop_up(id, rep, ...){}
-	- named_loop_down(id, rep,  ..){}
-	- typed_loop(type, rep, ...)
-
-with 
- - *rep*   the count or repetitions. (is likely an integral)
- - *{}*    is any  block statement following th ecompound.
- - *id*    any valid identificator to access the iteration variable.
- - *type*  any valid type-name.
+        // all compounds below allow *optional* post-expressions instead of , ... 
+        // iterate <rep> times  and uses a hidden, secret unique-index variable.
+        - loop(<rep>, ...){}                                   // use an index variable of same type as <rep>
+        - typed_loop(<type>, <rep>, ...)                       // use a typed index variable using type <type>
+	
+        // same as loop, but use the given index variable <id>.
+        - named_loop_up(<id>, <rep>, ...){}                     // count id up-wards
+        - named_loop_down(<id>, <rep>,  ..){}                   // count id down-wards	
+	
+with the tokens:
+ - **rep**   the count or repetitions. (is likely an integral)
+ - **{}**    is any  block statement following th ecompound.
+ - **id**    any valid identificator to access the iteration variable.
+ - **type**  any valid type-name.
  
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
@@ -30,16 +34,17 @@ All "LOOP" coumpound-statments can be used after an:
 **matrix_copy_with_stride()**
 for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
 
-### Usage  ### 
+### Usage ### 
+Here is an example usage for of a matrix-copy with stride arguments:
 
 	#inclucde <loop>
 
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	void matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
   	{
-		// compiler can mangle the loop-internal integral-types tgt and src in registers inclusive the incrementations
-		loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
-			loop(nColumns, tgt++, src++)
+		// compiler can mangle the (integral-typed) loop-internal index-vars and  tgt and src in registers ansd speedup teh loop and incrementation.
+		loop(nRows,  tgt+=stride, src+=stride)  // apply stride after each row to tgt and src
+			loop(nColumns, tgt++, src++)	// increment after each copy.
 				*tgt = *src;
 		return;
 	}
@@ -57,10 +62,11 @@ for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/ma
 		CPPMACRO_NTIMES_FAST(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 
 For the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}, see below.
+A full implementation is presented below.
 
-## About Existing Compound-Statements (upto C++17) ##
+## About Compound-Statements   ##
 
-###  ANSI-C Compounds ###
+### ANSI-C Compound-Statements from the very beginning ###
 in C/C++ there are the well known *compound statements*.
 	
 	- if(<cond>) {} else{}
@@ -76,14 +82,15 @@ with the related staments
 
 These compounds have not been changed since the  time of creation K&R-C and ANSI-C.
 
-### Non ANSI-C Compounds ##
+### Early C++ Compound-Statements ##
+
 One wll agreed that a try-catch block is somehow a compound stament, too.
 
   	try{ 
 		// throw ....
 	} catch(...)   {}
 
-### new compound-statements in C++17 ###
+### New Compound-Statements in C++17 ###
 
 	- if-init	if(<declaration>;  <condition>) {} else{} 
 	- switch-init	swicth(<declaration>;  <index>) {}
