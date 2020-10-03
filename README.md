@@ -61,7 +61,8 @@ for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/ma
 
 For the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}, see below.
 
-## About Existing Compound-Statements ###
+## About Existing Compound-Statements (upto C++17) ##
+
 ###  ANSI-C Compounds ###
 in C/C++ there are the well known *compound statements*.
 	
@@ -79,15 +80,21 @@ with the related staments
 These compounds have not been changed since the  time of creation K&R-C and ANSI-C.
 
 ### Non ANSI-C Compounds ##
-One might partly agreed that a
+One wll agreed that a try-catch block is somehow a compound stament, too.
 
-  	try{
-  	} catch(...)   {}
+  	try{ 
+		// throw ....
+	} catch(...)   {}
 
- "block" is somehow a compound stament, too.
+### new compounts in C++17 ###
 
- Is it a LAW-OF-NATURE that there must *never* be ANY (more||other) compound-statments in the future?
+	- if-init	if(<declaration>;  <condition>) {} else{} 
+	- switch-init	swicth(<declaration>;  <index>) {}
 
+**Is it a LAW-OF-NATURE that there will  never be any other compound-statments in the future?**
+
+
+ 
 ## Full Syntax of the Compound-Group "LOOP" ##
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_syntax.md
 
@@ -95,16 +102,14 @@ have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/m
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_implementation.md
 
 ## Discussion ##
- One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
+ One might argue, *loop(){}* is is only a plain mapping to a *for(;;){}* statement.
  
 ### Properties of the current implementation  ###
  - the solution *"is ready to rumble"*
  - the solution *is based on the c-preprocessor (cpp) only.*
  - it is a header only solution
  - no changes to any compiler are necesary.
-  
-Creating the hidden index name
-  CPPMACRO_UNIQUE_ID()   generated an unqiue-id for the hidden index
+ - it creates a hidden index name uinsg the macro  CPPMACRO_UNIQUE_ID()
 
 Outcomes for ANSI-C
  - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
@@ -114,22 +119,24 @@ Outcomes for ANSI-C
 ### Advantages: ###
  With recent compilers, this is *NOT* slower than thhe *regular* for(;;){} iteration.
  
- The **reduced degree of freedom of the iteration** can be used by the comoiler
- and a compiler can make heavy use of ALU-register operation of DSP-Architectures.
- 
  OK, 
  it is all about iterating and it is not a *swiss-army knife for all iterations*.
  BUT:
- - READability:  It can reduce C/C++ source code size and improve its readability.
- - TEACHability: it will improve the way to teach C/C++  especially for a younger audiencce.
- - ALGORITHMics: It allows/leads the developer(s) to notate code that completely does _NOT depend on the iteration index_.
- - OPTIMIZATION: It opens the way to enhanced optimizations for upcoming compiler implementations.
+ - **READability**:  It can reduce C/C++ source code size and improve its readability.
+ - **TEACHability**: it will improve the way to teach C/C++  especially for a younger audiencce.
+ - **ALGORITHMics**: It allows/leads the developer(s) to notate code that completely does _NOT depend on the iteration index_.
+ - **OPTIMIZATION**: It opens the way to enhanced optimizations for upcoming compiler implementations.
  
+ 	- by utilizing the *reduced degree of freedom of the iteration* 
+	- by using fast ALU-register increment operations of *DSP-Architectures*.
+ 
+    
 ### Disadvantages:  ###
- - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer.
- - The current preprocessor implemantation will break if an argument containing a comma is attached. Adding the new compounds to the core-language would fix that issue.
+ - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. This is somehow unlikely.
+ - The current preprocessor implemantation will break if an argument containing a comma is attached. This happens seldom, e.g. when an complex template expression is used that contains any comma ','.
 	
- An Example of an problemartic argumnet, and a possible workaround.
+The last issue can be fixed by surrounding the problematic argumment with regular braces *loop(* **(** argment **)** *)* .
+Adding the new compounds to the core-language would fix that issue, so no more usage of the cpp preprocessor necessary.
 
 
 ## Remarks ##
