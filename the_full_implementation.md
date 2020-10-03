@@ -1,5 +1,6 @@
 ## Full Implementation Details of the Compound-Group "LOOP" ##
 have a look at:
+
     - simple code-examples:   
     - advanced code-examples:
 
@@ -11,10 +12,10 @@ The cpp-preprocessor must provide:
 	,  ##__VA_ARGS__)	optional variadic-arguments, for the post-comaprison operations
 
 This "core-language extension" can be implemented solely using the cpp-preprocessor.
-see here for details:
-https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/includes/ogis/cpp
+see here for details: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/includes/loop.h
 
 ### Implementation Details ###
+
 	#pragma once
 
 	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
@@ -36,3 +37,16 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp
 	#define typed_loop(type, nbrOfRepetitions, ...)     CPPMACRO_NTIMES_FAST(type, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 	#define named_loop_up(varName, nbrOfRepetitions, ...)  CPPMACRO_NTIMES_COUNT_UP(auto, varName, nbrOfRepetitions, ##__VA_ARGS__)
 	#define named_loop_down(varName, nbrOfRepetitions, ...)  CPPMACRO_NTIMES_COUNT_DOWN(auto, varName, nbrOfRepetitions, ##__VA_ARGS__)
+	
+
+The loop coumpound-statments can be usd after an:
+ 	
+	#inclucde <loop>
+
+or 
+
+	#include <compound>
+	
+	
+	
+ 
