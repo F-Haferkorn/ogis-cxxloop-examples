@@ -12,10 +12,10 @@ The syntax is like this
 	- typed_loop(type, rep, ...)
 
 with 
- - *rep*   the (integral) count or repetitions
- - *{}*    is any  block statement following th ecompound
- - *id*    any valid identificator to access the iteration variable
- - *type*  any valid type-name
+ - *rep*   the count or repetitions. (is likely an integral)
+ - *{}*    is any  block statement following th ecompound.
+ - *id*    any valid identificator to access the iteration variable.
+ - *type*  any valid type-name.
  
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*
@@ -117,40 +117,43 @@ Outcomes for ANSI-C
 
 
 ### Advantages: ###
- With recent compilers, this is *NOT* slower than thhe *regular* for(;;){} iteration.
  
- OK, 
- it is all about iterating and it is not a *swiss-army knife for all iterations*.
- BUT:
- - **READability**:  It can reduce C/C++ source code size and improve its readability.
+OK, it is all about iterating and it is not a *swiss-army knife for all iterations*.
+
+With recent compilers, this is *NOT* slower than the *regular* iteration *for(;;){}*.
+
+BUT:
+ - **READability**:  It reduces C/C++ source code size and improve its readability.
  - **TEACHability**: it will improve the way to teach C/C++  especially for a younger audiencce.
  - **ALGORITHMics**: It allows/leads the developer(s) to notate code that completely does _NOT depend on the iteration index_.
  - **OPTIMIZATION**: It opens the way to enhanced optimizations for upcoming compiler implementations.
- 
- 	- by utilizing the *reduced degree of freedom of the iteration* 
+ 	- by utilizing the *reduced degree of freedom* of the iteration
 	- by using fast ALU-register increment operations of *DSP-Architectures*.
- 
-    
+     
 ### Disadvantages:  ###
  - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. This is somehow unlikely.
  - The current preprocessor implemantation will break if an argument containing a comma is attached. This happens seldom, e.g. when an complex template expression is used that contains any comma ','.
 	
-The last issue can be fixed by surrounding the problematic argumment with regular braces *loop(* **(** argment **)** *)* .
-Adding the new compounds to the core-language would fix that issue, so no more usage of the cpp preprocessor necessary.
+The last comma related problem  can easily be fixed by surrounding the problematic argumment with regular braces *loop(* **(** argment **)** *)*.
 
+IN CASE  
+ - the LOOP-compounds are added to the the core-language this problem is be solved, 
+ - as so no more cpp preprocessor usage is necessary.
 
 ## Remarks ##
 ### Teachingability of  C/C++ ###
   - ! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !
-  - 2nd grade (7years old) pupils CAN cope with the concept of PRINTING, LOOPING and generating textual/graphical outputs. But CONDITIONS with the need of using **boolean Expressions** like AND, OR, NOT are a very hard stuff at that age.
+  - 5th grade (10-years old) pupils **can** cope with the concept of **looping**,  and generating textual outputs via **printing**  something like squares, tiangles, etc.
+  - But a simple **for(int i=0; i<n; ++i)**  statement will overwhelm them. 
+  Variable *types* and their *Assignemt*,   *conditions* in the form of **boolean expressions** with relations and incrementation is re a very hard stuff at that age.
 	
   Suggestion:
 	
-   	- What about starting to teach C++ for pupils inthe **2nd grade** with: putc(), loop() and going on with vars and assignment.
-  	- Forming them to statements to creating textual outputs on the (screen || printer).
-  	- Assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
-  	- and teaching in then next, the **3rd grade** conditions inklusive Boolean Algebra.
-		- and in the *following-years* the full power of C/C++  (functions, for(;;){}, ...) 
+   	- What about starting to teach C/C++ for pupils as early as posisble with: putc(), loop() and going on with vars and assignment.
+  	- going on to  statements in order to  create textual outputs on the (screen || printer).
+  	- and lateron assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
+  	- and teaching them lateron *conditions* inklusive the  *Boolean Algebra*.
+	- and in the *following-years* the full power of C/C++  (functions, for(;;){}, ...) 
 
   What do you think  ?
   	- Seen from the Pont of View: Year 2020
@@ -167,21 +170,22 @@ We will see if:
  - This will definitely apply for large loops with a tiny loop body.
  - This can reduce the _rate of cache-misses_ dramatically.
 
-
-## Work still to be done ##
- - However I  will have to prove, that there are _realworld USE-CASES_, for cases the described compounds can be applied
- - so that the praised _"unbeatable"_ _compiler_  can be driven to make better/shorer/faster machine code
- - compared to the now-a-days solution for(int i=0; i<rep; ++i){}
- - stress out the aspekt of teachability 
-
 ## Conclusions ##
-First experts comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++.
-But You can take the occasion and try it out yourself.
-It works. Even for plain Ansi-C.
-The preprocessor implementation has problems for arguments containing a comma.
+	- First experts comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++.
+	- But you can take the occasion and try it out yourself. It works. 
+	- Even for plain Ansi-C.
+	- the issues of READABILITY and TECHABILTY  
+	Attention: (see  disadvantages)
+	in the recent preprocessor implementation breaks on arguments containing a comma (like for some  complex template-expressions). 
+	There is a wouraround for that.
 
 # References #
   - Teaching programming in the Kindergarden and later:
   https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
   https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
-  
+
+## Work still to be done ##
+ - However I  will have to prove, that there are _realworld USE-CASES_, for cases the described compounds can be applied
+ - so that the praised _"unbeatable"_ _compiler_  can be driven to make better/shorer/faster machine code
+ - compared to the now-a-days solution *for(int i=0; i<rep; ++i){}*
+ - stress out the aspekt of teachability.
