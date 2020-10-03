@@ -1,7 +1,8 @@
 # ogis-modern-cxx-future-cpp: #
+# the LOOP Compound-Group, a suffestion for C/C++ Core language Extension. 
 This github-site is a testbed and payground for the **Modern C++ CORE LANGUAGE-extension** based on the C-PreProcessor (cpp)
 
-Herein I present the **loop()** - **COMPOUNDs**  related to ITERATION
+Herein I present the **loop()** - **COMPOUNDs**  related to ITERATION.
 Here is the syntax:
 
 	- loop(N, ...){}
@@ -12,7 +13,22 @@ Here is the syntax:
 With optional post-comparsion expressions. N should be of integral type.
 These new COMPOUNDs are imlemented via the cpp-preprocessor.
 
-### existing compound-statements ###
+### Example-code: matrix_copy_with_stride() ###
+for more see:: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
+
+	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
+	TPtr matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
+  	{
+		// compiler can  mangled the loop-internal integral-types tgt and src in registers.
+		loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
+			loop(nbofColumms, tgt++, src++)
+				*tgt = *src;
+			return tgt;
+	}
+
+
+
+## Existing Compound-Statements ###
 in C/C++ there are the well known *compound statements*.
 	
 	- if(<cond>) {} else{}
@@ -24,11 +40,9 @@ in C/C++ there are the well known *compound statements*.
 with the related staments
 
 	- break
- 	- continue.
+ 	- continue
 
- These compounds have not been changed since the  time of creation K&R-C and ANSI-C.
-
- +----------------------------------------------------------------
+These compounds have not been changed since the  time of creation K&R-C and ANSI-C.
 
 **But was that really all for C++?**
 One might partly agreed that a
@@ -40,7 +54,7 @@ One might partly agreed that a
 
  Is it a LAW-OF-NATURE that there must *never* be ANY (more||other) compound-statments in the future?
 
-## Details of the C++ core language Extension ##
+## SYNTAX:The LOOP Compound Group##
 ### Shortcuts: ###
 	{}	a single <statement> || <statement-block>  after the compound statement
 	rep    	the <count> of targeted repetitions (usually a value of integral-type) ;
@@ -48,7 +62,7 @@ One might partly agreed that a
 	name	the <name> of the iteration variable
 	, ...) 	an optional comma separated list of post-operations (expressions)
 
-## SYNTAX: ##
+### Basic SYNTAX of the Loop Compound-Group: ###
 These compounds iterate ("loop") the trailing block "{}" rep times
 
 	/////// below <hidden> is an id with a secret, unique ID.
@@ -74,7 +88,7 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 
 
 
-## EXTENDED_SYNTAX ##
+### EXTENDED_SYNTAX ###
 	// each of the above the loop compound statements
 	// can be extened by any number of post-iteration operations.
 
@@ -99,8 +113,6 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 	__LINE__		line number  used by  CPPMACRO_UNIQUE_ID() 	
 	__COUNTER__		counter used by CPPMACRO_UNIQUE_ID() 
 	,  ##__VA_ARGS__)	optional variadic-arguments, for the post-comaprison operations
-		
-
 
 This "core-language extension" can be implemented solely using the cpp-preprocessor.
 see here for details:
@@ -129,7 +141,10 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp
 	#define named_loop_down(varName, nbrOfRepetitions, ...)  CPPMACRO_NTIMES_COUNT_DOWN(auto, varName, nbrOfRepetitions, ##__VA_ARGS__)
 
 
-Properties of the solution
+## DISCUSSION ##
+ One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
+ 
+### properties of the current implementation  ###
  - the solution **"is ready to rumble"**
  - the solution **is based on the c-preprocessor (cpp) only.**
  - it is a header only solution
@@ -142,10 +157,6 @@ Outcomes for ANSI-C
  - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
  - It is implementable using solely the standard c-preprocessor (cpp).
 
- 
-	
-## DISCUSSION ##
- One might argue, loop(){} is is only a plain mapping to a for(;;){} statement.
 
 ### Advantages: ###
  With recent compilers, this is *NOT* slower than thhe *regular* for(;;){} iteration.
@@ -209,16 +220,3 @@ It works. Even for plain Ansi-C See the *IMPLEMENTATION* section.
   https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
   https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
   
-### Example: matrix_copy_with_stride() ###
-more examples: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
-
-	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
-	TPtr matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
-  	{
-		// compiler can  mangled the loop-internal integral-types tgt and src in registers.
-		loop(nRows,  tgt+=stride, src+=stride)  // apply strid eafter each row to tgt and src
-			loop(nbofColumms, tgt++, src++)
-				*tgt = *src;
-			return tgt;
-	}
-
