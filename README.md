@@ -78,58 +78,13 @@ One might partly agreed that a
  Is it a LAW-OF-NATURE that there must *never* be ANY (more||other) compound-statments in the future?
 
 ## Full Syntax of the Compound Group LOOP ##
-### Shortcuts: ###
-	{}	a single <statement> || <statement-block>  after the compound statement
-	rep    	the <count> of targeted repetitions (usually a value of integral-type) ;
-	type	the <type> of the (hiddden) iteration variable
-	name	the <name> of the iteration variable
-	, ...) 	an optional comma separated list of post-operations (expressions)
+have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_syntax.md
 
-### Basic SYNTAX of the Loop Compound-Group: ###
-These compounds iterate ("loop") the trailing block "{}" "rep" times
+## Full Implementation Details of the Compound Group LOOP ## ##
+have a look to:
 
-	/////// below <hidden> is an id with a secret, unique ID created using  a the cpp-macro CPPMACRO_UNIQUE_ID()
-	
-	// the  hidden_loop does NOT change <rep> and uses a hidden, secret unique-index variable.
-	loop(rep){}	                 // for(auto hidden=rep; hidden-- ; ++hidden){}   
-
-	// a typed-loop has a type-constain, but has a hidden index variable, too.
-	typed_loop(type,rep){} 	        // for(type hidden=rep; hidden-- ; ++hidden){}   
-
-
-	// the named_loops_...() are useful, when access to the index variable is needed.
-	// the named index variable "name" is counting upwards from 0 to rep-1.
-	named_loop_up(name,rep){} 	 // for(auto name=0; name<rep; ++name){}     
-
-	// the named  index variable "name" is  counting downwards, from rep -1 to 0
-	named_loop_down(name,rep){} 	 // for(auto name=rep-1; name--; ++name){}     
-
-The argument _rep_ is _not_ changed an in best case should have integral-type:
-Any float or enum is not allowed for rep.
-Compiler can take advantage when index vars <rep> are of integal-type and fit into ALU-registers.
-
-### EXTENDED_SYNTAX ###
-	// each of the above the loop compound statements
-	// can be extened by any number of post-iteration operations.
-
-	// loop <block> rep times
-	loop(rep){}		
-
-	// loop <block> rep times with 1 post-operation op1.
-	loop(rep, op1 ){}
-
-	// loop <block> rep times with 2 postoperations op1, op2  (more are optional).
-	loop(rep, op1, op2){}
-	
-	// all of them may contain trailing post-expressions
-	typed_loop(type,rep, op1, ...)){}               // hidden loop with <type> constraint on the index variable
-	named_loop_up(name, cnt, op1, op2, ...){}       // loop upwards with type "auto" a named index variable .
-	named_loop_down(name, cnt, op1, op2, ...){}     // loop deonwards with type "auto" a named index variable.
-
-## IMPLEMENTATION-Details: ##
-
-### REQUIREMENTS to the cpp ###
-	The cpp must provide:
+### necessary Requirements  ###
+The cpp-preprocessor must provide:
 	
 	__LINE__		line number  used by  CPPMACRO_UNIQUE_ID() 	
 	__COUNTER__		counter used by CPPMACRO_UNIQUE_ID() 
@@ -139,6 +94,7 @@ This "core-language extension" can be implemented solely using the cpp-preproces
 see here for details:
 https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/includes/ogis/cpp
 
+### Implementation ###
 	#pragma once
 
 	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
