@@ -116,41 +116,31 @@ BUT it has these advantages:
 ### Disadvantages:  ###
 - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. But this is somehow unlikely.
 	
-### This doesn't work ###
-Itearting over an ENUM does not work as it does not make sense
-for None of the LOOP-compounds.
+#### looping enums are treated as ints ####
+This code does  work 
 
-This code does not work 
+	## an enum is traeted as an int
+	enum {RED, GREEN, BLUE} rgb=BLUE;
+ 	loop(rgb) do_something();	// repeats  do_something() 2 times as BLUE is equal to integer "2" .
+	
+#### problematic use of  tempate arguments **with comma** ####
+The preprocessor implemantation will break when using an **argument containing a comma** . 
+This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.	
 
-	## one cannot iterate over an enum
-	enum {RED, GREEN, BLUE} rgb=RED;
- 	loop(BLUE) do_something();
+While this does not work due the comma in the template **std::integral_constant<int, 10>::value**
 	
-using arguments **with comma** is another problem:
+    auto count = std::integral_constant<int, 10>::value;
+    loop(count,star());
 
-	template<class T, int TOffset>  T increment_by(T data, TOffset offset) {
-       		data+=offset;
-		return data;
-	};
-	
-	int data=7;
-	template<class T, TOffset,  TCount> 
-	line_copy_w_offset(T *target, T *source, TCount repeat, TOffset offset)
-	{
-		loop(repeat, increment_by(source,offset), increment_by(target, offset))
-			*tgt = *src;
-	}
-		
-	
+    loop(std::integral_constant<int, 10>::value, star());
+  
+**Embracing** the argument **with regular braces** solves the problem:
+This works:
+    
+    loop( (std::integral_constant<int, 10>::value) , star());
 
-	
-	
-	
-- The current preprocessor implemantation will break when using an **argument containing a comma** . This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.	
-
-The last "comma related" problem can easily be fixed by surrounding the problematic argumment with regular braces *loop(* **(** argment **)** *)*.
-IN CASE:
- - the LOOP-compounds are added to the the core-language this problem would be solved, as no more usage of the cpp-preprocessor is necessary.
+Adding the LOOP-compounds to the core-language would fix this problem, as cpp-preprocessor would not be invoked any longer.
+ 
 
 ## Remarks ##
 
