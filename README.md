@@ -46,7 +46,6 @@ Here is an example usage for of a matrix-copy uisng a stride-offset fro each row
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	void matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
   	{
-		// compiler can mangle the (integral-typed) loop-internal index-vars and  tgt and src in registers ansd speedup teh loop and incrementation.
 		loop(nRows,  tgt+=stride, src+=stride)  // apply stride after each row to tgt and src
 			loop(nColumns, tgt++, src++)	// increment after each copy.
 				*tgt = *src;
