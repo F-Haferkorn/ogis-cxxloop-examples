@@ -115,6 +115,37 @@ BUT it has these advantages:
      
 ### Disadvantages:  ###
 - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. But this is somehow unlikely.
+	
+### This doesn't work ###
+Itearting over an ENUM does not work as it does not make sense
+for None of the LOOP-compounds.
+
+This code does not work 
+
+	## one cannot iterate over an enum
+	enum {RED, GREEN, BLUE} rgb=RED;
+ 	loop(BLUE) do_something();
+	
+using arguments **with comma** is another problem:
+
+	template<class T, int TOffset>  T increment_by(T data, TOffset offset) {
+       		data+=offset;
+		return data;
+	};
+	
+	int data=7;
+	template<class T, TOffset,  TCount> 
+	line_copy_w_offset(T *target, T *source, TCount repeat, TOffset offset)
+	{
+		loop(repeat, increment_by(source,offset), increment_by(target, offset))
+			*tgt = *src;
+	}
+		
+	
+
+	
+	
+	
 - The current preprocessor implemantation will break when using an **argument containing a comma** . This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.	
 
 The last "comma related" problem can easily be fixed by surrounding the problematic argumment with regular braces *loop(* **(** argment **)** *)*.
@@ -122,6 +153,7 @@ IN CASE:
  - the LOOP-compounds are added to the the core-language this problem would be solved, as no more usage of the cpp-preprocessor is necessary.
 
 ## Remarks ##
+
 ### Remarks on Compiler Optimization ###
 The new iterative coumpounds
  - have less degree of freedom
