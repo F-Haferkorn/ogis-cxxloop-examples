@@ -41,7 +41,7 @@ All "LOOP" coumpound-statments can be used after an:
 ### Usage Example ###
 Here is an example usage for of a matrix-copy uisng a stride-offset fro each row :
 
-	#inclucde <loop>
+	#include <loop>
 
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	void matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
