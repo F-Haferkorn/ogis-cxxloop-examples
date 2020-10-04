@@ -1,4 +1,4 @@
-# Examples for the  compund group "LOOP" #
+## Simple Examples for the  Compound-Group "LOOP" ##
 
 - ascishapes.hpp        declaration of functions to printing simple asciishapes
 - main.cpp              the main entry pooint
