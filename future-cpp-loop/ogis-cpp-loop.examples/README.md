@@ -12,9 +12,9 @@
   contains similar fnctions like ascishapes.cpp, but uses FOR(;;) instead of LOOP()-compounds.
 
 - matrix_io.hpp         
-    contains functions to print native double 2D-Arrays (matrices) of given size.
+    contains functions to print native double 2D-Arrays (matrices like double a[M][N]) of given size N x M.
 - matrix.hpp            
-    header-only functions to operate on the matrcies as descrtibed above.  
+    header-only functions to operate on the matrcies as descrtibed above using LOOP-compounds.  
 - example_matrix.cpp    
     example calls to the functions of  matrix.hpp and matrix_io.hpp.
     is invoked by main.cpp.
