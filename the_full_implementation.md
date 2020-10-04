@@ -1,8 +1,4 @@
 ## Full Implementation Details of the Compound-Group "LOOP" ##
-have a look at:
-
-    - simple code-examples:   
-    - advanced code-examples:
 
 ### Necessary Requirements  ###
 The cpp-preprocessor must provide:
