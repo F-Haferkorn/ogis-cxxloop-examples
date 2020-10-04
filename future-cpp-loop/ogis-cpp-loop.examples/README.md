@@ -1,9 +1,11 @@
 ## Simple Examples for the  Compound-Group "LOOP" ##
 
-- ascishapes.hpp        
-    contains a declaration of functions to print simple asciishapes.
 - main.cpp              
     is the main entry point.
+
+- ascishapes.hpp        
+    contains a declaration of functions to print simple asciishapes.
+
 - ascishapes.cpp        
     prints simple ascishapes using LOOP-compounds.
 - ascishapes_old_sytle  
@@ -14,5 +16,5 @@
 - matrix.hpp            
     header-only functions to operate on the matrcies as descrtibed above.  
 - example_matrix.cpp    
-    example calls too the functions of  matrix.hpp and matrix_io.hpp.
+    example calls to the functions of  matrix.hpp and matrix_io.hpp.
     is invoked by main.cpp.
