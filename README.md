@@ -3,7 +3,7 @@
 Herein I want to suggest a  **core-level extension** for both the **C** and the **C++** programming language.
 
 This repo contains the implementation for the **compound-group "LOOP"** using the **cpp-preprocessor**,
-and wants to open the door to a disussion inside the community.
+and wants to open the door to a discussion within the C/C++-community.
 
 ## Overview ##
 
