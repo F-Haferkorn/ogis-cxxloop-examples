@@ -116,12 +116,13 @@ BUT it has these advantages:
 ### Disadvantages:  ###
 - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. But this is somehow unlikely.
 	
-#### looping enums are treated as ints ####
-This code does  work 
+#### looping plain enum types is insane and does not work #### 
+This code does NOT  work 
 
-	## an enum is traeted as an int
+	#e.g. MinGW32 has this error: cannot decrement expression of enum type '(anonymous enum at ....)
 	enum {RED, GREEN, BLUE} rgb=BLUE;
- 	loop(rgb) do_something();	// repeats  do_something() 2 times as BLUE is equal to integer "2" .
+ 	loop(rgb) do_something();	
+
 	
 #### problematic use of  tempate arguments **with comma** ####
 The preprocessor implemantation will break when using an **argument containing a comma** . 
