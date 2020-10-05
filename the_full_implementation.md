@@ -13,9 +13,8 @@ This "core-language extension" can be implemented solely using the cpp-preproces
 
 ### One-File Implementation ###
 	#pragma once
-
-	#include "cppuniqueid.h"
-
+	
+	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_##ID_##LINE##_##__LINE__##_##__COUNTER__
 
 	#define CPPMACRO_NTIMES_DOWN(type, varName, nbrOfRepetitions, ...) \
 	    for (type varName = nbrOfRepetitions; varName--; __VA_ARGS__)
