@@ -60,13 +60,15 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp
 
 **loop(){}**  can be implented like the folowing 
 	
-	#define CPPMACRO_UNIQUE_ID()  CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
+	#define CPPMACRO_UNIQUE_ID()  \
+		CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
 	
-	#define CPPMACRO_NTIMES_FAST(type, varName, nbrOfRepetitions, ...) \
-		for (type varName = nbrOfRepetitions; varName--; __VA_ARGS__)
-		
-	#define loop(nbrOfRepetitions, ...)  \
-		CPPMACRO_NTIMES_FAST(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
+	#define CPPMACRO_NTIMES_DOWN(type, varName, nbrOfRepetitions, ...) \
+    		for (type varName = nbrOfRepetitions; varName--; __VA_ARGS__)
+
+	#define loop(nbrOfRepetitions, ...)                 \
+		CPPMACRO_NTIMES_DOWN(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ## __VA_ARGS__)    		
+
 
 For the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}, see below.
 For A full implementation of all compounds see below.
