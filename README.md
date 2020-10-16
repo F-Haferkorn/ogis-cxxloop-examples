@@ -63,12 +63,11 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp
 	#define CPPMACRO_UNIQUE_ID()  \
 		CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
 
-        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions, ...) \
-                for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++, ##__VA_ARGS__)
+        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions, ...) \     
+                 for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++, ##__VA_ARGS__)
 
         #define loop(nbrOfRepetitions, ...)   \
-                CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), nbrOfRepetitions, ##__VA_ARGS__)
-
+                  typed_loop( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 
 
 ## About Existing Compound-Statements   ##
