@@ -62,16 +62,14 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp
 	
 	#define CPPMACRO_UNIQUE_ID()  \
 		CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
-	
-	#define CPPMACRO_NTIMES_DOWN(type, varName, nbrOfRepetitions, ...) \
-    		for (type varName = nbrOfRepetitions; varName--; __VA_ARGS__)
 
-	#define loop(nbrOfRepetitions, ...)                 \
-		CPPMACRO_NTIMES_DOWN(auto, CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ## __VA_ARGS__)    		
+        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions, ...) \
+                for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++, ##__VA_ARGS__)
+
+        #define loop(nbrOfRepetitions, ...)   \
+                CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), nbrOfRepetitions, ##__VA_ARGS__)
 
 
-For the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}, see below.
-For A full implementation of all compounds see below.
 
 ## About Existing Compound-Statements   ##
 have a look at: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_existing_compounds.md
@@ -79,9 +77,11 @@ have a look at: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/m
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statments in the future?**
  
 ## Full Syntax ##
+For the full syntax of the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_syntax.md
 
 ## Full Implementation ##
+For a full implementation 
 have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_implementation.md
 
 ## Discussion ##
