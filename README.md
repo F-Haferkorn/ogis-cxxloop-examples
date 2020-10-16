@@ -3,7 +3,7 @@
 Herein I want to suggest a  **core-level extension** for both the **C** and the **C++** programming language.
 
 This repo contains the implementation for the **compound-group "LOOP"** using the **cpp-preprocessor**,
-and wants to open the door to a discussion within the C/C++-community.
+and wants to open the door to a discussion within the C++-community.
 
 ## Overview ##
 
@@ -11,17 +11,17 @@ This github-site is a testbed and discussion-ground for a *C++ core-language ext
 
 Herein I present my work on the iteration related compound-group **LOOP**.
 
-The syntax is like this
+The syntax is like this:
 
-        // all compounds below allow *optional* post-expressions instead of , ... 
-        // and are followed by a block-statement.
+        // all compounds below allow *optional* post-expressions instead of ", ... )"
+        // and are followed by a block-statement "{}".
         // iterate <rep> times  and uses a hidden, secret unique-index variable.
-        - loop(<rep>, ...){}                                   // use an index variable of same type as <rep>
-        - typed_loop(<type>, <rep>, ...)                       // use a typed index variable using type <type>
+        - loop(<rep>, ...){}                                    // use an index variable of same type as <rep>
+        - typed_loop(<type>, <rep>, ...){}                      // use a typed index variable using type <type>
 	
         // same as loop, but use the given index variable <id>.
         - named_loop_up(<id>, <rep>, ...){}                     // count id up-wards
-        - named_loop_down(<id>, <rep>,  ..){}                   // count id down-wards	
+        - named_loop_down(<id>, <rep>,  ..){}                   // count id down-wards	!!! here occur some problems.. see below.
 	
 with the tokens:
  - **rep**   the count or repetitions. (is likely an integral)
@@ -108,8 +108,8 @@ Outcomes for ANSI-C
 With recent compilers, this is **as fast*** as the **regular** **for(;;){}** iteration.
 
 BUT it has these advantages:
- - **READability**:  It reduces C/C++ source code size and improve its readability.
- - **TEACHability**: it will improve the way to teach C/C++  especially for a younger audiencce.
+ - **READability**:  It reduces C++ source code size and improve its readability.
+ - **TEACHability**: it will improve the way to teach C++  especially for a younger audiencce.
  - **ALGORITHMics**: It allows/leads the developer(s) to notate code that completely does _NOT depend on the iteration index_.
  - **OPTIMIZATION**: It opens the way to enhanced optimizations for upcoming compiler implementations.
  	- by utilizing the *reduced degree of freedom* of the iteration
@@ -157,7 +157,7 @@ We will see if:
  - This will definitely apply for large loops with a tiny loop body.
  - This can reduce the _rate of cache-misses_ dramatically.
 
-### Remarks on Teachingability of  C/C++ ###
+### Remarks on Teachingability of  C++ ###
   - ! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !
   - 5th grade (10-years old) pupils **can** cope with the concept of **looping**,  and generating textual outputs via **printing**  something like squares, tiangles, etc.
   - But a simple **for(int i=0; i<n; ++i)**  statement will overwhelm them. 
