@@ -3,3 +3,6 @@
 *.autosave
 x64
 .vs
+*.o
+build-future-*
+*.qmake.stash

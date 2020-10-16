@@ -12,8 +12,7 @@
     CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions, ##__VA_ARGS__)
 
 #if defined __cplusplus
-
-#define loop(nbrOfRepetitions, ...)   \
+    #define loop(nbrOfRepetitions, ...)   \
         typed_loop( decltype(nbrOfRepetitions), nbrOfRepetitions, ##__VA_ARGS__)
 
     #define named_loop_up(indexVarName, nbrOfRepetitions, ...)   \
@@ -21,39 +20,48 @@
 #endif
 
 
-
-template<typename TPtr, typename TRowSize, typename TColSize>
-void matrix_copy_w_loop( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns)
+typedef unsigned char Byte;
+void matrix_copy_w_stride(
+        double *tgt,
+        double *src,
+        Byte nbofRows,
+        Byte nbofColumns,
+        Byte row_stride)
 {
-    loop(nRows)
-            loop(nColumns)
-                   *tgt++ = *src++;
-}
-
-template<typename TPtr, typename TRowSize, typename TColSize>
-void matrix_copy_w_for( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns)
-{
-    for(int row=0; row<nRows; ++row)
-            for(int col=0; col<nColumns; ++col)
-                   *tgt++ = *src++;
+    // apply a stride eafter each row
+    loop(nbofRows,  tgt+=row_stride, src+=row_stride)
+        loop(nbofColumns, tgt++, src++)
+            *tgt = *src;
 
 }
-
-
-void godbolt_entry();
-
-int godbolt__main()
+void matrix_add_using_While(
+        double *tgt,
+        double *src,
+        Byte nbofRows,
+        Byte nbofColumns)
 {
-    const char rows=4;
-    const char columns=16;
+    while(nbofRows--)
+        while(nbofColumns--)
+            *tgt++ += *src++;
+}
 
-    double source[rows][columns];
-    double target[rows][columns];
 
-    matrix_copy_w_for(&target[0][0], &source[0][0],rows,columns);
-    matrix_copy_w_loop(&target[0][0], &source[0][0],rows,columns);
+void godbolt_entry()
+{
+    const Byte N=10;
+    const Byte M=16;
+    const Byte stride=4 ;
 
-    godbolt_entry();
-    return 0;
+    double tgt[N][M];
+    double src[N][M];
+
+     matrix_copy_w_stride(&tgt[0][0], &src[0][0], N, M-stride, stride);
+
 
 }
+
+
+
+
+
+

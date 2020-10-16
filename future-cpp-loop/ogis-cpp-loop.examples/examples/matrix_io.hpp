@@ -1,9 +1,9 @@
 #pragma once
 
 #include <iostream>
-#include <compound>
+#include <loop>
 
-namespace ogis::future::loop{
+
 
 template<typename TValuePtr, typename TSizeRows, typename TSizeCols>
 inline void matrix_print(TValuePtr ptr,  TSizeRows nbofRows, TSizeCols nbofColums)
@@ -16,5 +16,5 @@ inline void matrix_print(TValuePtr ptr,  TSizeRows nbofRows, TSizeCols nbofColum
     }
 }
 
-}
+
 

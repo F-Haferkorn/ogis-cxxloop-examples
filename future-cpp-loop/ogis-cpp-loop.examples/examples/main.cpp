@@ -1,36 +1,49 @@
-#include <examples/asciishapes.hpp>
-#include <examples/matrix.hpp>
+#include "asciishapes.hpp"
+#include "matrix.hpp"
+#include <vector>
 
-using namespace asciishapes;
-using namespace ogis::future::loop;
+#include <iostream>
+
 
 void example_matrix();
 
 int main()
 {
-    const short noRows =4;
+    using namespace asciishapes;
 
-    // example with loop compound-statement
-    {
-        old_style::square(noRows,2*noRows);         newline();
-        old_style::triangular(noRows);              newline();
-        old_style::triangular_upside(noRows);       newline();
-    }
+    std::cout<<"############ asciishapes::using_LOOP"<<std::endl;
+    asciishapes::using_loop::demo();        // demo using  LOOP()  COMPOUNDS
 
-    // example with loop compound-statement using post expressions
-    {
-        square(noRows,2*noRows);         newline();
-        triangular(noRows);              newline();
-        triangular_upside(noRows);       newline();
-    }
+    newline();   newline();
 
-    // another example with loop compound statmemnt
-    {
-        sandclock(noRows*3 );
-        newline();
-    }
+    std::cout<<"############ asciishapes::using_FOR"<<std::endl;
+    asciishapes::using_for::demo();         // demo using  FOR(;;) COMPOUNDS
 
     // some more realistic axamples of matrix operations using the new conmound-statements
     example_matrix();
+
+
+    // validating behaviour of unsiged index var here (size_t)
+    auto v0 = std::vector<int>(0);
+    auto v10 = std::vector<int>(10);
+    std::cout<<"looping empty-vector"<<std::endl;
+    loop(v0.size())
+            star();
+    newline();
+
+    std::cout<<"looping 10-elemet--vector"<<std::endl;
+    named_loop_down(i, v10.size())
+            star();
+    newline();
+
+    unsigned int count=4;
+
+    named_loop_up(row, count)           star();
+    newline();
+
+    named_loop_down(row, count)           star();
+    newline();
+
+
     return 0;
 }

@@ -1,0 +1,6 @@
+project configured for QT. just cal qmake within this dir (future-cpp-loop)
+
+use this comand to create a visual studio project
+
+set QMAKESPEC=win32-msvc2017
+qmake  -t vcapp  -o .\future-cpp-loop.sln

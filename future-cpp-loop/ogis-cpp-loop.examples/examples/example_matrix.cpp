@@ -2,16 +2,15 @@
 #include <iomanip>
 
 
-#include <examples/matrix.hpp>
-#include <examples/matrix_io.hpp>
-
+#include "matrix.hpp"
+#include "matrix_io.hpp"
 
 
 void example_matrix()
 {
-    using namespace ::ogis::future::loop;
-    const int N=4;      // nbr-of rows
-    const int M=10;      // nbr-of columns
+
+    const int N=4;          // nbr-of rows
+    const int M=10;         // nbr-of columns
 
     int A[N][M]={};
     int B[N*M]={};
@@ -55,7 +54,7 @@ void example_matrix()
     {
         int n=N/2;
         int m=M/2;
-        std::cout<<std::endl<<"C[0:"<<n-1<<"][0:"<<m-1<<"]+=1"<<std::endl;
+        std::cout<<std::endl<<"C[0:"<<n-1<<"][0:"<<m-1<<"]+=10"<<std::endl;
         matrix_incr_w_stride(C, 10, n, m,M-m);
         matrix_print(C,         N, M);
     }
@@ -63,7 +62,7 @@ void example_matrix()
     {
         int n=N/2+1;
         int m=M/2+1;
-        std::cout<<std::endl<<"C[0:"<<n-1<<"][0:"<<m-1<<"]+=1"<<std::endl;
+        std::cout<<std::endl<<"C[0:"<<n-1<<"][0:"<<m-1<<"]+=100"<<std::endl;
         matrix_incr_w_stride(C, 100, n, m, M-m);
         matrix_print(C,         N, M);
     }
