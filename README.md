@@ -67,7 +67,7 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp
                  for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++, ##__VA_ARGS__)
 
         #define loop(nbrOfRepetitions, ...)   \
-                  typed_loop( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
+                   CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 
 
 ## About Existing Compound-Statements   ##
