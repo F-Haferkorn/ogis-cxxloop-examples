@@ -1,4 +1,4 @@
-#include <compound>
+#include <loop>
 
 template<typename TTgtValuePtr, typename TSrcValuePtr, typename TSizeRows, typename TSizeCols,typename TSizeStride>
 inline void matrix_copy_w_stride(TTgtValuePtr tgt, TSrcValuePtr src, TSizeRows nbofRows, TSizeCols nbofColumns, TSizeStride row_stride)
