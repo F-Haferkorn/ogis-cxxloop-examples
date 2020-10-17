@@ -98,7 +98,7 @@ OK, it is all about iterating and it is not a *swiss-army knife for all iteratio
  - it creates a hidden index name uinsg the macro  CPPMACRO_UNIQUE_ID()
 
 Outcomes for ANSI-C
- - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
+ - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler (using long as the type of the index variable) 
  - It is implementable using solely the standard c-preprocessor (cpp).
 
 
@@ -178,9 +178,9 @@ We will see if:
 
 ## Conclusions ##
  - First experts comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++.
- - But you can take the occasion and try it out yourself. It works. 
- - Even for plain Ansi-C.
- - the issues of READABILITY and TECHABILTY  
+ - But you can take the occasion and try it out yourself. 
+ - There is a solution for plain Ansi-C.
+ - The issues of READABILITY and TECHABILTY are the main arguments.
 
 Attention: (see  disadvantages)
 in the recent preprocessor implementation breaks on arguments containing a comma (like for some  complex template-expressions). 
