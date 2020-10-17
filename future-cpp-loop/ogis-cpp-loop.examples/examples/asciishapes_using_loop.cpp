@@ -76,7 +76,7 @@ triangular_upside(5);
 void triangular_upside(short nofRows)
 {
     named_loop_down(row, nofRows, newline())      // using named_loop_down() with postoperation.
-        loop(row)                      // print it upside down.
+        loop(row+1)                                 // print it upside down.
             star();
 }
 
