@@ -35,7 +35,9 @@ This "core-language extension" can be implemented solely using the cpp-preproces
        #define named_loop_up(indexVarName, nbrOfRepetitions, ...)   \
              typed_named_loop_up( decltype(nbrOfRepetitions), indexVarName, nbrOfRepetitions, ##__VA_ARGS__)
 
-       // LOOPing_DOWN is more difficult. It can lead to infinite loops due to underflows of possible unsigned index-types.
+       // LOOPing_DOWN is more difficult. 
+       // It can lead to infinite loops due to underflows of possible unsigned index-types.
+       // so a signed type index variable is forced using "std::make_signed<>::type"
        #define CPPMACRO_NTIMES_DOWN(declared_type, indexVarName, nbrOfRepetitions, ...) \
              for(std::make_signed<declared_type>::type indexVarName = nbrOfRepetitions ;  --indexVarName >= 0 ;  __VA_ARGS__)         // will stop on index
            
