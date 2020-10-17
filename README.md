@@ -186,11 +186,6 @@ Attention: (see  disadvantages)
 in the recent preprocessor implementation breaks on arguments containing a comma (like for some  complex template-expressions). 
 There is a wouraround for that.
 
-## Work still to be done ####
- - However I  will have to prove, that there are _realworld USE-CASES_, for cases the described compounds can be applied
-   so that the praised _"unbeatable"_ _compiler_  can be driven to make better/shorer/faster machine code 
-   compared to the now-a-days solution *for(int i=0; i<rep; ++i){}*
- 
 # References #
 
  - Teaching programming in the Kindergarden and later:
