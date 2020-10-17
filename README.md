@@ -104,7 +104,7 @@ Outcomes for ANSI-C
 
 ### Advantages: ###
 
-With recent compilers, this is **as fast*** as the **regular** **for(;;){}** iteration.
+With recent compilers, this is **as fast** as the **regular** **for(;;){}** iteration.
 
 BUT it has these advantages:
  - **READability**:  It reduces C++ source code size and improve its readability.
