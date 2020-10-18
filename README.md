@@ -195,7 +195,7 @@ There is a wouraround for that.
  	- TMS320C6x: "Software Pipelined Loops"
        		-  TMS320C64x/C64x+ DSP CPU and Instruction Set ; Chapter 7 Software Pipelined Loop (SPLOOP) Buffer;
 		   https://www.ti.com/lit/ug/spru732j/spru732j.pdf 
-       		-  C64x+ Code savings
+       		-  C64x+ Code savings;
 		   http://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/343/2746.sploop_5F00_details.pdf 
  - Excessive post-operation  incrementings
 	- ADSP-218x: Data Address Generators	
