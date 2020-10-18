@@ -191,4 +191,8 @@ There is a wouraround for that.
  - Teaching programming in the Kindergarden and later:
    	- https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
  	- https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
+ - Hardware Loops:
+       -  https://www.ti.com/lit/ug/spru732j/spru732j.pdf ; TMS320C64x/C64x+ DSP CPU and Instruction Set ; Chapter 7.1 SPLOOP Hardware Support
+       -  http://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/343/2746.sploop_5F00_details.pdf  C64x+ Code savings
+
 
