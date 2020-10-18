@@ -132,14 +132,14 @@ This happens seldomly, e.g. when an complex template expression is used that con
 While this does not work due the comma in the template **std::integral_constant<int, 10>::value**
 	
     auto count = std::integral_constant<int, 10>::value;
-    loop(count,star());
+    loop(count) do_something();
 
-    loop(std::integral_constant<int, 10>::value, star());
+    loop(std::integral_constant<int, 10>::value)  do_something();
   
 **Embracing** the argument **with regular braces** solves the problem:
 This works:
     
-    loop( (std::integral_constant<int, 10>::value) , star());
+    loop( (std::integral_constant<int, 10>::value) )  do_something();
 
 Adding the LOOP-compounds to the core-language would fix this problem, as cpp-preprocessor would not be invoked any longer.
  
