@@ -7,7 +7,7 @@ and wants to open the door to a discussion within the C++-community.
 
 ## The Idea ##
 
-- Introduce new Compound **loop(){}**
+- Introduce new compound-statement **loop(){}**
 - to reduce the  **DEGREES OF FREEDOM** of the **for(;;){}** compound statement 
 - in order to allow **simple forms of iterations**.
 
