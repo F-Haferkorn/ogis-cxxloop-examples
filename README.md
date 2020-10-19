@@ -5,6 +5,20 @@ Herein I want to suggest a  **core-level extension** for the **C++** programming
 This repo contains the implementation for the **compound-group "LOOP"** using the **cpp-preprocessor**,
 and wants to open the door to a discussion within the C++-community.
 
+## The Idea ##
+
+- Introduce new Compound **loop(){}**
+- to reduce the  **DEGREES OF FREEDOM** of the **for(;;){}** compound statement 
+- in order to allow **simple forms of iterations**.
+
+Example:
+
+        // copy a 4x10 array
+        loop(4)                         // iterate over 4 rows.  
+           loop(10)                     // iterate over 10 columns.
+              *tgt++  =   *src++ ;      // copy *source to *target.
+
+
 ## Overview ##
 
 This github-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
