@@ -1,4 +1,6 @@
-# The Project Dir of the Compound-Group "LOOP" #
+# The Compound-Group "LOOP"#
+
+## The Project Dir   ##
 
 Have a look at:
 - [the root dir](../README.md)
