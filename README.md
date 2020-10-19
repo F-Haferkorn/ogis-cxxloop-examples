@@ -80,29 +80,31 @@ Here is an example usage for of a matrix-copy uisng a stride-offset fro each row
         #define loop(nbrOfRepetitions, ...)   \
                    CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 
-### The Code Examples ###
-
-You find  full C++ header-only implementation of the **Compound-Group "LOOP"**" 
-[here](./future-cpp-loop/ogis-cpp-loop/include)
-
-There are also *Qt-Creator* and *VisualStudio 2019* **project files** in this 
-[directory](./future-cpp-loop)
-
-For more matrix-examples ave a look at 
-[this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp)
-
-
 ## About Existing Compound-Statements   ##
-sed this [file](./the_existing_compounds.md)
+see this [file](./the_existing_compounds.md).
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statments in the future?**
 
 ## Full Syntax ##
 For the full syntax of the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}
-have a look at this [file](./the_full_syntax.md)
+have a look at this [file](./the_full_syntax.md).
 
 ## Description of the Full Implementation ##
-A description of the mplementation have can be found [here](./the_full_implementation.md)
+A description of the mplementation have can be found 
+[here](./the_full_implementation.md).
+
+### The Code Examples ###
+
+You find  full C++ header-only implementation of the **Compound-Group "LOOP"**" 
+[here](./future-cpp-loop/ogis-cpp-loop/include).
+
+There are also *Qt-Creator* and *VisualStudio 2019* **project files** in this 
+[directory](./future-cpp-loop).
+
+For more matrix-examples ave a look at 
+[this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp).
+
+
 
 ## Discussion ##
 
