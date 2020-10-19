@@ -66,10 +66,7 @@ Here is an example usage for of a matrix-copy uisng a stride-offset fro each row
 		return;
 	}
 
-for more matrix-examples ave a look at:
-https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp
-	
-	
+
 ### Demo Implemenation ###
 
 **loop(){}**  can be implented like the folowing 
@@ -85,11 +82,16 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp
 
 ### The Code Examples ###
 
-This repo contains a C++ headeronly full implementation in the subdirectory  
+This repo contains a full C++ headeronly implementation of the **Compound-Group "LOOP"**"in the subdirectory  
 https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/include
 
-There arte also qmake and VisaulStudio2019 project files in
+There are also *Qt-Creator* and *VisualStudio 2019* **project files** in
 https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/
+
+For more matrix-examples ave a look at:
+https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp
+	
+
 
 ## About Existing Compound-Statements   ##
 have a look at: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_existing_compounds.md
