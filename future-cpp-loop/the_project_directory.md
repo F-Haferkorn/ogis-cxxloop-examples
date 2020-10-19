@@ -1,4 +1,4 @@
-# The Compound-Group "LOOP"#
+# The Compound-Group "LOOP" #
 
 ## The Project Dir   ##
 
