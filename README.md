@@ -122,7 +122,8 @@ This code does NOT  work
 
 	#e.g. MinGW32 has this error: cannot decrement expression of enum type '(anonymous enum at ....)
 	enum {RED, GREEN, BLUE} rgb=BLUE;
- 	loop(rgb) do_something();	
+ 	loop(rgb) 
+	      do_something();	
 
 	
 #### problematic use of  tempate arguments **with comma** ####
@@ -134,12 +135,14 @@ While this does not work due the comma in the template **std::integral_constant<
     auto count = std::integral_constant<int, 10>::value;
     loop(count) do_something();
 
-    loop(std::integral_constant<int, 10>::value)  do_something();
+    loop(std::integral_constant<int, 10>::value) 
+          do_something();
   
 **Embracing** the argument **with regular braces** solves the problem:
 This works:
     
-    loop( (std::integral_constant<int, 10>::value) )  do_something();
+    loop( (std::integral_constant<int, 10>::value) )  
+          do_something();
 
 Adding the LOOP-compounds to the core-language would fix this problem, as cpp-preprocessor would not be invoked any longer.
  
