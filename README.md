@@ -95,6 +95,7 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp
 
 ## About Existing Compound-Statements   ##
 have a look at: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_existing_compounds.md
+[here](./the_existing_compounds.md)
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statments in the future?**
  
