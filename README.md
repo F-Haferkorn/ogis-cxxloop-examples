@@ -39,7 +39,7 @@ The syntax is like this:
 	
 with the tokens:
  - **rep**   the count or repetitions. (is likely an integral)
- - **{}**    is any  block statement following th ecompound.
+ - **{}**    is any  block statement following the compound. (may be a single statemnet).
  - **id**    any valid identificator to access the iteration variable.
  - **type**  any valid type-name.
  
