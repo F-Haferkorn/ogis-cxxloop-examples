@@ -31,6 +31,11 @@ int main()
             star();
     newline();
 
+    /*  // does NOT compile
+    loop(std::integral_constant<int, 10>::value)
+            star();
+    */
+
     std::cout<<"looping 10-elemet--vector"<<std::endl;
     named_loop_down(i, v10.size())
             star();
