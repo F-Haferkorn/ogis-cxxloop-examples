@@ -6,6 +6,4 @@ Thi datails abouts is the include directory for the header-only implementation o
 
 For details see :
  - [the root dir](../../../README.md)
- - [the project dir](../../the_project_directory.md).
- 
- 
+ - [the project dir](../../README.md).
