@@ -82,30 +82,27 @@ Here is an example usage for of a matrix-copy uisng a stride-offset fro each row
 
 ### The Code Examples ###
 
-This repo contains a full C++ headeronly implementation of the **Compound-Group "LOOP"**"in the subdirectory  
-https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/include
+You find  full C++ header-only implementation of the **Compound-Group "LOOP"**" 
+[here](./future-cpp-loop/ogis-cpp-loop/include)
 
-There are also *Qt-Creator* and *VisualStudio 2019* **project files** in
-https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/
+There are also *Qt-Creator* and *VisualStudio 2019* **project files** in this 
+[directory](./future-cpp-loop)
 
-For more matrix-examples ave a look at:
-https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp
-
+For more matrix-examples ave a look at 
+[this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp)
 
 
 ## About Existing Compound-Statements   ##
-have a look at: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_existing_compounds.md
-[here](./the_existing_compounds.md)
+sed this [file](./the_existing_compounds.md)
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statments in the future?**
 
 ## Full Syntax ##
 For the full syntax of the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}
-have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_syntax.md
+have a look at this [file](./the_full_syntax.md)
 
-## Full Implementation ##
-For a full implementation
-have a look to: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_implementation.md
+## Description of the Full Implementation ##
+A description of the mplementation have can be found [here](./the_full_implementation.md)
 
 ## Discussion ##
 
