@@ -83,6 +83,13 @@ https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/future-cpp
         #define loop(nbrOfRepetitions, ...)   \
                    CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 
+### The Code Examples ###
+
+This repo contains a C++ headeronly full implementation in the subdirectory  
+https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop/include
+
+There arte also qmake and VisaulStudio2019 project files in
+https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/
 
 ## About Existing Compound-Statements   ##
 have a look at: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_existing_compounds.md
