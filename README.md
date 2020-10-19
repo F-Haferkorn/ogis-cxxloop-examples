@@ -149,7 +149,7 @@ This code does NOT  work
 	      do_something();
 
 
-#### problematic use of  tempate arguments **with comma** ####
+#### Compilation caveat: Problematic use of  tempate arguments **with comma** ####
 The preprocessor implemantation will break when using an **argument containing a comma** .
 This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.
 
