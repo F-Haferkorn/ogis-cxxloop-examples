@@ -5,6 +5,20 @@ Herein I want to suggest a  **core-level extension** for the **C++** programming
 This repo contains the implementation for the **compound-group "LOOP"** using the **cpp-preprocessor**,
 and wants to open the door to a discussion within the C++-community.
 
+## The Idea ##
+
+- Introduce new Compound **loop(){}**
+- to reduce the  **DEGREES OF FREEDOM** of the **for(;;){}** compound statement 
+- in order to allow **simple forms of iterations**.
+
+Example:
+
+        // copy a 4x10 array
+        loop(4)                         // iterate over 4 rows.  
+           loop(10)                     // iterate over 10 columns.
+              *tgt++  =   *src++ ;      // copy *source to *target.
+
+
 ## Overview ##
 
 This github-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
@@ -98,7 +112,7 @@ OK, it is all about iterating and it is not a *swiss-army knife for all iteratio
  - it creates a hidden index name uinsg the macro  CPPMACRO_UNIQUE_ID()
 
 Outcomes for ANSI-C
- - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler.
+ - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler (using long as the type of the index variable) 
  - It is implementable using solely the standard c-preprocessor (cpp).
 
 
@@ -122,7 +136,8 @@ This code does NOT  work
 
 	#e.g. MinGW32 has this error: cannot decrement expression of enum type '(anonymous enum at ....)
 	enum {RED, GREEN, BLUE} rgb=BLUE;
- 	loop(rgb) do_something();	
+ 	loop(rgb) 
+	      do_something();	
 
 	
 #### problematic use of  tempate arguments **with comma** ####
@@ -132,14 +147,16 @@ This happens seldomly, e.g. when an complex template expression is used that con
 While this does not work due the comma in the template **std::integral_constant<int, 10>::value**
 	
     auto count = std::integral_constant<int, 10>::value;
-    loop(count,star());
+    loop(count) do_something();
 
-    loop(std::integral_constant<int, 10>::value, star());
+    loop(std::integral_constant<int, 10>::value) 
+          do_something();
   
 **Embracing** the argument **with regular braces** solves the problem:
 This works:
     
-    loop( (std::integral_constant<int, 10>::value) , star());
+    loop( (std::integral_constant<int, 10>::value) )  
+          do_something();
 
 Adding the LOOP-compounds to the core-language would fix this problem, as cpp-preprocessor would not be invoked any longer.
  
@@ -178,9 +195,9 @@ We will see if:
 
 ## Conclusions ##
  - First experts comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++.
- - But you can take the occasion and try it out yourself. It works. 
- - Even for plain Ansi-C.
- - the issues of READABILITY and TECHABILTY  
+ - But you can take the occasion and try it out yourself. 
+ - There is a solution for plain Ansi-C.
+ - The issues of READABILITY and TECHABILTY are the main arguments.
 
 Attention: (see  disadvantages)
 in the recent preprocessor implementation breaks on arguments containing a comma (like for some  complex template-expressions). 
@@ -191,4 +208,14 @@ There is a wouraround for that.
  - Teaching programming in the Kindergarden and later:
    	- https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
  	- https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
+ - Machine Code supported  Loops 
+ 	- TMS320C6x: "Software Pipelined Loops"
+       		-  TMS320C64x/C64x+ DSP CPU and Instruction Set ; Chapter 7 Software Pipelined Loop (SPLOOP) Buffer;
+		   https://www.ti.com/lit/ug/spru732j/spru732j.pdf 
+       		-  C64x+ Code savings;
+		   http://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/343/2746.sploop_5F00_details.pdf 
+ - Excessive post-operation  incrementings
+	- ADSP-218x: Data Address Generators	
+		- https://www.analog.com/media/en/technical-documentation/data-sheets/ADSP-218XN_SERIES.pdf
+
 
