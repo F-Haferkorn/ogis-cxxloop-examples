@@ -50,7 +50,7 @@ Except in typed_loop(){}, the iteration variable has the same type as the count 
 
 All "LOOP" coumpound-statments can be used after an:
 
-	#inclucde <loop>
+	#include <loop>
 
 ### Usage Example ###
 Here is an example usage for of a matrix-copy uisng a stride-offset fro each row :
