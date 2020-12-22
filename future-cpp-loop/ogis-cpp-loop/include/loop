@@ -1,4 +1,3 @@
 #pragma once
 
-#include "ogis/cpp/cpploop_up.h"
-#include "ogis/cpp/cpploop_down.h"
+#include "cpploop.h"

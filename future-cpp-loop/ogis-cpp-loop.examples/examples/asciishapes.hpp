@@ -11,7 +11,7 @@ namespace asciishapes
     namespace using_loop{
         void demo();
 
-        // print a forms using new  LOOP()  compounds
+        // print a forms using new LOOP() compounds
 
         void square(short  noRows, short noColumns);        // write square with given column and row count.
         void triangular(short noRows);                      // write a left-bounded triangular.
@@ -22,7 +22,6 @@ namespace asciishapes
 
         void sandclock(short noRows);                       // write a sandclock.
     }
-
 
     namespace using_for{
         void demo();

@@ -1,0 +1,3 @@
+#pragm aonce
+
+#include "cppuniqueid.h"

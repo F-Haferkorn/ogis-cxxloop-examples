@@ -3,8 +3,7 @@
 ## References ##
  - 2020-10-22: Recorded online **Lightning Talk** of the  **MUC++ Meetup Group**
    on [video at youtube.com](https://www.youtube.com/watch?v=TcgU0Y7dA4g)
-   and the [realted pdf](./talks/The-LOOP-compounds+2020-10-22+meetupMUC++.pdf)
-    
+   and the [related pdf](./talks/The-LOOP-compounds+2020-10-22+meetupMUC++.pdf)
 
 
 Herein I want to suggest a  **core-level extension** for the **C++** programming language.
@@ -28,7 +27,7 @@ Example:
 
 ## Overview ##
 
-This github-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
+This github.com-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
 
 Herein I present my work on the iteration related compound-group **LOOP**.
 
@@ -46,7 +45,7 @@ The syntax is like this:
 
 with the tokens:
  - **rep**   the count or repetitions. (is likely an integral)
- - **{}**    is any  block statement following the compound. (may be a single statemnet).
+ - **{}**    is any  block statement following the compound. (may be a single statement).
  - **id**    any valid identificator to access the iteration variable.
  - **type**  any valid type-name.
 
@@ -55,12 +54,12 @@ Except in typed_loop(){}, the iteration variable has the same type as the count 
 
 ### Activation via #include  ###
 
-All "LOOP" coumpound-statments can be used after an:
+All "LOOP" compound-statments can be used after an:
 
 	#include <loop>
 
 ### Usage Example ###
-Here is an example usage for of a matrix-copy uisng a stride-offset fro each row :
+Here is an example usage for of a matrix-copy using a stride-offset from each row :
 
 	#include <loop>
 
@@ -76,7 +75,7 @@ Here is an example usage for of a matrix-copy uisng a stride-offset fro each row
 
 ### Demo Implemenation ###
 
-**loop(){}**  can be implented like the folowing
+**loop(){}**  can be implemented like the following
 
 	#define CPPMACRO_UNIQUE_ID()  \
 		CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
@@ -90,32 +89,32 @@ Here is an example usage for of a matrix-copy uisng a stride-offset fro each row
 ## About Existing Compound-Statements   ##
 see this [file](./the_existing_compounds.md).
 
-**Is it a LAW-OF-NATURE that there will NEVER be any other compound-statments in the future?**
+**Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
 ## Full Syntax ##
 For the full syntax of the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}
 have a look at this [file](./the_full_syntax.md).
 
 ## Description of the Full Implementation ##
-A description of the mplementation have can be found 
+A description of the implementation have can be found
 [here](./the_full_implementation.md).
 
 ### The Code Examples ###
 
-You find  full C++ header-only implementation of the **Compound-Group "LOOP"**" 
+You find  full C++ header-only implementation of the **Compound-Group "LOOP"**"
 [here](./future-cpp-loop/ogis-cpp-loop/include).
 
-There are also *Qt-Creator* and *VisualStudio 2019* **project files** in this 
+There are also *Qt-Creator* and *VisualStudio 2019* **project files** in this
 [directory](./future-cpp-loop).
 
-For more matrix-examples ave a look at 
+For more matrix-examples ave a look at
 [this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp).
 
 
 
 ## Discussion ##
 
-One might argue, **loop(){}** is is only a plain mapping to a **for(;;){}** statement.
+One might argue, **loop(){}** is only a plain mapping to a **for(;;){}** statement.
 
 OK, it is all about iterating and it is not a *swiss-army knife for all iterations*.
 
@@ -124,8 +123,8 @@ OK, it is all about iterating and it is not a *swiss-army knife for all iteratio
  - the solution *"is ready to rumble"*
  - the solution *is based on the c-preprocessor (cpp) only.*
  - it is a header only solution
- - no changes to any compiler are necesary.
- - it creates a hidden index name uinsg the macro  CPPMACRO_UNIQUE_ID()
+ - no changes to any compiler are necessary.
+ - it creates a hidden index name using the macro  CPPMACRO_UNIQUE_ID()
 
 Outcomes for ANSI-C
  - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler (using long as the type of the index variable)
@@ -138,7 +137,7 @@ With recent compilers, this is **as fast** as the **regular** **for(;;){}** iter
 
 BUT it has these advantages:
  - **READability**:  It reduces C++ source code size and improve its readability.
- - **TEACHability**: it will improve the way to teach C++  especially for a younger audiencce.
+ - **TEACHability**: it will improve the way to teach C++  especially for a younger audience.
  - **ALGORITHMics**: It allows/leads the developer(s) to notate code that completely does _NOT depend on the iteration index_.
  - **OPTIMIZATION**: It opens the way to enhanced optimizations for upcoming compiler implementations.
  	- by utilizing the *reduced degree of freedom* of the iteration
@@ -180,48 +179,48 @@ Adding the LOOP-compounds to the core-language would fix this problem, as cpp-pr
 ## Remarks ##
 
 ### Remarks on Compiler Optimization ###
-The new iterative coumpounds
+The new iterative compounds
  - have less degree of freedom
- - and will give room for futher enhancements of the compiler optimization.
+ - and will give room for further enhancements of the compiler optimization.
 
 We will see if:
- - it can lead to SHORTER, COMPACTER machine-code as the itearation is SIMPLER.
+ - it can lead to SHORTER, COMPACTER machine-code as the iteration is SIMPLER.
  - This will definitely apply for large loops with a tiny loop body.
  - This can reduce the _rate of cache-misses_ dramatically.
 
 ### Remarks on Teachingability of  C++ ###
   - ! the UK-Government decided to "force" (childern||pupils) form 4-years on to learn how to programm. !
-  - 5th grade (10-years old) pupils **can** cope with the concept of **looping**,  and generating textual outputs via **printing**  something like squares, tiangles, etc.
+  - 5th grade (10-years old) pupils **can** cope with the concept of **looping**,  and generating textual outputs via **printing**  something like squares, triangles, etc.
   - But a simple **for(int i=0; i<n; ++i)**  statement will overwhelm them.
-  Variable *types* and their *Assignemt*,   *conditions* in the form of **boolean expressions** with relations and incrementation is re a very hard stuff at that age.
+   The principle of variables, *types*, their *assignment*,   *conditions* in the form of **boolean expressions** with relations and incrementation is a very hard stuff at that age.
 
   Suggestion:
 
-  - What about starting to teach C/C++ for pupils as early as posisble with: putc(), loop() and going on with vars and assignment.
+  - What about starting to teach C/C++ for pupils as early as possible with: putc(), loop() and going on with variables and assignment.
   - going on to  statements in order to  create textual outputs on the (screen || printer).
-  - and lateron assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
-  - and teaching them lateron *conditions* inklusive the  *Boolean Algebra*.
+  - and later on assigning, and the operations add, subtract, multiply, divide and modulo are enough challenging  at that age.
+  - and teaching them later on *conditions* inclusive the  *Boolean Algebra*.
   - and in the *following-years* the full power of C/C++  (functions, for(;;){}, ...)
 
   What do you think  ?
-  - Seen from the Pont of View: Year 2020
-  - How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the now 4-year old kindergarden children be?
+  - Seen from the Point of View: Year 2020
+  - How far COULD the teaching-level for bachelor students in 2034 of Programming (C/C++) for the now 4-year old kindergarden kids be?
   - Compared to nowadays 2020 bachelor students?
   And what would be their favored programming language ?
 
 ## Conclusions ##
- - First experts comments say that it is is a _stony way_ to get the suggested  core-language _compounds_ wil get its way to C/C++.
+ - First experts comments say that it is a _stony way_ to get the suggested  core-language _compounds_ will get its way to C/C++.
  - But you can take the occasion and try it out yourself.
- - There is a solution for plain Ansi-C.
+ - There is a solution for plain ANSI-C.
  - The issues of READABILITY and TECHABILTY are the main arguments.
 
 Attention: (see  disadvantages)
 in the recent preprocessor implementation breaks on arguments containing a comma (like for some  complex template-expressions).
-There is a wouraround for that.
+There is a workaround for that.
 
 # References #
 
- - Teaching programming in the Kindergarden and later:
+ - Teaching programming in the kindergarden and later:
    	- https://www.raspberrypi.org/forums/viewtopic.php?t=762   a news form 2011
  	- https://www.intechopen.com/books/early-childhood-education/evaluating-a-course-for-teaching-advanced-programming-concepts-with-scratch-to-preservice-kindergart
  - Machine Code supported  Loops
@@ -230,6 +229,6 @@ There is a wouraround for that.
 		   https://www.ti.com/lit/ug/spru732j/spru732j.pdf
        		-  C64x+ Code savings;
 		   http://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/343/2746.sploop_5F00_details.pdf
- - Excessive post-operation  incrementings
+ - Excessive post-operation incrementing
 	- ADSP-218x: Data Address Generators
 		- https://www.analog.com/media/en/technical-documentation/data-sheets/ADSP-218XN_SERIES.pdf
