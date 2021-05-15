@@ -47,24 +47,21 @@
     <ClCompile Include="ogis-godbolt.examples\ogis-loop-godbolt-002.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ogis-cpp-loop.examples\examples\tests_misc.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ogis-cpp-loop\include\asciiart.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="ogis-cpp-loop.examples\examples\asciishapes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ogis-cpp-loop\include\compound">
+    <ClInclude Include="ogis-cpp-loop\include\compound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ogis-cpp-loop\include\ogis\cpp\cppcompound.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ogis-cpp-loop\include\ogis\cpp\cpploop_down.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ogis-cpp-loop\include\ogis\cpp\cpploop_up.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ogis-cpp-loop\include\ogis\cpp\cppuniqueid.h">
+    <ClInclude Include="ogis-cpp-loop\include\cpploop.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ogis-cpp-loop\include\loop">

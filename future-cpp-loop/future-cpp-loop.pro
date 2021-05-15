@@ -9,6 +9,8 @@ INCLUDEPATH += . ogis-cpp-loop/include
 QT -= core gui
 CONFIG += debug console
 
+QMAKE_CXXFLAGS += -pedantic-errors -Wpedantic
+
 
 
 # You can make your code fail to compile if you use deprecated APIs.
@@ -22,14 +24,14 @@ CONFIG += debug console
 HEADERS += ogis-cpp-loop.examples/examples/asciishapes.hpp \
            ogis-cpp-loop.examples/examples/matrix.hpp \
            ogis-cpp-loop.examples/examples/matrix_io.hpp \
-           ogis-cpp-loop/include/ogis/cpp/cppcompound.h \
-           ogis-cpp-loop/include/ogis/cpp/cpploop_down.h \
-           ogis-cpp-loop/include/ogis/cpp/cpploop_up.h \
-           ogis-cpp-loop/include/ogis/cpp/cppuniqueid.h \
+    ogis-cpp-loop/include/asciiart.hpp \
+           ogis-cpp-loop/include/compound.h \
+           ogis-cpp-loop/include/cpploop.h \
            ogis-cpp-loop/include/loop \
-           ogis-cpp-loop/include/compound
+
 
 SOURCES += ogis-godbolt.examples/ogis-loop-godbolt-001.cpp \
+           ogis-cpp-loop.examples/examples/tests_misc.cpp \
            ogis-godbolt.examples/ogis-loop-godbolt-002.cpp \
            ogis-cpp-loop.examples/examples/asciishapes_using_for.cpp \
            ogis-cpp-loop.examples/examples/asciishapes_using_loop.cpp \
