@@ -2,8 +2,8 @@
 
 This is the full syntax of the Compound-Group LOOP
 
-- see also the Implementation Details: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/blob/master/the_full_implementation.md
-- see also the Example Directory: https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/tree/master/future-cpp-loop/ogis-cpp-loop.examples/examples
+- see also the [Implementation Details](/the_full_implementation.md)
+- see also the [Example Directory](/future-cpp-loop/ogis-cpp-loop.examples/examples)
 
 ### Shortcuts: ###
 	{}	a single <statement> or a  <statement-block>  after the compound statement
@@ -52,3 +52,37 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 	typed_loop(type,rep, op1, ...)){}               // hidden loop with <type> constraint on the index variable
 	named_loop_up(name, cnt, op1, op2, ...){}       // loop upwards with type "auto" a named index variable .
 	named_loop_down(name, cnt, op1, op2, ...){}     // loop deonwards with type "auto" a named index variable.
+	
+# FORMAL Spezification # 	
+## Using a FORMAL Syntax like ##
+	
+
+	  <nbrOfRepetittions>	the count of iterations performed 
+
+	 [, <expression>]...	optional comma separated list  of expressions
+	 <indexType>		the type of the indexVariable
+	 <indexVarName>		the Identifier (name) of the Index Variable
+
+	 <expression>		ay C++ expression
+	 <statement>		one of 
+		- an expression-statement with trailing semicolon like sinx(x)/x;
+		- a compound-statement  with curly braces  like { [ <statement> ]...}
+		- a conditional-compound-statement like 
+			- if(<expression>) <statement>
+			- if(<expression>) <statement> else <statement>
+			- switch(<expression> { <statement>}
+		- an iterative-compound-statments like
+			- for(<initialization>; <expression>; <post-expression>) <statement>
+			- for(<range-init> : <container> <statement>
+			- while(<expression>) <statement>
+			- do <statement> while(<expression>);
+	
+	
+since c++17 if(), switch() may have an extra, scoped initialization
+
+## The Compound-Group LOOP is specified as:	
+	
+	loop(<nbrOfRepetions> [, <expression>]...) <statement>
+	typed_loop(<indexType>, <nbrOfRepetions> [, <expression>]...) <statement>
+	named_loop_up(<indexVarName>, <nbrOfRepetions>[, <expression>]...) <statement>
+	named_loop_down(<indexVarName>, <nbrOfRepetions> [, <expression>]...) <statement>

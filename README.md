@@ -1,15 +1,17 @@
-# Introducing the Compound-Group "LOOP" #
+[master REPOSITORY is at github.com/F-Haferkorn](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
 
-## References ##
- - 2020-10-22: Recorded online **Lightning Talk** of the  **MUC++ Meetup Group**
-   on [video at youtube.com](https://www.youtube.com/watch?v=TcgU0Y7dA4g)
-   and the [related pdf](./talks/The-LOOP-compounds+2020-10-22+meetupMUC++.pdf)
+You can  find the header-only implementation in [future-cpp-loop/ogis-cpp-loop/include](./future-cpp-loop/ogis-cpp-loop/include/)
 
+
+# The Compound-Group "LOOP" #
 
 Herein I want to suggest an  **extension** for the **C++** programming language.
 
 This repo contains the implementation for the **compound-group "LOOP"** using the **cpp-preprocessor**,
 and wants to open the door to a discussion within the C++-community.
+
+## Public Talks  ##
+ - [Videos with Slides](./talks/README.md)
 
 ## The Idea ##
 
@@ -86,20 +88,25 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
         #define loop(nbrOfRepetitions, ...)   \
                    CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 
-## About Existing Compound-Statements   ##
+## Detailed Information ##
+### About Existing Compound-Statements   ###
 see this [file](./the_existing_compounds.md).
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
-## Full Syntax ##
-For the full syntax of the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}
-have a look at this [file](./the_full_syntax.md).
+### The [Full Syntax](./the_full_syntax.md) ###
+For the full syntax of the related compounds 
+ - loop(){]
+ - typed_loop(){}, 
+ - named_loop_up(){},  
+ - named_loop_down(){}
+ 
+ look [**here**](./the_full_syntax.md).
 
-## Description of the Full Implementation ##
-A description of the implementation have can be found
-[here](./the_full_implementation.md).
+### The Description of the [Full Implementation](./the_full_implementation.md) ###
+For a description of the implementation look [**here**](./the_full_implementation.md).
 
-### The Code Examples ###
+#### The Code Examples ####
 
 You find  full C++ header-only implementation of the **Compound-Group "LOOP"**"
 [here](./future-cpp-loop/ogis-cpp-loop/include).
@@ -232,3 +239,5 @@ There is a workaround for that.
  - Excessive post-operation incrementing
 	- ADSP-218x: Data Address Generators
 		- https://www.analog.com/media/en/technical-documentation/data-sheets/ADSP-218XN_SERIES.pdf
+
+			
