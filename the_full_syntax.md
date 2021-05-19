@@ -53,7 +53,8 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 	named_loop_up(name, cnt, op1, op2, ...){}       // loop upwards with type "auto" a named index variable .
 	named_loop_down(name, cnt, op1, op2, ...){}     // loop deonwards with type "auto" a named index variable.
 	
-## using the  FORMAL Syntax ##
+# FORMAL Spezification # 	
+## Using a FORMAL Syntax like ##
 	
 
 	  <nbrOfRepetittions>	the count of iterations performed 
@@ -79,7 +80,7 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 	
 since c++17 if(), switch() may have an extra, scoped initialization
 
-## the Compound-Group LOOP is specified as:	
+## The Compound-Group LOOP is specified as:	
 	
 	loop(<nbrOfRepetions> [, <expression>]...) <statement>
 	typed_loop(<indexType>, <nbrOfRepetions> [, <expression>]...) <statement>
