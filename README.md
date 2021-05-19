@@ -1,15 +1,12 @@
 # Introducing the Compound-Group "LOOP" #
 
-## References ##
- - 2020-10-22: Recorded online **Lightning Talk** of the  **MUC++ Meetup Group**
-   on [video at youtube.com](https://www.youtube.com/watch?v=TcgU0Y7dA4g)
-   and the [related pdf](./talks/The-LOOP-compounds+2020-10-22+meetupMUC++.pdf)
-
-
 Herein I want to suggest an  **extension** for the **C++** programming language.
 
 This repo contains the implementation for the **compound-group "LOOP"** using the **cpp-preprocessor**,
 and wants to open the door to a discussion within the C++-community.
+
+## related Public Talks  ##
+[ Videos with Slides] (./talks/README.md)
 
 ## The Idea ##
 
