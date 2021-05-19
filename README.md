@@ -90,13 +90,12 @@ see this [file](./the_existing_compounds.md).
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
-## Full Syntax ##
+## [Full Syntax](./the_full_syntax.md) ##
 For the full syntax of the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}
-have a look at this [file](./the_full_syntax.md).
+ look at this [**here**](./the_full_syntax.md).
 
-## Description of the Full Implementation ##
-A description of the implementation have can be found
-[here](./the_full_implementation.md).
+## Description of the [Full Implementation](./the_full_implementation.md) ##
+For a description of the implementation look [**here**](./the_full_implementation.md).
 
 ### The Code Examples ###
 
