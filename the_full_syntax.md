@@ -56,13 +56,14 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 ## using the  FORMAL Syntax ##
 	
 
- - <nbrOfRepetittions>	the count of iterations performed 
+ - \<nbrOfRepetittions\>	the count of iterations performed 
  
- - [, <expression>]...	optional comma separated list  of expressions
- - <indexType>		the type of the indexVariable
+ - \[\, \<expression\>\]...	optional comma separated list  of expressions
+ - \<indexType\>		the type of the indexVariable
+- \<indexVarName>		the Identifier (name) of the Index Variable
 
- - <expression>		ay C++ expression
- - <statement>		one of 
+ - \<expression\>		ay C++ expression
+ - \<statement\>		one of 
 	- an expression-statement with trailing semicolon like sinx(x)/x;
 	- a compound-statement  with curly braces  like \{ \[ \<statement>\ \]... \}
 	- a conditional-compound-statement like 
