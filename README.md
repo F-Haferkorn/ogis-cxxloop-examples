@@ -1,4 +1,4 @@
-[THE orignal GITHUB REPOSITORY](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
+[REPOSITORY at github.com/F-Haferkorn](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
 
 # Introducing the Compound-Group "LOOP" #
 
