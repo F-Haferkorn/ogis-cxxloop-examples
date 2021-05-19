@@ -54,6 +54,7 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 	named_loop_down(name, cnt, op1, op2, ...){}     // loop deonwards with type "auto" a named index variable.
 	
 ## using the  FORMAL Syntax ##
+	
 
  - <nbrOfRepetittions>	the count of iterations performed 
  
@@ -62,17 +63,17 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 
  - <expression>		ay C++ expression
  - <statement>		one of 
-	- an expression-statement with trailing semicolon like "sinx(x)/x;"
-	- a compound-statement  with curly braces  like "\{ \[ \<statement>\ \]... \}"
+	- an expression-statement with trailing semicolon like sinx(x)/x;
+	- a compound-statement  with curly braces  like \{ \[ \<statement>\ \]... \}
 	- a conditional-compound-statement like 
 		- if(\<expression\>) \<statement\>
 		- if(\<expression\>) \<statement\> else \<statement\>
 		- switch(\<expression\>\{ \<statement\>\}
 	- an iterative-compound-statments like
 		- for(\<initialization\>; <\expression\>; \<post-expression\>) \<statement\>
-		- for(<range-init>:<container> <statement>
-		- while(<expression>) <statement>
-		- do <statement> while(<expression>);
+		- for(\<range-init\> \: \<container\> \<statement\>
+		- while(\<expression\>) \<statement\>
+		- do \<statement\> while(\<expression\>);
 	
 	
 since c++17 if(), switch() may have an extra, scoped initialization
