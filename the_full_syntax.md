@@ -61,14 +61,14 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
  - <indexType>		the type of the indexVariable
 
  - <expression>		ay C++ expression
- - <statement>		any statement LIKE:
-	- expression-statement like sinx(x)/x;
-	- compound-statement  like { [<expression-statement>;]... }
-	- conditional-compound-statement like 
-		- if(<expression>) <statement>
-		- if(<expression>) <statement> else <statement>
+ - <statement>		one of 
+	- an expression-statement with trailing semicolon like "sinx(x)/x;"
+	- a compound-statement  with curly braces  like "{ [ <statement> ]... }"
+	- a conditional-compound-statement like 
+		- if(\<expression\>) <statement>
+		- if(\<expression\>) <statement> else <statement>
 		- switch(<expression>{}
-	- iterative-compound-statments like
+	- an iterative-compound-statments like
 		- for(<initialization>;<expression>;<post-expression>) <statement>
 		- for(<range-init>:<container> <statement>
 		- while(<expression>) <statement>
