@@ -6,11 +6,11 @@ The cpp-preprocessor must provide:
 	#pragma once
 	__LINE__		line number required by CPPMACRO_UNIQUE_ID() 	
 	__COUNTER__		counter required by CPPMACRO_UNIQUE_ID()
-	, __VA_ARGS__)		non-optional variadic arguments, for the "post-comparison" expressions.
-	,  ##__VA_ARGS__)	optional variadic-arguments, for the "post-comparison" expressions
+	, ... )			indicates that variadic arguments are at end of MACRO-DEFIITION
+	__VA_ARGS__		unfold to the optional variadic argument(s), used for the "post-comparison" expressions.
+	,  ##__VA_ARGS__)	like __VA_ARGS__, but unfolds to ")" without the komma if no variadic-arguments is in MACRO call..
 
 This "core-language extension" can be implemented solely using the cpp-preprocessor.
-
 
 ### One-File Implementation for C / C++11 or later ###
 
