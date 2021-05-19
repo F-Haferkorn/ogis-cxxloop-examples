@@ -6,7 +6,7 @@ This repo contains the implementation for the **compound-group "LOOP"** using th
 and wants to open the door to a discussion within the C++-community.
 
 ## related Public Talks  ##
-[ Videos with Slides] (./talks/README.md)
+ - [Videos with Slides](./talks/README.md)
 
 ## The Idea ##
 
