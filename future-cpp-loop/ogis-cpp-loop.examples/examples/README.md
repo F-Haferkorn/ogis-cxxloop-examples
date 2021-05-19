@@ -10,5 +10,5 @@
 - [matrix.hpp](matrix.hpp)    : Header-only functions to operate on the matrcies as descrtibed above using LOOP-compounds.  
 - [example_matrix.cpp](example_matrix.cpp) : example calls to the functions of  matrix.hpp and matrix_io.hpp. Is invoked by main.cpp.
 
--[tests_loops.cpp](tests_loops.cpp) :    an explicit test of all syntax variants. 
+- [tests_loops.cpp](tests_loops.cpp) :    an explicit test of all syntax variants. 
     
