@@ -57,7 +57,7 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 
  - <nbrOfRepetittions>	the count of iterations performed 
  
- - [,<expression>]...	optional comma separated list  of expressions
+ - [, <expression>]...	optional comma separated list  of expressions
  - <indexType>		the type of the indexVariable
 
  - <expression>		ay C++ expression
@@ -77,8 +77,7 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 	
 since c++17 if(), switch() may have an extra, scoped initialization
 
-## the Compound-Group LOOP can be specified as:
-	
+## the Compound-Group LOOP is specified as:	
 	
 	loop(<nbrOfRepetions> [, <expression>]...) <statement>
 	typed_loop(<indexType>, <nbrOfRepetions> [, <expression>]...) <statement>
