@@ -1,6 +1,7 @@
-[REPOSITORY at github.com/F-Haferkorn](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
+[master REPOSITORY is at github.com/F-Haferkorn](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
+You can  find the header-only implementation in [future-cpp-loop/include](future-cpp-loop/include])
 
-# Introducing the Compound-Group "LOOP" #
+# The Compound-Group "LOOP" #
 
 Herein I want to suggest an  **extension** for the **C++** programming language.
 
@@ -85,19 +86,25 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
         #define loop(nbrOfRepetitions, ...)   \
                    CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
 
-## About Existing Compound-Statements   ##
+## Detailed Information ##
+### About Existing Compound-Statements   ###
 see this [file](./the_existing_compounds.md).
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
-## [Full Syntax](./the_full_syntax.md) ##
-For the full syntax of the related compounds typed_loop(){}, named_loop_up(){},  named_loop_down(){}
- look at this [**here**](./the_full_syntax.md).
+### The [Full Syntax](./the_full_syntax.md) ###
+For the full syntax of the related compounds 
+ - loop(){]
+ - typed_loop(){}, 
+ - named_loop_up(){},  
+ - named_loop_down(){}
+ 
+ look [**here**](./the_full_syntax.md).
 
-## Description of the [Full Implementation](./the_full_implementation.md) ##
+### The Description of the [Full Implementation](./the_full_implementation.md) ###
 For a description of the implementation look [**here**](./the_full_implementation.md).
 
-### The Code Examples ###
+#### The Code Examples ####
 
 You find  full C++ header-only implementation of the **Compound-Group "LOOP"**"
 [here](./future-cpp-loop/ogis-cpp-loop/include).
