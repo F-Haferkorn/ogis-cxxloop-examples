@@ -2,7 +2,7 @@
 
 This is the full syntax of the Compound-Group LOOP
 
-- see also the [Implementation Details](https/the_full_implementation.md)
+- see also the [Implementation Details](/the_full_implementation.md)
 - see also the [Example Directory](/future-cpp-loop/ogis-cpp-loop.examples/examples)
 
 ### Shortcuts: ###
