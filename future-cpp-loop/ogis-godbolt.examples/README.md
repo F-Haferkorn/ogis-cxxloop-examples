@@ -6,7 +6,7 @@
     No Guarantee that it is not broken!
 
 Have a look at:
-- [the repository root](/)
+- [the repository root](../..)
 - [other examples](../ogis-cpp-loop.examples)
 - [the header-only implementation](../ogis-cpp-loop/include)
 
