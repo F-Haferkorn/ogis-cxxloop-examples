@@ -63,13 +63,13 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
  - <expression>		ay C++ expression
  - <statement>		one of 
 	- an expression-statement with trailing semicolon like "sinx(x)/x;"
-	- a compound-statement  with curly braces  like "{ [ <statement> ]... }"
+	- a compound-statement  with curly braces  like "\{ \[ \<statement>\ \]... \}"
 	- a conditional-compound-statement like 
-		- if(\<expression\>) <statement>
-		- if(\<expression\>) <statement> else <statement>
-		- switch(<expression>{}
+		- if(\<expression\>) \<statement\>
+		- if(\<expression\>) \<statement\> else \<statement\>
+		- switch(\<expression\>\{ \<statement\>\}
 	- an iterative-compound-statments like
-		- for(<initialization>;<expression>;<post-expression>) <statement>
+		- for(\<initialization\>; <\expression\>; \<post-expression\>) \<statement\>
 		- for(<range-init>:<container> <statement>
 		- while(<expression>) <statement>
 		- do <statement> while(<expression>);
