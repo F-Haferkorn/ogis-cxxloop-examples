@@ -3,11 +3,11 @@
 - [main.cpp](main.cpp)
     is the main entry point.
 
-- [ascishapes.hpp](ascishapes.hpp)
+- [asciishapes.hpp](ascishapes.hpp)
     contains a declaration of functions to print simple asciishapes.
-- [ascishapes.cpp](ascishapes.cpp)
+- [asciishapes.cpp](ascishapes.cpp)
     prints simple ascishapes using LOOP-compounds.
-- [ascishapes_old_sytle](ascishapes_old_sytle)
+- [asciishapes_old_sytle](ascishapes_old_sytle)
   contains similar functions like ascishapes.cpp, but uses FOR(;;) instead of LOOP()-compounds.
 
 - [matrix_io.hpp](matrix_io.hpp)
