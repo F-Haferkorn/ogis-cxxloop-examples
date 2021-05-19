@@ -41,13 +41,10 @@
     <ClCompile Include="ogis-cpp-loop.examples\examples\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ogis-godbolt.examples\ogis-loop-godbolt-001.cpp">
+    <ClCompile Include="ogis-godbolt.examples\ogis-loop-godbolt-example.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ogis-godbolt.examples\ogis-loop-godbolt-002.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ogis-cpp-loop.examples\examples\tests_misc.cpp">
+    <ClCompile Include="ogis-cpp-loop.examples\examples\tests_loops.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -56,9 +53,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ogis-cpp-loop.examples\examples\asciishapes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ogis-cpp-loop\include\compound.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ogis-cpp-loop\include\cpploop.h">

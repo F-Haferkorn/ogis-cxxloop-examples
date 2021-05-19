@@ -59,7 +59,7 @@
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Debug|x64&apos;">
     <ClCompile>
       <AdditionalIncludeDirectories>.;.;ogis-cpp-loop\include;C:\Qt\5.15.1\msvc2015_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -pedantic-errors -Wpedantic -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>debug\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -96,7 +96,7 @@
   <ItemDefinitionGroup Condition="&apos;$(Configuration)|$(Platform)&apos;==&apos;Release|x64&apos;">
     <ClCompile>
       <AdditionalIncludeDirectories>.;.;ogis-cpp-loop\include;C:\Qt\5.15.1\msvc2015_64\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -pedantic-errors -Wpedantic -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>-Zc:rvalueCast -Zc:inline -Zc:strictStrings -Zc:throwingNew -Zc:referenceBinding -Zc:__cplusplus -w34100 -w34189 -w44996 -w44456 -w44457 -w44458 %(AdditionalOptions)</AdditionalOptions>
       <AssemblerListingLocation>release\</AssemblerListingLocation>
       <BrowseInformation>false</BrowseInformation>
       <DebugInformationFormat>None</DebugInformationFormat>
@@ -138,14 +138,12 @@
     <ClCompile Include="ogis-cpp-loop.examples\examples\asciishapes_using_loop.cpp" />
     <ClCompile Include="ogis-cpp-loop.examples\examples\example_matrix.cpp" />
     <ClCompile Include="ogis-cpp-loop.examples\examples\main.cpp" />
-    <ClCompile Include="ogis-godbolt.examples\ogis-loop-godbolt-001.cpp" />
-    <ClCompile Include="ogis-godbolt.examples\ogis-loop-godbolt-002.cpp" />
-    <ClCompile Include="ogis-cpp-loop.examples\examples\tests_misc.cpp" />
+    <ClCompile Include="ogis-godbolt.examples\ogis-loop-godbolt-example.cpp" />
+    <ClCompile Include="ogis-cpp-loop.examples\examples\tests_loops.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ogis-cpp-loop\include\asciiart.hpp" />
     <ClInclude Include="ogis-cpp-loop.examples\examples\asciishapes.hpp" />
-    <ClInclude Include="ogis-cpp-loop\include\compound.h" />
     <ClInclude Include="ogis-cpp-loop\include\cpploop.h" />
     <ClInclude Include="ogis-cpp-loop\include\loop" />
     <ClInclude Include="ogis-cpp-loop.examples\examples\matrix.hpp" />

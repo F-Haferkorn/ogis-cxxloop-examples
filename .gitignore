@@ -4,5 +4,10 @@
 x64
 .vs
 *.o
+*.obj
 build-future-*
 *.qmake.stash
+
+debug/
+release/
+nppBackup/

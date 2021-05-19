@@ -5,7 +5,10 @@
 #include <iostream>
 
 void example_matrix();
-void test_misc();
+
+void ogis_loop_godbolt_example();
+
+void test_loops();
 
 int main() {
   using namespace asciishapes;
@@ -46,7 +49,9 @@ int main() {
   named_loop_down(row, count) star();
   newline();
 
-  test_misc();
+  ogis_loop_godbolt_example();
+  newline();
+  test_loops();
 
   return 0;
 }
