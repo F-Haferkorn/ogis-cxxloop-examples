@@ -6,7 +6,7 @@
    and the [related pdf](./talks/The-LOOP-compounds+2020-10-22+meetupMUC++.pdf)
 
 
-Herein I want to suggest a  **core-level extension** for the **C++** programming language.
+Herein I want to suggest an  **extension** for the **C++** programming language.
 
 This repo contains the implementation for the **compound-group "LOOP"** using the **cpp-preprocessor**,
 and wants to open the door to a discussion within the C++-community.
