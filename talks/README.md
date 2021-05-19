@@ -1,6 +1,6 @@
 # PUBLIC  Talks about  The compound-Group-LOOP #
 ### 2020-10-22: Lightning Talk at the **MUC++ Meetup Group** ###
- - [ ![Image](2020-10-22+MUCxx-Meetup%2BFrank.Haferkorn+The-CompoundGroup-LOOP.png  "icon" ){width=50%}](https://www.youtube.com/watch?v=TcgU0Y7dA4g).
+ - [ ![Image](2020-10-22+MUCxx-Meetup%2BFrank.Haferkorn+The-CompoundGroup-LOOP.png  | width=200 ](https://www.youtube.com/watch?v=TcgU0Y7dA4g).
  - [English PDF-Slides](./2020-10-22%2BmeetupMUC%2BFrank.Haferkorn%2BThe-LOOP-compounds_%40en-10min.pdf)
     
 
