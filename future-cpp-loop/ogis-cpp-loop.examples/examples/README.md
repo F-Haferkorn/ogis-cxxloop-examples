@@ -1,4 +1,4 @@
-## Simple Examples for the  Compound-Group "LOOP" ##
+## Examples and Tests for the  Compound-Group "LOOP" ##
 
 - [main.cpp](main.cpp) : is the main entry point.
 
