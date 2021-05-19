@@ -6,8 +6,6 @@
 
 void example_matrix();
 
-void ogis_loop_godbolt_example();
-
 void test_loops();
 
 int main() {
@@ -49,7 +47,6 @@ int main() {
   named_loop_down(row, count) star();
   newline();
 
-  ogis_loop_godbolt_example();
   newline();
   test_loops();
 

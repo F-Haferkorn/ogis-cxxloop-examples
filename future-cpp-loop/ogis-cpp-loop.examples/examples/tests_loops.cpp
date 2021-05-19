@@ -216,4 +216,5 @@ void test_loops() {
   test_loop_024_loop();
 
   test_loop_030();
+  test_loop_040_loop();
 }
