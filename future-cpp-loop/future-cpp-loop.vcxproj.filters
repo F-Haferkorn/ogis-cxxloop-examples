@@ -49,7 +49,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ogis-cpp-loop\include\asciiart.hpp">
+    <ClInclude Include="ogis-cpp-loop\asciiart.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ogis-cpp-loop.examples\examples\asciishapes.hpp">

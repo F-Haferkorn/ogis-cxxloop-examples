@@ -4,7 +4,7 @@
 
 TEMPLATE = app
 TARGET = future-cpp-loop
-INCLUDEPATH += . ogis-cpp-loop/include
+INCLUDEPATH += . ogis-cpp-loop/include ogis-cpp-loop/
 
 QT -= core gui
 CONFIG += debug console
@@ -17,7 +17,7 @@ linux-g++: QMAKE_CXXFLAGS += -pedantic-errors -pedantic
 HEADERS += ogis-cpp-loop.examples/examples/asciishapes.hpp \
            ogis-cpp-loop.examples/examples/matrix.hpp \
            ogis-cpp-loop.examples/examples/matrix_io.hpp \
-           ogis-cpp-loop/include/asciiart.hpp \
+           ogis-cpp-loop/asciiart.hpp \
            ogis-cpp-loop/include/cpploop.h \
            ogis-cpp-loop/include/loop \
 

@@ -12,7 +12,7 @@ void test_loop_000() {
     count = 0;
     CPPMACRO_NTIMES_UP(unsigned int, id, 1000) count++;
     if (count != 1000)
-      printf("%s: iteration count %d' is NOT 1000 s expected \n",
+      printf("%s: iteration count %d' is NOT 1000 as expected\n",
              "CPPMACRO_NTIMES_DOWN(unsigned int, id, 1000) count++;", count);
     count = 0;
     CPPMACRO_NTIMES_DOWN(unsigned int, id, 2000) count++;
@@ -29,7 +29,7 @@ void test_loop_000() {
     count = 0;
     CPPMACRO_NTIMES_DOWN(int, id, 2000, count++) count++;
     if (count != 4000)
-      printf("%s: iteration count %d' is NOT 4000 s expected \n",
+      printf("%s: iteration count %d' is NOT 4000 as expected \n",
              "CPPMACRO_NTIMES_DOWN(int, id, 2000, count++) count++;", count);
   }
 
@@ -38,7 +38,7 @@ void test_loop_000() {
     count = 0;
     CPPMACRO_NTIMES_UP(int, id, 1000, count++, temp += 1) count++;
     if (count != 2000)
-      printf("%s: iteration count %d' is NOT 2000 s expected \n",
+      printf("%s: iteration count %d' is NOT 2000 as expected \n",
              "CPPMACRO_NTIMES_DOWN(int, id, 1000 count++) count++;", count);
     count = 0;
     CPPMACRO_NTIMES_DOWN(int, id, 2000, count++, temp += 1) count++;
@@ -74,29 +74,34 @@ void test_loop_010() {
 void test_loop_020_looping_in_single_line() {
   int count = 0;
   named_loop_up(row, 4, count += 1000) named_loop_down(column, 3, count += 100)
-      loop(2, count += 10) count++;
-  if (count != 4322)
-    printf("%s: is NOT 4322 as expected \n",
+      loop(2, count += 10);
+  if (count != 4 * (1000 + 3 * (100 + 2 * 10)))
+    printf("%s: iteration count %d: is NOT 5440 as expected",
            "named_loop_up(row, 4, count += 1000) "
            "\t named_loop_down(column, 3, count += 100) "
-           "\t loop(2, count += 10) count++;");
+           "\t loop(2, count += 10)",
+           count);
 }
 
 void test_loop_021_named_loop_up() { // named_loop_up
   int count = 0;
   int temp = 0;
   named_loop_up(row, 4) count++;
-  if (count != 4004)
-    printf("%s: is NOT 4 as expected \n", "named_loop_up(row, 4) count++;");
+  if (count != 4)
+    printf("%s: iteration count %d: is NOT 4 as expected \n",
+           "named_loop_up(row, 4) count++;", count);
+
+  count = 0;
   named_loop_up(row, 4, count += 1000) count++;
   if (count != 4004)
-    printf("%s: is NOT 4004 as expected \n",
-           "named_loop_up(row, 4, count += 1000) count++;");
+    printf("%s: iteration count %d: is NOT 4004 as expected \n",
+           "named_loop_up(row, 4, count += 1000) count++;", count);
 
+  count = 0;
   named_loop_up(row, 4, count += 1000, temp++) count++;
   if (count != 4004)
-    printf("%s: is NOT 4004 as expected \n",
-           "named_loop_up(row, 4, count += 1000, temp++) count++;");
+    printf("%s: iteration count %d: is NOT 4004 as expected \n",
+           "named_loop_up(row, 4, count += 1000, temp++) count++;", count);
 }
 
 void test_loop_022_named_loop_down() {
@@ -104,17 +109,19 @@ void test_loop_022_named_loop_down() {
   int temp = 0;
   named_loop_down(column, 3) count++;
   if (count != 3)
-    printf("%s; is NOT 3 as expected \n",
-           "named_loop_down(column, 3) count++;");
+    printf("%s:  iteration count %d:  is NOT 3 as expected \n",
+           "named_loop_down(column, 3) count++;", count);
+  count = 0;
   named_loop_down(column, 3, count += 100) count++;
   if (count != 303)
-    printf("%s; is NOT 303 as expected \n",
-           "named_loop_down(column, 3, count += 100) count++;");
+    printf("%s;  iteration count %d: is NOT 303 as expected \n",
+           "named_loop_down(column, 3, count += 100) count++;", count);
 
+  count = 0;
   named_loop_up(column, 3, count += 100, temp++) count++;
   if (count != 303)
-    printf("%s; is NOT 303 as expected \n",
-           "named_loop_down(column, 3, count += 100) count++;");
+    printf("%s;  iteration count %d:  is NOT 303 as expected \n",
+           "named_loop_down(column, 3, count += 100) count++;", count);
 }
 
 void test_loop_023_typed_loop() {
@@ -122,15 +129,22 @@ void test_loop_023_typed_loop() {
   int temp = 0;
   typed_loop(char, 100) count++;
   if (count != 100)
-    printf("typed_loop(char, 100) count++; is NOT 100 as expected \n");
-
+    printf(" iteration count %d: typed_loop(char, 100) count++; is NOT 100 as "
+           "expected \n",
+           count);
+  count = 0;
   typed_loop(char, 100, count++) count++;
   if (count != 200)
-    printf("typed_loop(char, 100) count++; is NOT 100 as expected \n");
+    printf(" iteration count %d: typed_loop(char, 100) count++; is NOT 100 as "
+           "expected \n",
+           count);
+  count = 0;
   typed_loop(char, 100, count++, temp++) count++;
   if (count != 200)
-    printf("typed_loop(char, 100, count++, temp++) count++; is NOT 100 as "
-           "expected \n");
+    printf(" iteration count %d: typed_loop(char, 100, count++, temp++) "
+           "count++; is NOT 100 as "
+           "expected \n",
+           count);
 }
 
 void test_loop_024_loop() {
@@ -138,23 +152,53 @@ void test_loop_024_loop() {
   int temp = 0;
   loop(2) count++;
   if (count != 2)
-    printf("loop(2, count += 10) count++; is NOT 22 as expected \n");
+    printf(" iteration count %d: loop(2, count += 10) count++; is NOT 22 as "
+           "expected \n",
+           count);
 
+  count = 0;
   loop(2, count += 10) count++;
   if (count != 22)
-    printf("loop(2, count += 10) count++; is NOT 22 as expected \n");
+    printf(" iteration count %d: loop(2, count += 10) count++; is NOT 22 as "
+           "expected \n",
+           count);
 
+  count = 0;
   loop(2, count += 10, temp += 100) count++;
   if (count != 22)
-    printf("loop(2, count += 10,  count += 100) count++; is NOT 222 as "
-           "expected \n");
+    printf(" iteration count %d: loop(2, count += 10,  count += 100) count++; "
+           "is NOT 222 as "
+           "expected \n",
+           count);
 }
 
 void test_loop_030() {
   int count = 0;
-  loop(4) loop(100) count++;
-  if (count != 400)
-    printf("iteration  loop(4) loop(100) count++;  is NOT 400 as expected \n");
+  loop(4, count += 1000) loop(2, count += 10);
+  if (count != 4 * (1000 + 2 * 10))
+    printf("iteration count %d:  loop(4) loop(100) count++;  is NOT 4080 as "
+           "expected \n",
+           count);
+}
+
+void test_loop_040_loop() {
+  int count = 0;
+  int temp = 0;
+
+  count = 0;
+  loop(2, count += 10) count++;
+  if (count != 22)
+    printf(" iteration count %d: loop(2, count += 10) count++; is NOT 22 as "
+           "expected \n",
+           count);
+
+  count = 0;
+  loop(2, count += 10, temp += 100) count++;
+  if (count != 22)
+    printf(" iteration count %d: loop(2, count += 10,  count += 100) count++; "
+           "is NOT 222 as "
+           "expected \n",
+           count);
 }
 
 void test_loops() {
