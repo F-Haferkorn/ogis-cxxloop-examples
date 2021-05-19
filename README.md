@@ -164,7 +164,7 @@ While this does not work due the comma in the template **std::integral_constant<
     auto count = std::integral_constant<int, 10>::value;
     loop(count) do_something();
 
-    loop(std::integral_constant<int, 10>::value)
+    loop(std::integral_constant<int, 10>::value)   /// !pwnng compiler error at Kommma (,)
           do_something();
 
 **Embracing** the argument **with regular braces** solves the problem:
