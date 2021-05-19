@@ -5,7 +5,7 @@ Herein I want to suggest an  **extension** for the **C++** programming language.
 This repo contains the implementation for the **compound-group "LOOP"** using the **cpp-preprocessor**,
 and wants to open the door to a discussion within the C++-community.
 
-## related Public Talks  ##
+## Public Talks  ##
  - [Videos with Slides](./talks/README.md)
 
 ## The Idea ##
