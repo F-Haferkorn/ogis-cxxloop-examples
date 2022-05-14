@@ -6,7 +6,7 @@
     No Guarantee that it is not broken!
 
 Have a look at:
-- [the github repository](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
-- [other examples](../ogis-cpp-loop.examples)
-- [the header-only implementation](../ogis-cpp-loop/include)
+- [the github repository](https://github.com/F-Haferkorn/ogis-cxxloop/)
+- [other examples](../cxxloop.examples)
+- [the header-only implementation](../../cxxloop/include)
 

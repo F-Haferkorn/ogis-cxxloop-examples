@@ -2,11 +2,14 @@
 
 ## some SIMPLE Examples   ##
 
-The subdir [examples](./examples) contains some simple examples for the  compound-group **"LOOP"*
+The subdirs
+
+  - [asciishapes](./asciishapes) contains some example using simple 2d-printing feature
+  - [matrix](./matrix) contains some example using matrix-maths.
 
 Have a look at:
-- [the github repository](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
-- [godbolt examples](../ogis-godbolt.examples)
-- [the header-only implementation](../ogis-cpp-loop/include)
+- [the github repository](https://github.com/F-Haferkorn/ogis-cxxloop/)
+- [godbolt examples](../cxxloop-godbolt.examples)
+- [the header-only implementation](../../cxxloop/include)
 
 

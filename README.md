@@ -26,25 +26,25 @@ Example:
            loop(10)                     // iterate over 10 columns.
               *tgt++  =   *src++ ;      // copy *source to *target.
 
+**Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
-## Overview ##
+## The SYNTAX ##
 
 This github.com-site is a testbed and discussion-ground for an already implemented  *C++ language extension* based on the *cpp-preprocessor*.
 
 Herein I present my work on the iteration related **Compound-Group LOOP**.
 
-### The syntax in short is ###
+### The syntax in short-form  ###
 
 	loop[_up|_down][_h|_hh][_postops](<rep>,...){}
 
-### The unrolled syntax is ###
+### The unrolled syntax  ###
 using the tokens:
 
  - **<rep>**   	the count or repetitions. (is likely an integral)
  - **{}**    	is any  block statement following the compound. (may be a single statement).
  - **<id>**    	any valid identificator to access the iteration variable.
  - **<postops>>... one or more comma separted post-operations (C-expressions) 	
-
 
 All COMPOUNDS are  folowed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
 
@@ -86,6 +86,7 @@ Additionally special versions with *limited* types for the indexVar
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
 
+## USAGE  ##
 ### Activation via #include  ###
 
 All "LOOP" compound-statments can be used after an:
@@ -139,28 +140,25 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 	#endif
 
 ## Detailed Information ##
-### About Existing Compound-Statements   ###
-see this [file](./the_existing_compounds.md).
-
-**Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
+	
+In C++11/C++17  there are these [existing Compound-Statements](./the_existing_compounds.md)  
 
 ### [The Implementation](./the_full_implementation.md) ###
 For a description of the implementation look [**here**](./the_full_implementation.md).
 
 
-#### The Code Examples ####
+### The Code Examples ###
 
 You find  a C++ header-only implementation of the **Compound-Group "LOOP"**" 
 [here](./cxxloop/include).
 
-There are  *Cmake* Projekts
+There are  *cmake* subproject Projekts
+	
 	- the implementation in the directory [cxxloop](./cxxloop).
 	- unit tests inthe  directory [cxxloop](./cxxloop.examples/t).
 
 For more matrix-examples ave a look at
 [this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp).
-
-
 
 ## Discussion ##
 
@@ -176,11 +174,10 @@ OK, it is all about iterating and it is not a *swiss-army knife for all iteratio
  - no changes to any compiler are necessary.
  - it creates a hidden index name using the macro  CPPMACRO_UNIQUE_ID()
 
-Outcomes for ANSI-C
- - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler (using long as the type of the index variable)
- - It is implementable using solely the standard c-preprocessor (cpp).
-
-
+### ODoes it also  work  for C ? ###
+	
+ - Due to lack of decltype and type_traits,  the Compound-Group LOOP does **NOTwork-out with any version of C**.
+	
 ### Advantages: ###
 
 With recent compilers, this is **as fast** as the **regular** **for(;;){}** iteration.
@@ -196,7 +193,8 @@ BUT it has these advantages:
 ### Disadvantages:  ###
 - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. But this is somehow unlikely.
 
-#### looping plain enum types is insane and does not work ####
+## Cavats ##
+### looping plain enum types is insane and does not work ####
 This code does NOT  work
 
 	#e.g. MinGW32 has this error: cannot decrement expression of enum type '(anonymous enum at ....)
@@ -205,7 +203,9 @@ This code does NOT  work
 	      do_something();
 
 
-#### Compilation caveat: Problematic use of  tempate arguments **with comma** ####
+### Compilation caveat:###
+	
+#### PROBLEM: use of  tempate arguments **with commas** ####
 The preprocessor implemantation will break when using an **argument containing a comma** .
 This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.
 
@@ -217,8 +217,8 @@ While this does not work due the comma in the template **std::integral_constant<
     loop(std::integral_constant<int, 10>::value)   /// !pwnng compiler error at Kommma (,)
           do_something();
 
+#### SOLUTION: tempate arguments **with commas** ##
 **Embracing** the argument **with regular braces** solves the problem:
-This works:
 
     loop( (std::integral_constant<int, 10>::value) )  
           do_something();
@@ -226,7 +226,7 @@ This works:
 Adding the LOOP-compounds to the core-language would fix this problem, as cpp-preprocessor would not be invoked any longer.
 
 
-## Remarks ##
+## CONCLUSIONS ##
 
 ### Remarks on Compiler Optimization ###
 The new iterative compounds
