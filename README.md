@@ -111,14 +111,32 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 
 **loop(){}**  can be implemented like the following
 
-	#define CPPMACRO_UNIQUE_ID()  \
-		CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
+	namesapce ogis{
+		template <typename Type>
+		using remove_cvref_t =
+    			typename std::remove_cv<typename std::remove_reference<Type>::type>::type;
+	}
+	
+	#ifdef __cpp_has_cpploop
+	
+	#define CPPMACRO_XCAT2(a, b) a##b
+	#define CPPMACRO_UNIQUE_ID(counter) CPPMACRO_XCAT2(UNIQUE_ID_LOOP_, counter)
+	
 
-        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions, ...) \     
-                 for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++, ##__VA_ARGS__)
+        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions) \     
+                 for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++)
+	
+	#define CPPMACRO_NTIMES_FASTEST(indexType, nbrOfRepetitions, indexVarName) \
+                 for (indexType indexVarName = static_cast<indexType>(nbrOfRepetitions);  indexVarName-- > 0;)
 
-        #define loop(nbrOfRepetitions, ...)   \
-                   CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
+	#define CPPMACRO_LOOP(direction, nbrOfRepetitions, indexVarName)   \
+	   	CPPMACRO_NTIMES_##direction(                                \
+	      		typename ogis::remove_cvref_t<decltype((nbrOfRepetitions))>,  nbrOfRepetitions, indexVarName)
+	
+	#define loop(nbrOfRepetitions) \
+	  	CPPMACRO_LOOP(FASTEST, nbrOfRepetitions, CPPMACRO_UNIQUE_ID(__COUNTER__))
+	
+	#endif
 
 ## Detailed Information ##
 ### About Existing Compound-Statements   ###
