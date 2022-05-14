@@ -12,3 +12,5 @@ debug/
 release/
 nppBackup/
 build-*/
+
+*.bak
