@@ -1,9 +1,0 @@
-rem project configured for QT. just call qmake within this dir (future-cpp-loop)
-
-rem from a Native Tools Command Prompt for VisaulStudio
-rem use these commandd to create a visual studio project from the qmaike *.pro file
-rem this should already be prepared.
-rem use the correct qt dir where your qmake is located.
-
-set QMAKESPEC=win32-msvc
-C:\Qt\5.15.1\msvc2015_64\bin\qmake -tp vc

@@ -1,0 +1,73 @@
+#pragma once
+
+#include "cxxloop_prereqs.h"
+
+/****************************
+ *
+ * loop[_up|_down|_h|_hh]_postops
+
+// with a single postop
+
+loop_postops(rep, func());
+loop_up_postops(rep, id1, id1 += stride);
+loop_down_postops(rep, id2, id2 += stride);
+
+// with several postops
+loop_up_postops(rep, id1, id1 += stride, id++);
+loop_down_postops(rep, id2, id2 += stride, id2++);
+
+*****************************/
+
+///////////////////////////////////////////////////////////////////////////
+/////////////////////////WITH POST-OPERATIONS
+///////////////////////////////////////////////////////////////////////////
+// cpp-macro to count upwards (from 0 to nbrOfRepetitions-1)
+#define CPPMACRO_NTIMES_UP_POSTOPS(indexType, indexVarName , nbrOfRepetitions, ...) \
+for (indexType indexVarName = static_cast<indexType>(0); \
+    indexVarName< nbrOfRepetitions; \
+    indexVarName++, __VA_ARGS__)
+
+// cpp-macro to count downwards (from nbrOfRepetitions-1 to 0)
+#define CPPMACRO_NTIMES_DOWN_POSTOPS(indexType, indexVarName,         \
+                                     nbrOfRepetitions, ...)  \
+for (indexType indexVarName = static_cast<indexType>(nbrOfRepetitions); indexVarName-- > 0; \
+       __VA_ARGS__)
+
+// cpp-macro to iterate N-times in the fastest direction
+#define CPPMACRO_NTIMES_FASTEST_POSTOPS(indexType, indexVarName,        \
+                                        nbrOfRepetitions, ...) \
+  for (indexType indexVarName = static_cast<indexType>(nbrOfRepetitions); indexVarName-- > 0; \
+       __VA_ARGS__)
+
+///////////////////////////////////////////////////////////////////////////////////////
+// loop block-statement nbrOfRepetitions-times ...
+// ... looping up-wards w. postops
+#define loop_up_postops(nbrOfRepetitions, indexVarName, ...)  \
+CPPMACRO_NTIMES_UP_POSTOPS(ogis::remove_cvref<decltype((nbrOfRepetitions))>, \
+                             indexVarName, nbrOfRepetitions,  \
+                             __VA_ARGS__)
+
+// ... looping down-wards w. postops
+#define loop_down_postops(nbrOfRepetitions, indexVarName, ...)  \
+CPPMACRO_NTIMES_DOWN_POSTOPS(ogis::remove_cvref<decltype((nbrOfRepetitions))>, \
+                               indexVarName, nbrOfRepetitions,  \
+                               __VA_ARGS__)
+
+
+// ... loop block-statement nbrOfRepetitions-times
+#define loop_postops(nbrOfRepetitions, ...)            \
+  CPPMACRO_NTIMES_FASTEST_POSTOPS(ogis::remove_cvref<decltype((nbrOfRepetitions))>, \
+                         CPPMACRO_UNIQUE_ID(__COUNTER__), nbrOfRepetitions, \
+                         __VA_ARGS__)
+
+// ... with explicit given type of index-variable loop in any Direction
+#define loop_hh_postops(nbrOfRepetitions, ...) \
+  CPPMACRO_NTIMES_FASTEST_POSTOPS( \
+     ogis::conditional_make_uchar<ogis::remove_cvref<decltype((nbrOfRepetitions))>>, \
+     CPPMACRO_UNIQUE_ID(__COUNTER__), nbrOfRepetitions, __VA_ARGS__)
+
+// ... with explicit given type of index-variable loop in any Direction
+#define loop_h_postops(nbrOfRepetitions, ...) \
+CPPMACRO_NTIMES_FASTEST_POSTOPS( \
+    ogis::conditional_make_ushort<ogis::remove_cvref<decltype((nbrOfRepetitions))>>, \
+    CPPMACRO_UNIQUE_ID(__COUNTER__), nbrOfRepetitions, __VA_ARGS__)

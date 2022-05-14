@@ -11,3 +11,4 @@ build-future-*
 debug/
 release/
 nppBackup/
+build-*/
