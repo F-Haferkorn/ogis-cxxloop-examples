@@ -2,15 +2,6 @@
 
 #include <type_traits>
 
-#ifndef __cpp_has_cpploop
-#define __cpp_has_cpploop
-
-#ifndef __cpp_has_cpploop_postops
-#define __cpp_has_cpploop_postops
-#endif
-
-#endif
-
 #include "cxxloop_prereqs.h"
 /**** syntax:   loop[_up|_down][_h|_hh]_postops(..){};
 
