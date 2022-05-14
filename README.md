@@ -1,6 +1,6 @@
 [master REPOSITORY is at github.com/F-Haferkorn](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
 
-You can  find the header-only implementation in [future-cpp-loop/ogis-cpp-loop/include](./future-cpp-loop/ogis-cpp-loop/include/)
+You can  find the header-only implementation in [ogis-cxxloop/include/](./ogis-cxxloop/include/)
 
 
 # The Compound-Group "LOOP" #
@@ -29,28 +29,55 @@ Example:
 
 ## Overview ##
 
-This github.com-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
+This github.com-site is a testbed and discussion-ground for an already implemented  *C++ language extension* based on the *cpp-preprocessor*.
 
-Herein I present my work on the iteration related compound-group **LOOP**.
+Herein I present my work on the iteration related **Compound-Group LOOP**.
 
-The syntax is like this:
+### The syntax in short is ###
 
-        // all compounds below allow *optional* post-expressions instead of ", ... )"
-        // and are followed by a block-statement "{}".
-        // iterate <rep> times  and uses a hidden, secret unique-index variable.
-        - loop(<rep>, ...){}                                    // use an index variable of same type as <rep>
-        - typed_loop(<type>, <rep>, ...){}                      // use a typed index variable using type <type>
+	loop[_up|_down][_h|_hh][_postops](<reps>,...){}
 
-        // same as loop, but use the given index variable <id>.
-        - named_loop_up(<id>, <rep>, ...){}                     // count id up-wards
-        - named_loop_down(<id>, <rep>,  ..){}                   // count id down-wards	!!! here occur some problems.. see below.
 
+### The unrolled syntax is ###
+
+All COMPOUNDS are  followed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
+Iterate <rep> times  and uses a hidden, secret unique-index variable.
+	
+        - loop(<rep>){}                                // loop  <rep>-times with anonymous indexVar
+         // same as loop, but use the given index variable <id>.
+        - loop_up(<rep>, <id>){}                     // loop  <rep>-times  with  indexVar **id**
+        - loop_down(<rep>, <id>){}                   // loop down-wards with  indexVar **id**
+	
+	// same as above, but with addtional post-operations (one or more comma separated expressions)
+	- loop_postops(<rep>, postop1, ...){}            // loop  <rep>-times with anonymous indexVar and post-operations
+        - loop_up_postops(<rep>, <id>, postop1, ...){}   // loop down-wards with  indexVar **id** and post-operations
+        - loop_down_postops(<rep>, <id>, postop1,... ){} // loop down-wards with  indexVar **id** and post-operations
+	
+	
+Additionally special versions with *limited* types for the indexVar
+
+	- TYPE: short
+		- loop_h(rep){}
+		- loop_up_h(rep, id){]
+		- loop_down_h(rep, id){}
+	
+		- loop_h_postops(rep, postops...){}
+		- loop_up_h_postops(rep, id, postops...){]
+		- loop_down_h_postops(rep, id, postops..){}
+	- TYPE: char
+		- loop_hh(rep){}
+		- loop_up_hh(rep, id){]
+		- loop_down_hh(rep, id){}
+	
+		- loop_hh_postops(rep, postops...){}
+		- loop_up_hh_postops(rep, id, postops...){]
+		- loop_down_hh_postops(rep, id, postops..){}
 with the tokens:
- - **rep**   the count or repetitions. (is likely an integral)
- - **{}**    is any  block statement following the compound. (may be a single statement).
- - **id**    any valid identificator to access the iteration variable.
- - **type**  any valid type-name.
-
+ - **rep**   	the count or repetitions. (is likely an integral)
+ - **{}**    	is any  block statement following the compound. (may be a single statement).
+ - **id**    	any valid identificator to access the iteration variable.
+ - **postops...** one or more comma separted post-operations (C-expressions) 	
+ 
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
 
