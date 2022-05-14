@@ -5,13 +5,13 @@
 	 
  - full compatibilty with C++11
  
- 	#pragma once
-	, ... )			indicates that variadic arguments are at end of MACRO-DEFIITION
-	__VA_ARGS__		unfold to the optional variadic argument(s), used for the "post-comparison" expressions.
+ 	- #pragma once
+	- , ... )			indicates that variadic arguments are at end of MACRO-DEFIITION
+	- __VA_ARGS__		unfold to the optional variadic argument(s), used for the "post-comparison" expressions.
 
 - additional requirements
 
-	__COUNTER__		counter required by CPPMACRO_UNIQUE_ID()
+	- __COUNTER__		counter required by CPPMACRO_UNIQUE_ID()
 
 
 This "core-language extension" can be implemented solely using the cpp-preprocessor.
