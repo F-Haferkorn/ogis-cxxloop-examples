@@ -26,6 +26,7 @@ Example:
            loop(10)                     // iterate over 10 columns.
               *tgt++  =   *src++ ;      // copy *source to *target.
 
+**Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
 ## Overview ##
 
@@ -138,10 +139,10 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 	#endif
 
 ## Detailed Information ##
-### About Existing Compound-Statements   ###
-see this [file](./the_existing_compounds.md).
+	
+In C++11/C++17  there are these [existing Compound-Statements](./the_existing_compounds.md)  
 
-**Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
+
 
 ### [The Implementation](./the_full_implementation.md) ###
 For a description of the implementation look [**here**](./the_full_implementation.md).
