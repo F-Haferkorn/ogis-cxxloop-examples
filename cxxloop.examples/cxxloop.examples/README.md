@@ -10,6 +10,6 @@ The subdirs
 Have a look at:
 - [the github repository](https://github.com/F-Haferkorn/ogis-cxxloop/)
 - [godbolt examples](../cxxloop-godbolt.examples)
-- [the header-only implementation](../ogis-cpp-loop/include)
+- [the header-only implementation](../ogis-cpxxloop/include)
 
 
