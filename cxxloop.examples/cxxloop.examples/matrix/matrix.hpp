@@ -45,20 +45,30 @@ inline void matrix_incr_w_stride(TTgtValuePtr tgt, TTgtValue increment,
 template <typename TTgtValuePtr, typename TSrcAValuePtr, typename TSrcBValuePtr,
           typename TSizeRows, typename TSizeCols>
 inline void matrix_mpy(TTgtValuePtr tgt, TSrcAValuePtr srcA, TSrcBValuePtr srcB,
-                       TSizeRows nbofRows, TSizeCols nbofColums) {
-  auto B = srcB;
+                       TSizeCols nbofColums, TSizeRows nbofRows) {
+  auto pCol = srcA;
+  auto pRow = srcB;
 
-  loop(nbofRows) loop_postops(nbofColums, srcA++, srcB += columns) *tgt++ =
-      (*srcA) * (*srcB2);
+  loop(nbofColums * nbofRows)  // for each matrix element
+      loop_up_postops(nbofRows, row, pRow = srcB + row * nbofColums)
+          loop_postops(nbofColums, pRow += nbofColums) *tgt++ =
+              (*pCol++) * (*pRow);
 }
 
 template <typename TTgtValuePtr, typename TSrcAValuePtr, typename TSrcBValuePtr,
           typename TSizeCols, typename TSizeRows, typename TIdxCols,
           typename TIdxRows>
 inline void matrix_mpy_w_stride(TTgtValuePtr tgtM, TSrcAValuePtr srcA,
-                                TSrcBValuePtr srcB, SizeCols sizeA,
+                                TSrcBValuePtr srcB, TSizeCols sizeA,
                                 TSizeRows sizeB, TIdxCols deltaA = 1,
                                 TIdxRows deltaB = 1) {
-  loop_postops(nbofRows, srcB += deltaB * sizeA) loop_postops(
-      nbofColums, srcA += deltaA, srcB += sizeA) *tgt++ = (*srcA) * (*srcB);
+  auto pA = srcA;
+  auto pB = srcB;
+
+  // for each matrix element
+  loop(sizeA * sizeB)
+      // for each row element
+      loop_up_postops(sizeB, row, pB = srcB + deltaB * row * sizeA)
+      // multily ans add-up column with row.
+      loop_postops(sizeA, pB += sizeA) *tgtM++ = (*pA++) * (*pB);
 }

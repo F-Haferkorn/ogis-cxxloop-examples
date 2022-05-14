@@ -282,6 +282,7 @@ void test() {
   test_loop_scopes<const unsigned short>();
   test_loop_scopes<const unsigned char>();
 }
+}  // namespace SCOPE
 
 ////////////////////////////
 

@@ -4,22 +4,12 @@
 #error("the compound group LOOP will not work with C99 or later")
 #endif
 
-#ifndef __cpp_has_cpploop
-#define __cpp_has_cpploop
-#ifndef __cpp_has_cpploop_postops
-#define __cpp_has_cpploop_postops
-#endif
-#endif
-
 ///////////////////////////////////////////////////////////////////////////
 //////////// PRE-requisites   /////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
 // cpp-macro to generate an unique ID
 #ifndef CPPMACRO_UNIQUE_ID
-///#define CPPMACRO_UNIQUE_ID
-/// CPPMACRO_UNIQUE_ID_LINE##__LINE__##COUNTER##__COUNTER__
-
 #define CPPMACRO_XCAT2(a, b) a##b
 #define CPPMACRO_UNIQUE_ID(counter) CPPMACRO_XCAT2(UNIQUE_ID_LOOP_, counter)
 #endif

@@ -1,18 +1,13 @@
 #pragma once
 
-#ifndef __cpp_has_cpploop
-#define __cpp_has_cpploop
-#ifndef __cpp_has_cpploop_postops
-#define __cpp_has_cpploop_postops
-#endif
-#endif
 
-#include <type_traits>
 
-#include "cxxloop_prereqs.h"
+/*
+/////////////////////////////////////////////////////////////////////////
+//////////// LOOP - without PostOps  ////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////
 
-/********************
-loop[_up|_down][_h|_hh]_postops
+SYNTAX: loop[_up|_down][_h|_hh]_postops
 
 loop_postops(rep);
 loop_up_postops(rep, id);
@@ -30,11 +25,9 @@ loop_down_hh_postops(rep, id)
 
 #ifdef __cpp_has_cpploop
 #ifdef __cpp_has_cpploop_postops
-///////////////////////////////////////////////////////////////////////////
-//////////// LOOP - without PostOps  ////////////////////////////////////
-///////////////////////////////////////////////////////////////////////////
 
-///////////////// //CPPMACRO_LOOP
+#include "cxxloop_prereqs.h"
+
 ///
 // ... loop block-statement nbrOfRepetitions-times
 #define loop_postops(nbrOfRepetitions, ...)        \
@@ -82,5 +75,6 @@ loop_down_hh_postops(rep, id)
 #define loop_down_hh_postops(nbrOfRepetitions, indexVarName, ...)         \
   CPPMACRO_LOOP_TYPED_POSTOPS(DOWN, nbrOfRepetitions, indexVarName, char, \
                               __VA_ARGS__)
+
 #endif
 #endif
