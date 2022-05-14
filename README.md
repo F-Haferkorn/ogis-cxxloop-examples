@@ -1,6 +1,6 @@
 [master REPOSITORY is at github.com/F-Haferkorn](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
 
-You can  find the header-only implementation in [future-cpp-loop/ogis-cpp-loop/include](./future-cpp-loop/ogis-cpp-loop/include/)
+You can  find the header-only implementation in [cxxloop/include/](./cxxloop/include/)
 
 
 # The Compound-Group "LOOP" #
@@ -26,34 +26,67 @@ Example:
            loop(10)                     // iterate over 10 columns.
               *tgt++  =   *src++ ;      // copy *source to *target.
 
+**Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
-## Overview ##
+## The SYNTAX ##
 
-This github.com-site is a testbed and discussion-ground for a *C++ core-language extension* based on the *cpp-preprocessor*.
+This github.com-site is a testbed and discussion-ground for an already implemented  *C++ language extension* based on the *cpp-preprocessor*.
 
-Herein I present my work on the iteration related compound-group **LOOP**.
+Herein I present my work on the iteration related **Compound-Group LOOP**.
 
-The syntax is like this:
+### The syntax in short-form  ###
 
-        // all compounds below allow *optional* post-expressions instead of ", ... )"
-        // and are followed by a block-statement "{}".
-        // iterate <rep> times  and uses a hidden, secret unique-index variable.
-        - loop(<rep>, ...){}                                    // use an index variable of same type as <rep>
-        - typed_loop(<type>, <rep>, ...){}                      // use a typed index variable using type <type>
+	loop[_up|_down][_h|_hh][_postops](<rep>,...){}
 
-        // same as loop, but use the given index variable <id>.
-        - named_loop_up(<id>, <rep>, ...){}                     // count id up-wards
-        - named_loop_down(<id>, <rep>,  ..){}                   // count id down-wards	!!! here occur some problems.. see below.
+### The unrolled syntax  ###
+using the tokens:
 
-with the tokens:
- - **rep**   the count or repetitions. (is likely an integral)
- - **{}**    is any  block statement following the compound. (may be a single statement).
- - **id**    any valid identificator to access the iteration variable.
- - **type**  any valid type-name.
+ - **<rep>**   	the count or repetitions. (is likely an integral)
+ - **{}**    	is any  block statement following the compound. (may be a single statement).
+ - **<id>**    	any valid identificator to access the iteration variable.
+ - **<postops>>... one or more comma separted post-operations (C-expressions) 	
 
+All COMPOUNDS are  folowed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
+
+Iterate <rep> times  and uses a hidden, secret unique-index variable.
+	
+ 	loop(<rep>){}                                	// loop  <rep>-times with anonymous indexVar
+
+same loop, but use the given index variable <id>.
+	
+	loop_up(<rep>, <id>){}                     	// loop  <rep>-times  with  indexVar **id**
+	loop_down(<rep>, <id>){}                   	// loop down-wards with  indexVar **id**
+
+same as above, but with addtional post-operations (one or more comma separated expressions)
+
+	loop_postops(<rep>, <postops1>...){}            // loop  <rep>-times with anonymous indexVar and post-operations
+	loop_up_postops(<rep>, <id>, <postops>...){}   // loop down-wards with  indexVar **id** and post-operations
+	loop_down_postops(<rep>, <id>, <postops>...){} // loop down-wards with  indexVar **id** and post-operations	
+	
+Additionally special versions with *limited* types for the indexVar
+
+	TYPE: short
+		loop_h(<rep>){}
+		loop_up_h(<rep>, <id>){]
+		loop_down_h(<rep>, <id>){}
+	
+		loop_h_postops(<rep>, <postops>...){}
+		loop_up_h_postops(<rep>, <id>, <postops>...){]
+		loop_down_h_postops(<rep>, <id>, <postops>..){}
+	
+	TYPE: char
+		loop_hh(<rep>){}
+		loop_up_hh(<rep>, id){]
+		loop_down_hh(<rep>, id){}
+	
+		loop_hh_postops(<rep>, <postops>...){}
+		loop_up_hh_postops(<rep>, <id>, <postops>...){]
+		loop_down_hh_postops(<rep>, <id>, <postops>..){}
+ 
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
 
+## USAGE  ##
 ### Activation via #include  ###
 
 All "LOOP" compound-statments can be used after an:
@@ -68,8 +101,8 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	void matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
   	{
-		loop(nRows,  tgt+=stride, src+=stride)  // apply stride after each row to tgt and src
-			loop(nColumns, tgt++, src++)	// increment after each copy.
+		loop_postops(nRows,  tgt+=stride, src+=stride)  // apply stride after each row to tgt and src
+			loop_postops(nColumns, tgt++, src++)	// increment after each copy.
 				*tgt = *src;
 		return;
 	}
@@ -79,45 +112,53 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 
 **loop(){}**  can be implemented like the following
 
-	#define CPPMACRO_UNIQUE_ID()  \
-		CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
+	namesapce ogis{
+		template <typename Type>
+		using remove_cvref_t =
+    			typename std::remove_cv<typename std::remove_reference<Type>::type>::type;
+	}
+	
+	#ifdef __cpp_has_cpploop
+	
+	#define CPPMACRO_XCAT2(a, b) a##b
+	#define CPPMACRO_UNIQUE_ID(counter) CPPMACRO_XCAT2(UNIQUE_ID_LOOP_, counter)
+	
 
-        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions, ...) \     
-                 for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++, ##__VA_ARGS__)
+        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions) \     
+                 for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++)
+	
+	#define CPPMACRO_NTIMES_FASTEST(indexType, nbrOfRepetitions, indexVarName) \
+                 for (indexType indexVarName = static_cast<indexType>(nbrOfRepetitions);  indexVarName-- > 0;)
 
-        #define loop(nbrOfRepetitions, ...)   \
-                   CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
+	#define CPPMACRO_LOOP(direction, nbrOfRepetitions, indexVarName)   \
+	   	CPPMACRO_NTIMES_##direction(                                \
+	      		typename ogis::remove_cvref_t<decltype((nbrOfRepetitions))>,  nbrOfRepetitions, indexVarName)
+	
+	#define loop(nbrOfRepetitions) \
+	  	CPPMACRO_LOOP(FASTEST, nbrOfRepetitions, CPPMACRO_UNIQUE_ID(__COUNTER__))
+
+	#endif
 
 ## Detailed Information ##
-### About Existing Compound-Statements   ###
-see this [file](./the_existing_compounds.md).
+	
+In C++11/C++17  there are these [existing Compound-Statements](./the_existing_compounds.md)  
 
-**Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
-
-### The [Full Syntax](./the_full_syntax.md) ###
-For the full syntax of the related compounds 
- - loop(){]
- - typed_loop(){}, 
- - named_loop_up(){},  
- - named_loop_down(){}
- 
- look [**here**](./the_full_syntax.md).
-
-### The Description of the [Full Implementation](./the_full_implementation.md) ###
+### [The Implementation](./the_full_implementation.md) ###
 For a description of the implementation look [**here**](./the_full_implementation.md).
 
-#### The Code Examples ####
 
-You find  full C++ header-only implementation of the **Compound-Group "LOOP"**"
-[here](./future-cpp-loop/ogis-cpp-loop/include).
+### The Code Examples ###
 
-There are also *Qt-Creator* and *VisualStudio 2019* **project files** in this
-[directory](./future-cpp-loop).
+You find  a C++ header-only implementation of the **Compound-Group "LOOP"**" 
+[here](./cxxloop/include).
+
+There are  *cmake* subproject Projekts
+	
+	- the implementation in the directory [cxxloop](./cxxloop).
+	- unit tests inthe  directory [cxxloop](./cxxloop.examples/t).
 
 For more matrix-examples ave a look at
 [this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp).
-
-
 
 ## Discussion ##
 
@@ -133,11 +174,10 @@ OK, it is all about iterating and it is not a *swiss-army knife for all iteratio
  - no changes to any compiler are necessary.
  - it creates a hidden index name using the macro  CPPMACRO_UNIQUE_ID()
 
-Outcomes for ANSI-C
- - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler (using long as the type of the index variable)
- - It is implementable using solely the standard c-preprocessor (cpp).
-
-
+### ODoes it also  work  for C ? ###
+	
+ - Due to lack of decltype and type_traits,  the Compound-Group LOOP does **NOTwork-out with any version of C**.
+	
 ### Advantages: ###
 
 With recent compilers, this is **as fast** as the **regular** **for(;;){}** iteration.
@@ -153,7 +193,8 @@ BUT it has these advantages:
 ### Disadvantages:  ###
 - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. But this is somehow unlikely.
 
-#### looping plain enum types is insane and does not work ####
+## Cavats ##
+### looping plain enum types is insane and does not work ####
 This code does NOT  work
 
 	#e.g. MinGW32 has this error: cannot decrement expression of enum type '(anonymous enum at ....)
@@ -162,7 +203,9 @@ This code does NOT  work
 	      do_something();
 
 
-#### Compilation caveat: Problematic use of  tempate arguments **with comma** ####
+### Compilation caveat:###
+	
+#### PROBLEM: use of  tempate arguments **with commas** ####
 The preprocessor implemantation will break when using an **argument containing a comma** .
 This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.
 
@@ -174,8 +217,8 @@ While this does not work due the comma in the template **std::integral_constant<
     loop(std::integral_constant<int, 10>::value)   /// !pwnng compiler error at Kommma (,)
           do_something();
 
+#### SOLUTION: tempate arguments **with commas** ##
 **Embracing** the argument **with regular braces** solves the problem:
-This works:
 
     loop( (std::integral_constant<int, 10>::value) )  
           do_something();
@@ -183,7 +226,7 @@ This works:
 Adding the LOOP-compounds to the core-language would fix this problem, as cpp-preprocessor would not be invoked any longer.
 
 
-## Remarks ##
+## CONCLUSIONS ##
 
 ### Remarks on Compiler Optimization ###
 The new iterative compounds
