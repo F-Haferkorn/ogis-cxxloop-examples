@@ -28,7 +28,7 @@ Example:
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
-## Overview ##
+## The SYNTAX ##
 
 This github.com-site is a testbed and discussion-ground for an already implemented  *C++ language extension* based on the *cpp-preprocessor*.
 
@@ -86,6 +86,7 @@ Additionally special versions with *limited* types for the indexVar
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
 
+## USAGE  ##
 ### Activation via #include  ###
 
 All "LOOP" compound-statments can be used after an:
@@ -142,13 +143,11 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 	
 In C++11/C++17  there are these [existing Compound-Statements](./the_existing_compounds.md)  
 
-
-
 ### [The Implementation](./the_full_implementation.md) ###
 For a description of the implementation look [**here**](./the_full_implementation.md).
 
 
-#### The Code Examples ####
+### The Code Examples ###
 
 You find  a C++ header-only implementation of the **Compound-Group "LOOP"**" 
 [here](./cxxloop/include).
@@ -194,7 +193,8 @@ BUT it has these advantages:
 ### Disadvantages:  ###
 - The underlying itarator index <rep> is not really "hidden" and could be "guessed" by a experienced programmer. But this is somehow unlikely.
 
-#### looping plain enum types is insane and does not work ####
+## Cavats ##
+### looping plain enum types is insane and does not work ####
 This code does NOT  work
 
 	#e.g. MinGW32 has this error: cannot decrement expression of enum type '(anonymous enum at ....)
@@ -203,7 +203,9 @@ This code does NOT  work
 	      do_something();
 
 
-#### Compilation caveat: Problematic use of  tempate arguments **with comma** ####
+### Compilation caveat:###
+	
+#### PROBLEM: use of  tempate arguments **with commas** ####
 The preprocessor implemantation will break when using an **argument containing a comma** .
 This happens seldomly, e.g. when an complex template expression is used that contains any comma ','.
 
@@ -215,8 +217,8 @@ While this does not work due the comma in the template **std::integral_constant<
     loop(std::integral_constant<int, 10>::value)   /// !pwnng compiler error at Kommma (,)
           do_something();
 
+#### SOLUTION: tempate arguments **with commas** ##
 **Embracing** the argument **with regular braces** solves the problem:
-This works:
 
     loop( (std::integral_constant<int, 10>::value) )  
           do_something();
@@ -224,7 +226,7 @@ This works:
 Adding the LOOP-compounds to the core-language would fix this problem, as cpp-preprocessor would not be invoked any longer.
 
 
-## Remarks ##
+## CONCLUSIONS ##
 
 ### Remarks on Compiler Optimization ###
 The new iterative compounds
