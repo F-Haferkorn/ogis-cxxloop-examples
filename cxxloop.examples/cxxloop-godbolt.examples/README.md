@@ -8,5 +8,5 @@
 Have a look at:
 - [the github repository](https://github.com/F-Haferkorn/ogis-cxxloop/)
 - [other examples](../cxxloop.examples)
-- [the header-only implementation](../cxxloop/include)
+- [the header-only implementation](../../cxxloop/include)
 
