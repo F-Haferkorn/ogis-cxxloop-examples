@@ -47,37 +47,41 @@ using the tokens:
 
 
 All COMPOUNDS are  folowed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
+
 Iterate <rep> times  and uses a hidden, secret unique-index variable.
 	
-        - loop(<rep>){}                                	// loop  <rep>-times with anonymous indexVar
-        // same as loop, but use the given index variable <id>.
-        - loop_up(<rep>, <id>){}                     	// loop  <rep>-times  with  indexVar **id**
-        - loop_down(<rep>, <id>){}                   	// loop down-wards with  indexVar **id**
+ 	loop(<rep>){}                                	// loop  <rep>-times with anonymous indexVar
+
+same loop, but use the given index variable <id>.
 	
-	// same as above, but with addtional post-operations (one or more comma separated expressions)
-	- loop_postops(<rep>, postop1, ...){}            // loop  <rep>-times with anonymous indexVar and post-operations
-        - loop_up_postops(<rep>, <id>, postop1, ...){}   // loop down-wards with  indexVar **id** and post-operations
-        - loop_down_postops(<rep>, <id>, postop1,... ){} // loop down-wards with  indexVar **id** and post-operations
+	loop_up(<rep>, <id>){}                     	// loop  <rep>-times  with  indexVar **id**
+	loop_down(<rep>, <id>){}                   	// loop down-wards with  indexVar **id**
+
+same as above, but with addtional post-operations (one or more comma separated expressions)
+
+	loop_postops(<rep>, postop1, ...){}            // loop  <rep>-times with anonymous indexVar and post-operations
+	loop_up_postops(<rep>, <id>, postop1, ...){}   // loop down-wards with  indexVar **id** and post-operations
+	loop_down_postops(<rep>, <id>, postop1,... ){} // loop down-wards with  indexVar **id** and post-operations
 	
 	
 Additionally special versions with *limited* types for the indexVar
 
-	- TYPE: short
-		- loop_h(rep){}
-		- loop_up_h(rep, id){]
-		- loop_down_h(rep, id){}
+	TYPE: short
+		loop_h(rep){}
+		loop_up_h(rep, id){]
+		loop_down_h(rep, id){}
 	
-		- loop_h_postops(rep, postops...){}
-		- loop_up_h_postops(rep, id, postops...){]
-		- loop_down_h_postops(rep, id, postops..){}
-	- TYPE: char
-		- loop_hh(rep){}
-		- loop_up_hh(rep, id){]
-		- loop_down_hh(rep, id){}
+		loop_h_postops(rep, postops...){}
+		loop_up_h_postops(rep, id, postops...){]
+		loop_down_h_postops(rep, id, postops..){}
+	TYPE: char
+		loop_hh(rep){}
+		loop_up_hh(rep, id){]
+		loop_down_hh(rep, id){}
 	
-		- loop_hh_postops(rep, postops...){}
-		- loop_up_hh_postops(rep, id, postops...){]
-		- loop_down_hh_postops(rep, id, postops..){}
+		loop_hh_postops(rep, postops...){}
+		loop_up_hh_postops(rep, id, postops...){]
+		loop_down_hh_postops(rep, id, postops..){}
  
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
@@ -96,8 +100,8 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	void matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
   	{
-		loop(nRows,  tgt+=stride, src+=stride)  // apply stride after each row to tgt and src
-			loop(nColumns, tgt++, src++)	// increment after each copy.
+		loop_postops(nRows,  tgt+=stride, src+=stride)  // apply stride after each row to tgt and src
+			loop_postops(nColumns, tgt++, src++)	// increment after each copy.
 				*tgt = *src;
 		return;
 	}
