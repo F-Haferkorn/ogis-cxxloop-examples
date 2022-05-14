@@ -33,18 +33,17 @@ This github.com-site is a testbed and discussion-ground for an already implement
 
 Herein I present my work on the iteration related **Compound-Group LOOP**.
 
-### The syntax in short is ###
+### The syntax in short-form  ###
 
 	loop[_up|_down][_h|_hh][_postops](<rep>,...){}
 
-### The unrolled syntax is ###
+### The unrolled syntax  ###
 using the tokens:
 
  - **<rep>**   	the count or repetitions. (is likely an integral)
  - **{}**    	is any  block statement following the compound. (may be a single statement).
  - **<id>**    	any valid identificator to access the iteration variable.
  - **<postops>>... one or more comma separted post-operations (C-expressions) 	
-
 
 All COMPOUNDS are  folowed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
 
@@ -153,14 +152,13 @@ For a description of the implementation look [**here**](./the_full_implementatio
 You find  a C++ header-only implementation of the **Compound-Group "LOOP"**" 
 [here](./cxxloop/include).
 
-There are  *Cmake* Projekts
+There are  *cmake* subproject Projekts
+	
 	- the implementation in the directory [cxxloop](./cxxloop).
 	- unit tests inthe  directory [cxxloop](./cxxloop.examples/t).
 
 For more matrix-examples ave a look at
 [this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp).
-
-
 
 ## Discussion ##
 
@@ -176,11 +174,10 @@ OK, it is all about iterating and it is not a *swiss-army knife for all iteratio
  - no changes to any compiler are necessary.
  - it creates a hidden index name using the macro  CPPMACRO_UNIQUE_ID()
 
-Outcomes for ANSI-C
- - Even if it has been designed for Modern C++ it works also with a plain ANSI-C compiler (using long as the type of the index variable)
- - It is implementable using solely the standard c-preprocessor (cpp).
-
-
+### ODoes it also  work  for C ? ###
+	
+ - Due to lack of decltype and type_traits,  the Compound-Group LOOP does **NOTwork-out with any version of C**.
+	
 ### Advantages: ###
 
 With recent compilers, this is **as fast** as the **regular** **for(;;){}** iteration.
