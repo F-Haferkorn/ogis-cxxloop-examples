@@ -17,7 +17,6 @@
 This "core-language extension" can be implemented solely using the cpp-preprocessor.
 
 ### Implementation for C / C++11 or later ###
-
 	[cxxloop_prereqs.h](cxxloop/include/cxxloop_prereqs.h) defining *necessary prerequisites*
 	[cxxloop.h](cxxloop/include/cxxloop.h)		defining the *regular loop stuff*
 	[cxxloop.h](cxxloop/include/cxxloop_postops.h)  defining the *post-opeartion stuff*
