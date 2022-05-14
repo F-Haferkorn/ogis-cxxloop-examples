@@ -18,7 +18,7 @@ This "core-language extension" can be implemented solely using the cpp-preproces
 
 ### Implementation for C / C++11 or later ###
 
-cxxloop_preqs.h
+cxxloop_prereqs.
 
 	// cpp-macro to generate an unique ID
 	#ifndef CPPMACRO_UNIQUE_ID
