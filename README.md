@@ -1,6 +1,6 @@
 [master REPOSITORY is at github.com/F-Haferkorn](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
 
-You can  find the header-only implementation in [ogis-cxxloop/include/](./ogis-cxxloop/include/)
+You can  find the header-only implementation in [cxxloop/include/](./cxxloop/include/)
 
 
 # The Compound-Group "LOOP" #
