@@ -35,15 +35,15 @@ Herein I present my work on the iteration related **Compound-Group LOOP**.
 
 ### The syntax in short is ###
 
-	loop[_up|_down][_h|_hh][_postops](<reps>,...){}
+	loop[_up|_down][_h|_hh][_postops](<rep>,...){}
 
 ### The unrolled syntax is ###
 using the tokens:
 
- - **rep**   	the count or repetitions. (is likely an integral)
+ - **<rep>**   	the count or repetitions. (is likely an integral)
  - **{}**    	is any  block statement following the compound. (may be a single statement).
- - **id**    	any valid identificator to access the iteration variable.
- - **postops...** one or more comma separted post-operations (C-expressions) 	
+ - **<id>**    	any valid identificator to access the iteration variable.
+ - **<postops>>... one or more comma separted post-operations (C-expressions) 	
 
 
 All COMPOUNDS are  folowed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
@@ -59,29 +59,29 @@ same loop, but use the given index variable <id>.
 
 same as above, but with addtional post-operations (one or more comma separated expressions)
 
-	loop_postops(<rep>, postop1, ...){}            // loop  <rep>-times with anonymous indexVar and post-operations
-	loop_up_postops(<rep>, <id>, postop1, ...){}   // loop down-wards with  indexVar **id** and post-operations
-	loop_down_postops(<rep>, <id>, postop1,... ){} // loop down-wards with  indexVar **id** and post-operations
-	
+	loop_postops(<rep>, <postops1>...){}            // loop  <rep>-times with anonymous indexVar and post-operations
+	loop_up_postops(<rep>, <id>, <postops>...){}   // loop down-wards with  indexVar **id** and post-operations
+	loop_down_postops(<rep>, <id>, <postops>...){} // loop down-wards with  indexVar **id** and post-operations	
 	
 Additionally special versions with *limited* types for the indexVar
 
 	TYPE: short
-		loop_h(rep){}
-		loop_up_h(rep, id){]
-		loop_down_h(rep, id){}
+		loop_h(<rep>){}
+		loop_up_h(<rep>, <id>){]
+		loop_down_h(<rep>, <id>){}
 	
-		loop_h_postops(rep, postops...){}
-		loop_up_h_postops(rep, id, postops...){]
-		loop_down_h_postops(rep, id, postops..){}
+		loop_h_postops(<rep>, <postops>...){}
+		loop_up_h_postops(<rep>, <id>, <postops>...){]
+		loop_down_h_postops(<rep>, <id>, <postops>..){}
+	
 	TYPE: char
-		loop_hh(rep){}
-		loop_up_hh(rep, id){]
-		loop_down_hh(rep, id){}
+		loop_hh(<rep>){}
+		loop_up_hh(<rep>, id){]
+		loop_down_hh(<rep>, id){}
 	
-		loop_hh_postops(rep, postops...){}
-		loop_up_hh_postops(rep, id, postops...){]
-		loop_down_hh_postops(rep, id, postops..){}
+		loop_hh_postops(<rep>, <postops>...){}
+		loop_up_hh_postops(<rep>, <id>, <postops>...){]
+		loop_down_hh_postops(<rep>, <id>, <postops>..){}
  
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
