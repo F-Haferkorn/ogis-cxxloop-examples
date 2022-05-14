@@ -37,16 +37,22 @@ Herein I present my work on the iteration related **Compound-Group LOOP**.
 
 	loop[_up|_down][_h|_hh][_postops](<reps>,...){}
 
-
 ### The unrolled syntax is ###
+using the tokens:
 
-All COMPOUNDS are  followed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
+ - **rep**   	the count or repetitions. (is likely an integral)
+ - **{}**    	is any  block statement following the compound. (may be a single statement).
+ - **id**    	any valid identificator to access the iteration variable.
+ - **postops...** one or more comma separted post-operations (C-expressions) 	
+
+
+All COMPOUNDS are  folowed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
 Iterate <rep> times  and uses a hidden, secret unique-index variable.
 	
-        - loop(<rep>){}                                // loop  <rep>-times with anonymous indexVar
-         // same as loop, but use the given index variable <id>.
-        - loop_up(<rep>, <id>){}                     // loop  <rep>-times  with  indexVar **id**
-        - loop_down(<rep>, <id>){}                   // loop down-wards with  indexVar **id**
+        - loop(<rep>){}                                	// loop  <rep>-times with anonymous indexVar
+        // same as loop, but use the given index variable <id>.
+        - loop_up(<rep>, <id>){}                     	// loop  <rep>-times  with  indexVar **id**
+        - loop_down(<rep>, <id>){}                   	// loop down-wards with  indexVar **id**
 	
 	// same as above, but with addtional post-operations (one or more comma separated expressions)
 	- loop_postops(<rep>, postop1, ...){}            // loop  <rep>-times with anonymous indexVar and post-operations
@@ -72,11 +78,6 @@ Additionally special versions with *limited* types for the indexVar
 		- loop_hh_postops(rep, postops...){}
 		- loop_up_hh_postops(rep, id, postops...){]
 		- loop_down_hh_postops(rep, id, postops..){}
-with the tokens:
- - **rep**   	the count or repetitions. (is likely an integral)
- - **{}**    	is any  block statement following the compound. (may be a single statement).
- - **id**    	any valid identificator to access the iteration variable.
- - **postops...** one or more comma separted post-operations (C-expressions) 	
  
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
