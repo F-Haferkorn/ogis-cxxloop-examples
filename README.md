@@ -135,7 +135,7 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 	
 	#define loop(nbrOfRepetitions) \
 	  	CPPMACRO_LOOP(FASTEST, nbrOfRepetitions, CPPMACRO_UNIQUE_ID(__COUNTER__))
-	
+
 	#endif
 
 ## Detailed Information ##
@@ -144,25 +144,18 @@ see this [file](./the_existing_compounds.md).
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
-### The [Full Syntax](./the_full_syntax.md) ###
-For the full syntax of the related compounds 
- - loop(){]
- - typed_loop(){}, 
- - named_loop_up(){},  
- - named_loop_down(){}
- 
- look [**here**](./the_full_syntax.md).
-
-### The Description of the [Full Implementation](./the_full_implementation.md) ###
+### [The Implementation](./the_full_implementation.md) ###
 For a description of the implementation look [**here**](./the_full_implementation.md).
+
 
 #### The Code Examples ####
 
-You find  full C++ header-only implementation of the **Compound-Group "LOOP"**"
-[here](./future-cpp-loop/ogis-cpp-loop/include).
+You find  a C++ header-only implementation of the **Compound-Group "LOOP"**" 
+[here](./cxxloop/include).
 
-There are also *Qt-Creator* and *VisualStudio 2019* **project files** in this
-[directory](./future-cpp-loop).
+There are  *Cmake* Projekts
+	- the implementation in the directory [cxxloop](./cxxloop).
+	- unit tests inthe  directory [cxxloop](./cxxloop.examples/t).
 
 For more matrix-examples ave a look at
 [this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp).
