@@ -5,7 +5,7 @@
    
 
 ### 2021-03-30: by Frank.Haferkorn:  Lightning Talk at the **LondonC++ Meetup Group** ###
-- [youtube-Video ![Video Meetup-LondonC++  2021-03-30](https://youtu.be/lz3OwOUhtb0](https://www.youtube.com/watch?v=lz3OwOUhtb0&t=5s)
+- [youtube-Video ![Image Meetup-LondonC++  2021-03-30](./2020-10-22%2BMUCxx-Meetup%2BFrank.Haferkorn%2BThe-CompoundGroup-LOOP-size%3D20percent.png](https://www.youtube.com/watch?v=lz3OwOUhtb0&t=251s)
  - [English PDF-Slides](2021-03-30%2BLondonCxx-Meetup%2BFrank.HaferkornThe%2BLOOP-compounds%2CSome-implications_%40en-20min.pdf)
 
         
