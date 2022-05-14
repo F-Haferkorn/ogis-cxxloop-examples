@@ -1,6 +1,6 @@
 [master REPOSITORY is at github.com/F-Haferkorn](https://github.com/F-Haferkorn/ogis-modern-cxx-future-cpp/)
 
-You can  find the header-only implementation in [ogis-cxxloop/include/](./ogis-cxxloop/include/)
+You can  find the header-only implementation in [cxxloop/include/](./cxxloop/include/)
 
 
 # The Compound-Group "LOOP" #
@@ -35,48 +35,53 @@ Herein I present my work on the iteration related **Compound-Group LOOP**.
 
 ### The syntax in short is ###
 
-	loop[_up|_down][_h|_hh][_postops](<reps>,...){}
-
+	loop[_up|_down][_h|_hh][_postops](<rep>,...){}
 
 ### The unrolled syntax is ###
+using the tokens:
 
-All COMPOUNDS are  followed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
+ - **<rep>**   	the count or repetitions. (is likely an integral)
+ - **{}**    	is any  block statement following the compound. (may be a single statement).
+ - **<id>**    	any valid identificator to access the iteration variable.
+ - **<postops>>... one or more comma separted post-operations (C-expressions) 	
+
+
+All COMPOUNDS are  folowed by a block-statement "{}" and additionally with a forced (limited) type of the indexVar
+
 Iterate <rep> times  and uses a hidden, secret unique-index variable.
 	
-        - loop(<rep>){}                                // loop  <rep>-times with anonymous indexVar
-         // same as loop, but use the given index variable <id>.
-        - loop_up(<rep>, <id>){}                     // loop  <rep>-times  with  indexVar **id**
-        - loop_down(<rep>, <id>){}                   // loop down-wards with  indexVar **id**
+ 	loop(<rep>){}                                	// loop  <rep>-times with anonymous indexVar
+
+same loop, but use the given index variable <id>.
 	
-	// same as above, but with addtional post-operations (one or more comma separated expressions)
-	- loop_postops(<rep>, postop1, ...){}            // loop  <rep>-times with anonymous indexVar and post-operations
-        - loop_up_postops(<rep>, <id>, postop1, ...){}   // loop down-wards with  indexVar **id** and post-operations
-        - loop_down_postops(<rep>, <id>, postop1,... ){} // loop down-wards with  indexVar **id** and post-operations
-	
+	loop_up(<rep>, <id>){}                     	// loop  <rep>-times  with  indexVar **id**
+	loop_down(<rep>, <id>){}                   	// loop down-wards with  indexVar **id**
+
+same as above, but with addtional post-operations (one or more comma separated expressions)
+
+	loop_postops(<rep>, <postops1>...){}            // loop  <rep>-times with anonymous indexVar and post-operations
+	loop_up_postops(<rep>, <id>, <postops>...){}   // loop down-wards with  indexVar **id** and post-operations
+	loop_down_postops(<rep>, <id>, <postops>...){} // loop down-wards with  indexVar **id** and post-operations	
 	
 Additionally special versions with *limited* types for the indexVar
 
-	- TYPE: short
-		- loop_h(rep){}
-		- loop_up_h(rep, id){]
-		- loop_down_h(rep, id){}
+	TYPE: short
+		loop_h(<rep>){}
+		loop_up_h(<rep>, <id>){]
+		loop_down_h(<rep>, <id>){}
 	
-		- loop_h_postops(rep, postops...){}
-		- loop_up_h_postops(rep, id, postops...){]
-		- loop_down_h_postops(rep, id, postops..){}
-	- TYPE: char
-		- loop_hh(rep){}
-		- loop_up_hh(rep, id){]
-		- loop_down_hh(rep, id){}
+		loop_h_postops(<rep>, <postops>...){}
+		loop_up_h_postops(<rep>, <id>, <postops>...){]
+		loop_down_h_postops(<rep>, <id>, <postops>..){}
 	
-		- loop_hh_postops(rep, postops...){}
-		- loop_up_hh_postops(rep, id, postops...){]
-		- loop_down_hh_postops(rep, id, postops..){}
-with the tokens:
- - **rep**   	the count or repetitions. (is likely an integral)
- - **{}**    	is any  block statement following the compound. (may be a single statement).
- - **id**    	any valid identificator to access the iteration variable.
- - **postops...** one or more comma separted post-operations (C-expressions) 	
+	TYPE: char
+		loop_hh(<rep>){}
+		loop_up_hh(<rep>, id){]
+		loop_down_hh(<rep>, id){}
+	
+		loop_hh_postops(<rep>, <postops>...){}
+		loop_up_hh_postops(<rep>, <id>, <postops>...){]
+		loop_down_hh_postops(<rep>, <id>, <postops>..){}
  
 These new compounds are currently implemented via the cpp-preprocessor.
 Except in typed_loop(){}, the iteration variable has the same type as the count of repetitions *rep*.
@@ -95,8 +100,8 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 	template<typename TPtr, typename TRowSize, typename TColSize, typename TStrideSize >
 	void matrix_copy_with_stride( TPtr tgt, TPtr src, TRowSize nRows, TColSize nColumns, TStrideSize stride)
   	{
-		loop(nRows,  tgt+=stride, src+=stride)  // apply stride after each row to tgt and src
-			loop(nColumns, tgt++, src++)	// increment after each copy.
+		loop_postops(nRows,  tgt+=stride, src+=stride)  // apply stride after each row to tgt and src
+			loop_postops(nColumns, tgt++, src++)	// increment after each copy.
 				*tgt = *src;
 		return;
 	}
@@ -106,14 +111,32 @@ Here is an example usage for of a matrix-copy using a stride-offset from each ro
 
 **loop(){}**  can be implemented like the following
 
-	#define CPPMACRO_UNIQUE_ID()  \
-		CPPMACRO_UNIQUE_ID_##_##LINE##_##__LINE__##_##__COUNTER__
+	namesapce ogis{
+		template <typename Type>
+		using remove_cvref_t =
+    			typename std::remove_cv<typename std::remove_reference<Type>::type>::type;
+	}
+	
+	#ifdef __cpp_has_cpploop
+	
+	#define CPPMACRO_XCAT2(a, b) a##b
+	#define CPPMACRO_UNIQUE_ID(counter) CPPMACRO_XCAT2(UNIQUE_ID_LOOP_, counter)
+	
 
-        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions, ...) \     
-                 for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++, ##__VA_ARGS__)
+        #define CPPMACRO_NTIMES_UP(type, indexVarName, nbrOfRepetitions) \     
+                 for(type indexVarName = 0; indexVarName<nbrOfRepetitions;indexVarName++)
+	
+	#define CPPMACRO_NTIMES_FASTEST(indexType, nbrOfRepetitions, indexVarName) \
+                 for (indexType indexVarName = static_cast<indexType>(nbrOfRepetitions);  indexVarName-- > 0;)
 
-        #define loop(nbrOfRepetitions, ...)   \
-                   CPPMACRO_NTIMES_UP( decltype(nbrOfRepetitions), CPPMACRO_UNIQUE_ID(), nbrOfRepetitions, ##__VA_ARGS__)
+	#define CPPMACRO_LOOP(direction, nbrOfRepetitions, indexVarName)   \
+	   	CPPMACRO_NTIMES_##direction(                                \
+	      		typename ogis::remove_cvref_t<decltype((nbrOfRepetitions))>,  nbrOfRepetitions, indexVarName)
+	
+	#define loop(nbrOfRepetitions) \
+	  	CPPMACRO_LOOP(FASTEST, nbrOfRepetitions, CPPMACRO_UNIQUE_ID(__COUNTER__))
+
+	#endif
 
 ## Detailed Information ##
 ### About Existing Compound-Statements   ###
@@ -121,25 +144,18 @@ see this [file](./the_existing_compounds.md).
 
 **Is it a LAW-OF-NATURE that there will NEVER be any other compound-statements in the future?**
 
-### The [Full Syntax](./the_full_syntax.md) ###
-For the full syntax of the related compounds 
- - loop(){]
- - typed_loop(){}, 
- - named_loop_up(){},  
- - named_loop_down(){}
- 
- look [**here**](./the_full_syntax.md).
-
-### The Description of the [Full Implementation](./the_full_implementation.md) ###
+### [The Implementation](./the_full_implementation.md) ###
 For a description of the implementation look [**here**](./the_full_implementation.md).
+
 
 #### The Code Examples ####
 
-You find  full C++ header-only implementation of the **Compound-Group "LOOP"**"
-[here](./future-cpp-loop/ogis-cpp-loop/include).
+You find  a C++ header-only implementation of the **Compound-Group "LOOP"**" 
+[here](./cxxloop/include).
 
-There are also *Qt-Creator* and *VisualStudio 2019* **project files** in this
-[directory](./future-cpp-loop).
+There are  *Cmake* Projekts
+	- the implementation in the directory [cxxloop](./cxxloop).
+	- unit tests inthe  directory [cxxloop](./cxxloop.examples/t).
 
 For more matrix-examples ave a look at
 [this example](./future-cpp-loop/ogis-cpp-loop.examples/examples/matrix.hpp).
