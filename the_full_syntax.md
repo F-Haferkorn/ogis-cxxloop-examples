@@ -1,19 +1,21 @@
 ## Full Syntax of the Compound-Group LOOP ##
 
-This is the full syntax of the Compound-Group LOOP
+This is the syntax of the Compound-Group LOOP
+
+To be honest, this is not thefull story of the syntax some more twaeks ware needed to use  a indexVar-type,
+which is not *const*, *volatile*, *reference* or *rvalue*
 
 - see also the [Implementation Details](/the_full_implementation.md)
-- see also the [Example Directory](/future-cpp-loop/ogis-cpp-loop.examples/examples)
+- see also the [Example Directory](/cxxloop.examples/)
 
 ### Shortcuts: ###
 	{}	a single <statement> or a  <statement-block>  after the compound statement
 	rep    	the <count> of targeted repetitions (usually a value of integral-type) ;
-	type	the <type> of the (hiddden) iteration variable
-	name	the <name> of the iteration variable
+	id     the name of theindexed iteration variable, if not hidden.
 	, ...) 	an optional comma separated list of post-operations (expressions)
 
 ### Basic SYNTAX of the Loop Compound-Group: ###
-These compounds iterate ("loop") the trailing block "{}" "rep" times
+These compounds iterate ("loop") the trailing block "{}" "rep" times.
 
 	/////// below <hidden> is an id with a secret, unique ID created using  a the cpp-macro CPPMACRO_UNIQUE_ID()
 	
@@ -21,43 +23,52 @@ These compounds iterate ("loop") the trailing block "{}" "rep" times
 	loop(rep){}	                 // for(auto hidden=rep; hidden-- ; ++hidden){}   
 
 	// a typed-loop has a type-constain, but has a hidden index variable, too.
-	typed_loop(type,rep){} 	        // for(type hidden=rep; hidden-- ; ++hidden){}   
+	loop_h(rep){} 	        // for(short hiddden=rep, hidden-->0 ; ){}   
+	loop_hh(rep){} 	        // for(char hiddden=rep, hidden-->0 ; ){}   
 
-
-	// the named_loops_...() are useful, when access to the index variable is needed.
+	// the loop_up/down() iterations are useful, when access to the index variable is needed.
+	
 	// the named index variable "name" is counting upwards from 0 to rep-1.
-	named_loop_up(name,rep){} 	 // for(auto name=0; name<rep; ++name){}     
+	loop_up(rep, id){} 	 // for(auto    id=0; id<rep;  id++){}   // looping up  
+	loop_up_h(rep, id){} 	 // for(short 	id=0; id<rep ; id++){}   // looping with indexCar type "short"
+	loop_up_hh(rep, id){} 	 // for(char 	id=0; id<rep ; id++){}   // looping with indexCar type "char"
 
 	// the named  index variable "name" is  counting downwards, from rep -1 to 0
-	named_loop_down(name,rep){} 	 // for(auto name=rep-1; name--; ++name){}     
-
+	loop_down(rep, id){} 	 // for(auto    id=rep; id--; ){}     	// looping up 
+	loop_down_h(rep, id){} 	 // for(short 	id=rep; id--; ){}   	// looping with indexCar type "short"
+	loop_down_hh(rep, id){}  // for(char 	id=rep; id--; ){}   	// looping with indexxCar type "char"
+	
 The argument _rep_ is _not_ changed an in best case should have integral-type:
 Any float or enum is not allowed for rep.
 Compiler can take advantage when index vars <rep> are of integal-type and fit into ALU-registers.
+for anobymous loop-indexVars is an id with a secret, unique ID created using  a the cpp-macro CPPMACRO_UNIQUE_ID(__COUNTER__)
 
-### EXTENDED_SYNTAX ###
-	// each of the above the loop compound statements
-	// can be extened by any number of post-iteration operations.
-
-	// loop <block> rep times
-	loop(rep){}		
-
-	// loop <block> rep times with 1 post-operation op1.
-	loop(rep, op1 ){}
-
-	// loop <block> rep times with 2 postoperations op1, op2  (more are optional).
-	loop(rep, op1, op2){}
+### SYNTAX WITH POST-OPERATIONS ###
+The use of post-operations (C-expressions is supported via usage of  the suffix "_postops", too. 
 	
-	// all of them may contain trailing post-expressions
-	typed_loop(type,rep, op1, ...)){}               // hidden loop with <type> constraint on the index variable
-	named_loop_up(name, cnt, op1, op2, ...){}       // loop upwards with type "auto" a named index variable .
-	named_loop_down(name, cnt, op1, op2, ...){}     // loop deonwards with type "auto" a named index variable.
-	
-# FORMAL Spezification # 	
-## Using a FORMAL Syntax like ##
-	
+	loop_**postops**(rep, postop1, ... ){}	                    
 
-	  <nbrOfRepetittions>	the count of iterations performed 
+	// a typed-loop has a type-constain, but has a hidden index variable, too.
+	loop_h_postops(rep, postop1, ... ){}	                    
+	loop_hh_postops(rep, postop1, ... ){}	                    
+
+	// the loop_up/down() iterations are useful, when access to the index variable is needed.
+	
+	// the named index variable "id" is counting upwards from 0 to rep-1.
+	loop_up_postops(rep, postop1, ... ){}	                    	
+	loop_up_h_postops(rep, id, postop1, ... ){}
+	loop_up_hh_postops(rep, id, postop1, ... ){}
+
+	// the named  index variable "id" is  counting downwards, from rep -1 to 0
+	loop_down_postops(rep, postop1, ... ){}	                    	
+	loop_down_h_postops(rep, id, postop1, ... ){}
+	loop_down_hh_postops(rep, id, postop1, ... ){}
+	
+# FORMAL Spezification # 
+	
+## Using a FORMAL Syntax like ##	
+
+	 <nbrOfRepetittions>	the count of iterations performed 
 
 	 [, <expression>]...	optional comma separated list  of expressions
 	 <indexType>		the type of the indexVariable
@@ -67,22 +78,15 @@ Compiler can take advantage when index vars <rep> are of integal-type and fit in
 	 <statement>		one of 
 		- an expression-statement with trailing semicolon like sinx(x)/x;
 		- a compound-statement  with curly braces  like { [ <statement> ]...}
-		- a conditional-compound-statement like 
-			- if(<expression>) <statement>
-			- if(<expression>) <statement> else <statement>
-			- switch(<expression> { <statement>}
 		- an iterative-compound-statments like
 			- for(<initialization>; <expression>; <post-expression>) <statement>
 			- for(<range-init> : <container> <statement>
 			- while(<expression>) <statement>
 			- do <statement> while(<expression>);
-	
-	
-since c++17 if(), switch() may have an extra, scoped initialization
+		- a conditional-compound-statement like 
+			- if(<expression>) <statement> [ else <statement>] 
+			- switch(<expression> { <statement>}
+		- extended conditional-compound-statement (since C++17  if(), switch() allow an extra, scoped initialization)
+			- if(<initialization>; expression>) <statement> [ else <statement>] 
+			- switch(<initialization>; <expression> { <statement>}
 
-## The Compound-Group LOOP is specified as:	
-	
-	loop(<nbrOfRepetions> [, <expression>]...) <statement>
-	typed_loop(<indexType>, <nbrOfRepetions> [, <expression>]...) <statement>
-	named_loop_up(<indexVarName>, <nbrOfRepetions>[, <expression>]...) <statement>
-	named_loop_down(<indexVarName>, <nbrOfRepetions> [, <expression>]...) <statement>
