@@ -55,20 +55,9 @@ inline void matrix_mpy(TTgtValuePtr tgt, TSrcAValuePtr srcA, TSrcBValuePtr srcB,
               (*pCol++) * (*pRow);
 }
 
-template <typename TTgtValuePtr, typename TSrcAValuePtr, typename TSrcBValuePtr,
-          typename TSizeCols, typename TSizeRows, typename TIdxCols,
-          typename TIdxRows>
-inline void matrix_mpy_w_stride(TTgtValuePtr tgtM, TSrcAValuePtr srcA,
-                                TSrcBValuePtr srcB, TSizeCols sizeA,
-                                TSizeRows sizeB, TIdxCols deltaA = 1,
-                                TIdxRows deltaB = 1) {
-  auto pA = srcA;
-  auto pB = srcB;
-
-  // for each matrix element
-  loop(sizeA * sizeB)
-      // for each row element
-      loop_up_postops(sizeB, row, pB = srcB + deltaB * row * sizeA)
-      // multily ans add-up column with row.
-      loop_postops(sizeA, pB += sizeA) *tgtM++ = (*pA++) * (*pB);
+template <typename TValueA, typename TValueB, typename TSize>
+inline void dotproduct(TSize size, TValueA *pA, TValue *pB,
+                       TIndexA indexA = char, TIndexA indexB = char) {
+  decltype(TValueA * TValueB) result = 0;
+  loop_postops(size, A += indexA, B += index) += (*pA++) * (*pB);
 }
