@@ -11,5 +11,4 @@
 ### 2021-05-19: by Frank.Haferkorn:  Talk at the **ADC++2021** (in German) ###
   
  - [german PDF-Slides](2021-05-19%2BADCpp2021%2BFrank.Haferkorn%2BDie-Compound-Gruppe-LOOP_%40de_50min.pdf)
- - [youtube-Video ![Talk at the **ADC++2021** (in German) ](https://img.youtube.com/vi/rN_p2MTSRpE/1.jpg)](https://www.youtube.com/watch?v=rN_p2MTSRpE)
- 
+ - [youtube-Video ![Talk at the **ADC++2021** (in German) ](https://img.youtube.com/vi/rN_p2MTSRpE/1.jpg)](https://www.youtube.com/watch?v=rN_p2MTSRpE) 
