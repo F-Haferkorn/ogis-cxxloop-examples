@@ -45,7 +45,7 @@ inline void matrix_incr_w_stride(TTgtValuePtr tgt, TTgtValue increment,
 template <typename TTgtValuePtr, typename TSrcAValuePtr, typename TSrcBValuePtr,
           typename TSizeRows, typename TSizeCols>
 inline void matrix_mpy(TTgtValuePtr tgt, TSrcAValuePtr srcA, TSrcBValuePtr srcB,
-                       TSizeCols nbofColums, TSizeRows nbofRows) {
+                       TSizeCols sizeA, TSizeRows sizeB) {
   auto pCol = srcA;
   auto pRow = srcB;
 

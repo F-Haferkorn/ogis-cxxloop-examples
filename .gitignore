@@ -14,3 +14,4 @@ nppBackup/
 build-*/
 
 *.bak
+*.skipped
