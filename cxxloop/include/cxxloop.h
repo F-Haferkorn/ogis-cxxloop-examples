@@ -3,7 +3,7 @@
 #include <type_traits>
 
 #include "cxxloop_prereqs.h"
-/**** syntax:   loop[_up|_down][_h|_hh]_postops(..){};
+/**** syntax:   loop[_up|_down][_h|_hh]_postops(...){};
 
 loop(rep){}
 loop_up(rep, id){}
