@@ -49,15 +49,25 @@ inline void matrix_mpy(TTgtValuePtr tgt, TSrcAValuePtr srcA, TSrcBValuePtr srcB,
   auto pCol = srcA;
   auto pRow = srcB;
 
-  loop(nbofColums * nbofRows)  // for each matrix element
-      loop_up_postops(nbofRows, row, pRow = srcB + row * nbofColums)
-          loop_postops(nbofColums, pRow += nbofColums) *tgt++ =
-              (*pCol++) * (*pRow);
+  loop(sizeA * sizeB)  // for each matrix element
+      loop_up_postops(sizeB, row, pRow = srcB + row * sizeA)
+          loop_postops(sizeA, pRow += sizeA) *tgt++ = (*pCol++) * (*pRow);
 }
 
-template <typename TValueA, typename TValueB, typename TSize>
-inline void dotproduct(TSize size, TValueA *pA, TValue *pB,
-                       TIndexA indexA = char, TIndexA indexB = char) {
-  decltype(TValueA * TValueB) result = 0;
-  loop_postops(size, A += indexA, B += index) += (*pA++) * (*pB);
+template <typename TValueTgt, typename TValueA, typename TValueB,
+          typename TSize>
+inline TValueTgt *dotproduct(TSize size, TValueTgt *tgt, TValueA *pA,
+                             TValueB *pB) {
+  decltype(*pA * *pB) result = 0;
+  loop_postops(size, pA++, pB++, tgt++) tgt += (*pA) * (*pB);
+  return tgt;
+}
+
+template <typename TValueA, typename TValueB, typename TSize,
+          typename TIndexA = char, typename TIndexB = char>
+inline void dotproduct(TSize size, TValueA *pA, TValueB *pB, TIndexA indexA,
+                       TIndexA indexB) {
+  decltype(*pA * *pB) result = 0;
+  loop_slice_postops(0, size, indexA, id, pB += indexB) result +=
+      (*pA++) * (*pB);
 }

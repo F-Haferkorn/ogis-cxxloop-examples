@@ -7,7 +7,7 @@ set(FILES
     main.cpp
     )
 
-set(THE_PROJECT cxxloop-asciishapes-loop)
+set(THE_PROJECT cxxloop-examples-asciishapes-loop)
 
 #set(CMAKE_CXX_STANDARD             11)
 #set(CMAKE_CXX_STANDARD_REQUIRED    NO)

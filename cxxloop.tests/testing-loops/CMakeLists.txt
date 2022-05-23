@@ -13,4 +13,9 @@ add_subdirectory(test_cxxloop)
 add_subdirectory(test_cxxloop_typed)
 
 #POSTOPS
+
 add_subdirectory(test_cxxloop_postops)
+add_subdirectory(test_cxxloop_templates_postops)
+
+#special
+add_subdirectory(test_cxxloop_slice)

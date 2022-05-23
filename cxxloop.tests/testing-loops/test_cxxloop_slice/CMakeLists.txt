@@ -1,16 +1,16 @@
 cmake_minimum_required(VERSION 3.20 FATAL_ERROR)
 
-set(THE_PROJECT cxxloop-testing-cxxloop-templates-postops)
+set(THE_PROJECT cxxloop-testing-cxxloop-slice)
 
 project(${THE_PROJECT} LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD             11)
 set(CMAKE_CXX_STANDARD_REQUIRED    YES)
 
-set(TEST_CXXLOOP    test_cxxloop_templates_postops.cpp    ../macro.h)
+set(TEST_CXXLOOP_SLICE    test_cxxloop_slice.cpp    ../macro.h)
 
 ###############
-add_executable(${THE_PROJECT}  ${TEST_CXXLOOP} )
+add_executable(${THE_PROJECT}  ${TEST_CXXLOOP_SLICE} )
 target_link_libraries(${THE_PROJECT}  cxxloop )
 
 target_include_directories(${THE_PROJECT}  PUBLIC

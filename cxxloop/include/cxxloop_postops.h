@@ -31,49 +31,49 @@ loop_down_hh_postops(rep, id)
 ///
 // ... loop block-statement nbrOfRepetitions-times
 #define loop_postops(nbrOfRepetitions, ...)        \
-  CPPMACRO_LOOP_POSTOPS(FASTEST, nbrOfRepetitions, \
+  CPPMACRO_LOOP_POSTOPS(NTIMES_FASTEST, nbrOfRepetitions, \
                         CPPMACRO_UNIQUE_ID(__COUNTER__), __VA_ARGS__)
 
 // ... counting up-wards
 #define loop_up_postops(nbrOfRepetitions, indexVarName, ...) \
-  CPPMACRO_LOOP_POSTOPS(UP, nbrOfRepetitions, indexVarName, __VA_ARGS__)
+  CPPMACRO_LOOP_POSTOPS(NTIMES_UP, nbrOfRepetitions, indexVarName, __VA_ARGS__)
 
 // ... counting down-wards
 #define loop_down_postops(nbrOfRepetitions, indexVarName, ...) \
-  CPPMACRO_LOOP_POSTOPS(DOWN, nbrOfRepetitions, indexVarName, __VA_ARGS__)
+  CPPMACRO_LOOP_POSTOPS(NTIMES_DOWN, nbrOfRepetitions, indexVarName, __VA_ARGS__)
 
 ///////////////////////// CPPMACRO_LOOP__TYPED, ushort
 // ... loop block-statement nbrOfRepetitions-times
 #define loop_h_postops(nbrOfRepetitions, ...)                         \
-  CPPMACRO_LOOP_TYPED_POSTOPS(FASTEST, nbrOfRepetitions,              \
+  CPPMACRO_LOOP_TYPED_POSTOPS(NTIMES_FASTEST, nbrOfRepetitions,              \
                               CPPMACRO_UNIQUE_ID(__COUNTER__), short, \
                               __VA_ARGS__)
 
 // ... counting up-wards
 #define loop_up_h_postops(nbrOfRepetitions, indexVarName, ...)           \
-  CPPMACRO_LOOP_TYPED_POSTOPS(UP, nbrOfRepetitions, indexVarName, short, \
+  CPPMACRO_LOOP_TYPED_POSTOPS(NTIMES_UP, nbrOfRepetitions, indexVarName, short, \
                               __VA_ARGS__)
 
 // ... counting down-wards
 #define loop_down_h_postops(nbrOfRepetitions, indexVarName, ...)           \
-  CPPMACRO_LOOP_TYPED_POSTOPS(DOWN, nbrOfRepetitions, indexVarName, short, \
+  CPPMACRO_LOOP_TYPED_POSTOPS(NTIMES_DOWN, nbrOfRepetitions, indexVarName, short, \
                               __VA_ARGS__)
 
 ///////////////////////// CPPMACRO_LOOP__TYPED, uchar
 // ... loop block-statement nbrOfRepetitions-times
 #define loop_hh_postops(nbrOfRepetitions, ...)                       \
-  CPPMACRO_LOOP_TYPED_POSTOPS(FASTEST, nbrOfRepetitions,             \
+  CPPMACRO_LOOP_TYPED_POSTOPS(NTIMES_FASTEST, nbrOfRepetitions,             \
                               CPPMACRO_UNIQUE_ID(__COUNTER__), char, \
                               __VA_ARGS__)
 
 // ... counting up-wards
 #define loop_up_hh_postops(nbrOfRepetitions, indexVarName, ...)         \
-  CPPMACRO_LOOP_TYPED_POSTOPS(UP, nbrOfRepetitions, indexVarName, char, \
+  CPPMACRO_LOOP_TYPED_POSTOPS(NTIMES_UP, nbrOfRepetitions, indexVarName, char, \
                               __VA_ARGS__)
 
 // ... counting down-wards
 #define loop_down_hh_postops(nbrOfRepetitions, indexVarName, ...)         \
-  CPPMACRO_LOOP_TYPED_POSTOPS(DOWN, nbrOfRepetitions, indexVarName, char, \
+  CPPMACRO_LOOP_TYPED_POSTOPS(NTIMES_DOWN, nbrOfRepetitions, indexVarName, char, \
                               __VA_ARGS__)
 
 #endif

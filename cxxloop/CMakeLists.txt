@@ -18,9 +18,14 @@ set(CPPLOOP_HDR
     include/cxxloop.h
     include/cxxloop_postops.h
     include/cxxloop_prereqs.h
+
+    #include/cxxloop_slice.h
+    i#nclude/cxxloop_slice_postops.h
+    include/cxxloop_slice_prereqs.h
     )
 
 add_library(cxxloop   INTERFACE)
+#target_sources(cxxloop  INTERFACE  ${CPPLOOP_HDR})
 
 target_include_directories(cxxloop
   INTERFACE

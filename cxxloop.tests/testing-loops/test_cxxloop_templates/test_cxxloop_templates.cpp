@@ -62,20 +62,20 @@ template <typename T>
 void test_loop_macro_up() {
   int count = 0;
 
-  CPPMACRO_LOOP(UP, 10, id) count++;
+  CPPMACRO_LOOP(NTIMES_UP, 10, id) count++;
   ASSERT_COUNTS(count, 10);
 }
 template <typename T>
 void test_loop_macro_down() {
   int count = 0;
-  CPPMACRO_LOOP(DOWN, 20, id) count++;
+  CPPMACRO_LOOP(NTIMES_DOWN, 20, id) count++;
   ASSERT_COUNTS(count, 20);
 }
 
 template <typename T>
 void test_loop_macro_fast() {
   int count = 0;
-  CPPMACRO_LOOP(FASTEST, 30, id) count++;
+  CPPMACRO_LOOP(NTIMES_FASTEST, 30, id) count++;
   ASSERT_COUNTS(count, 30);
 }
 template <typename T>
@@ -115,6 +115,119 @@ void test() {
   test_loop_macro<const unsigned char>();
 }
 }  // namespace LOOP
+
+namespace BASIC {
+namespace plain {
+
+template <typename T>
+void test_basic_macro_plain() {
+  int count = 0;
+  T N = 10;
+  loop(N) count++;
+  ASSERT_COUNTS(count, N);
+
+  count = 0;
+  loop_up(N, id) count++;
+  ASSERT_COUNTS(count, N);
+
+  count = 0;
+  loop_hh(N) count++;
+  ASSERT_COUNTS(count, N);
+}
+
+template <typename T>
+void test() {
+  test_basic_macro_plain<T>();
+}
+}  // namespace plain
+
+namespace up {
+
+template <typename T>
+void test_basic_macro_up() {
+  int count = 0;
+  T N = 10;
+  loop_up(N, id) count++;
+  ASSERT_COUNTS(count, N);
+
+  count = 0;
+  loop_up_h(N, id) count++;
+  ASSERT_COUNTS(count, N);
+
+  count = 0;
+  loop_up_hh(N, id) count++;
+  ASSERT_COUNTS(count, N);
+}
+
+template <typename T>
+void test() {
+  test_basic_macro_up<T>();
+}
+}  // namespace up
+
+namespace down {
+
+template <typename T>
+void test_basic_macro_down() {
+  int count = 0;
+  T N = 10;
+
+  loop_down(N, id) count++;
+  ASSERT_COUNTS(count, N);
+
+  count = 0;
+  loop_down_h(N, id) count++;
+  ASSERT_COUNTS(count, N);
+
+  count = 0;
+  loop_down_hh(N, id) count++;
+  ASSERT_COUNTS(count, N);
+}
+
+template <typename T>
+void test() {
+  test_basic_macro_down<T>();
+}
+}  // namespace down
+
+template <typename T>
+void test_basic() {
+  plain::test<T>();
+  up::test<T>();
+  down::test<T>();
+}
+
+void test() {
+  /// signed
+  test_basic<long long>();
+  test_basic<long>();
+  test_basic<int>();
+  test_basic<short>();
+  test_basic<char>();
+
+  /// unsigned
+  test_basic<unsigned long long>();
+  test_basic<unsigned long>();
+  test_basic<unsigned int>();
+  test_basic<unsigned short>();
+  test_basic<unsigned char>();
+
+  /// const signe
+  test_basic<const long long>();
+  test_basic<const long>();
+  test_basic<const int>();
+  test_basic<const short>();
+  test_basic<const char>();
+
+  /// const unsig
+  test_basic<const unsigned long long>();
+  test_basic<const unsigned long>();
+  test_basic<const unsigned int>();
+  test_basic<const unsigned short>();
+  test_basic<const unsigned char>();
+}
+
+}  // namespace BASIC
 
 //////////////////////////////////
 /// \brief test_loop_reps_const_size_t
@@ -204,45 +317,47 @@ namespace SCOPE {
 
 template <typename T>
 void test_scope_regular() {
-  T rows = 100, columns = 40;
+  T rows = 100, columns = 40, N = 5;
   size_t count = 0;
 
-  loop_up(rows, row) loop_up(columns, col) count =
-      row > 0 ? (col > 0 ? 1 : 0) : 0;
-  ASSERT_COUNTS(count, (rows - 1) * (columns - 1));
+  loop_up(rows, row) loop_up(columns, col) loop(N) {
+    count += row > 0 ? (col > 0 ? 1 : 0) : 0;
+  }
+  ASSERT_COUNTS(count, (rows - 1) * (columns - 1) * (N));
 }
 
 template <typename T>
 void test_scope_reference() {
-  T rows_ = 100, columns_ = 40;
+  T rows_ = 100, columns_ = 40, N = 5;
   T &rows = rows_, &columns = columns_;
   int count = 0;
-  loop_up(rows, row) loop_up(columns, col) count =
+  loop_up(rows, row) loop_up(columns, col) loop(N) count +=
       row > 0 ? (col > 0 ? 1 : 0) : 0;
-  ASSERT_COUNTS(count, (rows - 1) * (columns - 1));
+  ASSERT_COUNTS(count, (rows - 1) * (columns - 1) * N);
 }
 
 template <typename T = char>
 void test_scope_rvalue() {
-  T &&rows = 100, &&columns = 40;
+  T &&rows = 100, &&columns = 40, N = 5;
 
   int count = 0;
-  loop_up(rows, row) loop_up(columns, col) count =
+  loop_up(rows, row) loop_up(columns, col) loop(N) count +=
       row > 0 ? (col > 0 ? 1 : 0) : 0;
-  ASSERT_COUNTS(count, (rows - 1) * (columns - 1));
+  ASSERT_COUNTS(count, (rows - 1) * (columns - 1) * (N));
 
   count = 0;
-  loop_up(100, row) loop_up(40, col) count = row > 0 ? (col > 0 ? 1 : 0) : 0;
-  ASSERT_COUNTS(count, (rows - 1) * (columns - 1));
+  loop_up(100, row) loop_up(40, col) loop(5) count +=
+      row > 0 ? (col > 0 ? 1 : 0) : 0;
+  ASSERT_COUNTS(count, (rows - 1) * (columns - 1) * (N));
 }
 
 template <typename T>
 void test_scope_expr() {
-  T rows = 100, columns = 20, N = 4;
+  T rows = 100, columns = 20, N = 5;
   size_t count = 0;
-  loop_up(rows + 1, row) loop_down(columns + 1, col) count =
+  loop_up(rows + 1, row) loop_down(columns + 1, col) loop(N) count +=
       row > 0 ? (col > 0 ? 1 : 0) : 0;
-  ASSERT_COUNTS(count, (rows + 1 - 1) * (columns + 1 - 1));
+  ASSERT_COUNTS(count, (rows + 1 - 1) * (columns + 1 - 1) * N);
 }
 
 template <typename T = char>
@@ -289,6 +404,7 @@ void test() {
 void test_loops() {
   NTIMES::test();
   LOOP::test();
+  BASIC::test();
   templates::test();
   SCOPE::test();
 }
