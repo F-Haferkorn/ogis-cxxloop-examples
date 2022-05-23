@@ -7,8 +7,9 @@
 void example_matrix();
 
 int main() {
-  // some more realistic examples of matrix operations
-  // using the new compound-statement
+  std::cout << "############ matrix-exammples " << std::endl;
   example_matrix();
+  std::cout << "..DONE" << std ::endl;
+
   return 0;
 }

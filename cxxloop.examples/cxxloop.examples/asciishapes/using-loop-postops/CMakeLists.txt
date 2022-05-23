@@ -10,7 +10,7 @@ set(FILES
 
 cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
 
-set(THE_PROJECT cxxloop-asciishapes-for-postops)
+set(THE_PROJECT cxxloop-examples-asciishapes-loop-postops)
 
 #set(CMAKE_CXX_STANDARD             ${CXXLOOP_CXX_STANDARD})
 #set(CMAKE_CXX_STANDARD_REQUIRED    ${CXXLOOP_CXX_STANDARD_REQUIRED})

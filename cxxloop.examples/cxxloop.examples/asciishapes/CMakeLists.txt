@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.18 FATAL_ERROR)
 
-project(ogis-cxxloop-ascciishapes LANGUAGES CXX)
+project(ogis-cxxloop-examples-ascciishapes LANGUAGES CXX)
 
 #set(CMAKE_CXX_STANDARD             11)
 #set(CMAKE_CXX_STANDARD_REQUIRED    NO)

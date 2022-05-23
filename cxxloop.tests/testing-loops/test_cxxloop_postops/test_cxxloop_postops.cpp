@@ -26,11 +26,11 @@ void test_loop_macro_one_postops() {
   {  // 1 post-expression
     int count = 0;
     CPPMACRO_NTIMES_UP_POSTOPS(int, 1000, id, count++) count++;
-    ASSERT_COUNTS(count, 3 * 1000);
+    ASSERT_COUNTS(count, 2 * 1000);
 
     count = 0;
-    CPPMACRO_NTIMES_DOWN_POSTOPS(int, 2000, id, count++, count++) count++;
-    ASSERT_COUNTS(count, 3 * 2000);
+    CPPMACRO_NTIMES_DOWN_POSTOPS(int, 2000, id, count++) count++;
+    ASSERT_COUNTS(count, 2 * 2000);
   }
 }
 void test_loop_macro_two_postops() {
@@ -42,7 +42,7 @@ void test_loop_macro_two_postops() {
     ASSERT_COUNTS(count, 3 * 1000);
     count = 0;
     CPPMACRO_NTIMES_DOWN_POSTOPS(int, 2000, id, count++, count++) count++;
-    ASSERT_COUNTS(count, 3 * 4000);
+    ASSERT_COUNTS(count, 3 * 2000);
   }
 }
 // namespace macro
@@ -58,9 +58,9 @@ namespace reps_size_t {
 void test_loop_postops_reps_const_size_t() {
   const size_t rows = 4, columns = 2;
   size_t count = 0;
-  loop_up_postops(rows, row, count += 100)
-      loop_down_postops(columns, column, count += 10) loop(2) count++;
-  ASSERT_COUNTS(count, 2000);
+  loop_up_postops(rows, row, count += 5)
+      loop_down_postops(columns, column, count += 5) loop(2) count++;
+  ASSERT_COUNTS(count, (rows * 5) + (rows * columns * 5) + rows * columns * 2);
 }
 
 void test_loop_postops_reps_size_t() {
@@ -68,9 +68,11 @@ void test_loop_postops_reps_size_t() {
   size_t count = 0;
 
   loop_up_postops(rows, row, count += 100)
-      loop_down_postops(columns, column, count += 10) loop_postops(5, count++);
-  ASSERT_COUNTS(count, 425);
+      loop_down_postops(columns, column, count += 10) loop_postops(N, count++);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * N * 1);
 }
+
 void test_loops() {
   test_loop_postops_reps_size_t();
   test_loop_postops_reps_const_size_t();
@@ -82,35 +84,44 @@ void test_loops() {
 namespace reps_signed {
 void test_loop_postops_reps_integral_long_long() {
   long long count = 0;
+  size_t rows = 4, columns = 2, N = 5;
   loop_up_postops(4LL, row, count += 100)
       loop_down_postops(2LL, column, count += 10) loop_postops(5LL, count++);
-  ASSERT_COUNTS(count, 425LL);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * 5);
 }
 
 void test_loop_postops_reps_integral_long() {
   size_t count = 0;
+  size_t rows = 4, columns = 2, N = 5;
   loop_up_postops(4L, row, count += 100)
       loop_down_postops(2L, column, count += 10) loop_postops(5L, count++);
-  ASSERT_COUNTS(count, 425);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * 5);
 }
 
 void test_loop_postops_reps_integral_int() {
   size_t count = 0;
+  size_t rows = 4, columns = 2, N = 5;
   loop_up_postops(4, row, count += 100)
       loop_down_postops(2, column, count += 10) loop_postops(5, count++);
-  ASSERT_COUNTS(count, 425);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * 5);
 }
 
 void test_loop_postops_reps_integral_short() {
   size_t count = 0;
+  size_t rows = 4, columns = 2, N = 5;
   loop_up_postops(4, row, count += 100) loop_hh_postops(2, count += 10)
       loop_postops(5, count++);
-  ASSERT_COUNTS(count, 425);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * 5);
 }
 void test_loop_postops_reps_integral_char() {
   size_t count = 0;
+  size_t rows = 2, columns = 5;
   loop_hh_postops(2, count += 10) loop_hh_postops(5, count++);
-  ASSERT_COUNTS(count, 25);
+  ASSERT_COUNTS(count, (rows * 10) + (rows * columns * 1));
 }
 void test_loops() {
   test_loop_postops_reps_integral_long_long();
@@ -126,36 +137,45 @@ void test_loops() {
 namespace reps_unsigned {
 void test_loop_postops_reps_integral_unsigned_long_long() {
   long long count = 0;
+  size_t rows = 4, columns = 2, N = 5;
   loop_up_postops(4LL, row, count += 100)
       loop_down_postops(2LL, column, count += 10) loop_postops(5LL, count++);
-  ASSERT_COUNTS(count, 425LL);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * 5);
 }
 
 void test_loop_postops_reps_integral_unsigned_long() {
   size_t count = 0;
+  size_t rows = 4, columns = 2, N = 5;
   loop_up_postops(4L, row, count += 100)
       loop_down_postops(2L, column, count += 10) loop_postops(5L, count++);
-  ASSERT_COUNTS(count, 425);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * 5);
 }
 
 void test_loop_postops_reps_integral_unsigned_int() {
   size_t count = 0;
+  size_t rows = 4, columns = 2, N = 5;
   loop_up_postops(4, row, count += 100)
       loop_down_postops(2, column, count += 10) loop_postops(5, count++);
-  ASSERT_COUNTS(count, 425);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * 5);
 }
 
 void test_loop_postops_reps_integral_unsigned_short() {
   size_t count = 0;
+  size_t rows = 4, columns = 2, N = 5;
   loop_up_postops(4, row, count += 100) loop_hh_postops(2, count += 10)
       loop_postops(5, count++);
-  ASSERT_COUNTS(count, 425);
+  ASSERT_COUNTS(count,
+                (rows * 100) + (rows * columns * 10) + rows * columns * 5);
 }
 
 void test_loop_postops_reps_integral_unsigned_char() {
   size_t count = 0;
+  size_t rows = 2, columns = 5;
   loop_hh_postops(2, count += 10) loop_hh_postops(5, count++);
-  ASSERT_COUNTS(count, 25);
+  ASSERT_COUNTS(count, (rows * 10) + (rows * columns * 1));
 }
 
 void test_loops() {
@@ -172,7 +192,7 @@ namespace plain_tests {
 void test_loop_010() {
   unsigned int count = 0;
   loop_down(10U, i) count++;
-  ASSERT_COUNTS(count, 0);
+  ASSERT_COUNTS(count, 10);
 
   loop_up_postops(20, row, count++);
   ASSERT_COUNTS(count, 10 + 20);
@@ -249,7 +269,7 @@ void test_loop_023_typed_loop() {
 void test_loop_030() {
   int count = 0;
   loop_postops(4, count += 1000) loop_postops(2, count += 10);
-  ASSERT_COUNTS(count, 4020);
+  ASSERT_COUNTS(count, 4 * 1000 + 4 * 2 * 10);
 }
 
 void test_loop_040_loop() {
